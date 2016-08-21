@@ -41,7 +41,7 @@ public abstract class FrameActivity extends AppCompatActivity {
     /**
      * Gets the Layout ID of the view that will be replaced by Fragments with the SupportFragmentManager
      *
-     * @return
+     * @return layoutID
      */
     protected abstract
     @IdRes
@@ -49,7 +49,8 @@ public abstract class FrameActivity extends AppCompatActivity {
 
     /**
      * Gets the fab ID
-     * @return
+     *
+     * @return fabID
      */
     protected abstract
     @IdRes
@@ -57,7 +58,8 @@ public abstract class FrameActivity extends AppCompatActivity {
 
     /**
      * Gets your layout ID for the activity
-     * @return
+     *
+     * @return layoutID
      */
     protected abstract
     @LayoutRes
