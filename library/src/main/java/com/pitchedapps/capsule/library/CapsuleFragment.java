@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.pitchedapps.capsule.library.activities.CapsuleActivity;
 import com.pitchedapps.capsule.library.interfaces.ICapsulePermissions;
 
 /**
