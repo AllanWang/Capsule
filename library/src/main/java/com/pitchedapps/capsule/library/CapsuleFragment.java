@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.pitchedapps.capsule.library.activities.CapsuleActivity;
-import com.pitchedapps.capsule.library.interfaces.ICapsulePermissions;
+import com.pitchedapps.capsule.library.permissions.CPermissionCallback;
 
 /**
  * Created by Allan Wang on 2016-08-19.
@@ -73,7 +73,7 @@ public abstract class CapsuleFragment extends Fragment {
         return null;
     }
 
-    protected void getPermissions(@NonNull ICapsulePermissions callback, @IntRange(from = 1, to = Integer.MAX_VALUE) int requestCode, @NonNull String... permissions) {
+    protected void getPermissions(@NonNull CPermissionCallback callback, @IntRange(from = 1, to = Integer.MAX_VALUE) int requestCode, @NonNull String... permissions) {
         capsuleActivity().requestPermission(callback, requestCode, permissions);
     }
 
