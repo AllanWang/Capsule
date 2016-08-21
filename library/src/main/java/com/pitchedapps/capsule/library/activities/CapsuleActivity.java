@@ -53,6 +53,10 @@ public abstract class CapsuleActivity extends FrameActivity {
                 missingPermissions.add(s);
             }
         }
+        if (missingPermissions.isEmpty()) {
+            callback.onResult(new PermissionResult(permissions, PackageManager.PERMISSION_GRANTED));
+            return;
+        }
         if (mCapsulePermissionCallbacks == null) mCapsulePermissionCallbacks = new HashMap<>();
         mCapsulePermissionCallbacks.put(requestCode, callback);
         ActivityCompat.requestPermissions(this, missingPermissions.toArray(new String[missingPermissions.size()]), requestCode);
