@@ -72,7 +72,7 @@ public abstract class CapsuleActivity extends AppCompatActivity {
         return fragmentTransaction;
     }
 
-    protected void capsuleFab(@IdRes int id) {
+    protected void capsulateFab(@IdRes int id) {
         mFab = (FloatingActionButton) findViewById(id);
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +82,7 @@ public abstract class CapsuleActivity extends AppCompatActivity {
         });
     }
 
-    protected void capsuleToolbar(@IdRes int id) {
+    protected void capsulateToolbar(@IdRes int id) {
         mToolbar = (Toolbar) findViewById(id);
         setSupportActionBar(mToolbar);
     }

@@ -1,10 +1,5 @@
 apply plugin: 'com.android.library'
 
-repositories {
-    mavenCentral()
-    maven { url "https://jitpack.io" }
-}
-
 ext {
     TARGET_SDK = 24
     BUILD_TOOLS = "24.0.1"
