@@ -72,21 +72,6 @@ public abstract class CapsuleActivity extends AppCompatActivity {
         return fragmentTransaction;
     }
 
-    protected void capsulateFab(@IdRes int id) {
-        mFab = (FloatingActionButton) findViewById(id);
-        mFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getCurrentBaseFragment().onFabClick(view);
-            }
-        });
-    }
-
-    protected void capsulateToolbar(@IdRes int id) {
-        mToolbar = (Toolbar) findViewById(id);
-        setSupportActionBar(mToolbar);
-    }
-
     public static void hideFab(Context context) {
         if (context instanceof CapsuleActivity) {
             ((CapsuleActivity) context).getFab().hide();
@@ -124,5 +109,31 @@ public abstract class CapsuleActivity extends AppCompatActivity {
         mCapsulePermissionCallbacks.get(requestCode).onSuccess();
         mCapsulePermissionCallbacks.remove(requestCode);
         if (mCapsulePermissionCallbacks.isEmpty()) mCapsulePermissionCallbacks = null;
+    }
+
+    protected Capsulate capsulate() {
+        return new Capsulate();
+    }
+
+    //Capsulate
+
+    protected class Capsulate {
+
+        public Capsulate fab(@IdRes int id) {
+            mFab = (FloatingActionButton) findViewById(id);
+            mFab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    getCurrentBaseFragment().onFabClick(view);
+                }
+            });
+            return this;
+        }
+
+        public Capsulate toolbar(@IdRes int id) {
+            mToolbar = (Toolbar) findViewById(id);
+            setSupportActionBar(mToolbar);
+            return this;
+        }
     }
 }
