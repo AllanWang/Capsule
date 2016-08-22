@@ -30,6 +30,7 @@ dependencies {
     compile "com.android.support:appcompat-v7:$ANDROID_SUPPORT_LIBS"
     compile "com.android.support:support-v4:$ANDROID_SUPPORT_LIBS"
     compile "com.android.support:design:$ANDROID_SUPPORT_LIBS"
+    compile 'com.jakewharton.timber:timber:4.3.0'
 }
 
 // build a jar with source files

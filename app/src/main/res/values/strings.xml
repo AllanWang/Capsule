@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Capsule</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="sample_fragment">Sample Fragment</string>
 </resources>

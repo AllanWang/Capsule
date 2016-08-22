@@ -1,18 +1,15 @@
 package com.pitchedapps.capsule.library.activities;
 
-import android.support.annotation.StringRes;
 import android.support.v4.app.FragmentTransaction;
 
-import com.pitchedapps.capsule.library.CapsuleFragment;
+import com.pitchedapps.capsule.library.fragments.CapsuleFragment;
 
 /**
  * Created by Allan Wang on 2016-08-19.
+ *
+ * The activity that holds everything
  */
 public abstract class CapsuleActivity extends PermissionActivity {
-
-    protected String s(@StringRes int id) {
-        return getString(id);
-    }
 
     protected void switchFragment(CapsuleFragment fragment) {
         switchFragmentCustom(fragment).commit();

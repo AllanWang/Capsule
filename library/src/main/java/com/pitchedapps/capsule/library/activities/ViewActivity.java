@@ -7,26 +7,26 @@ import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 
-import com.pitchedapps.capsule.library.CapsuleFragment;
+import com.pitchedapps.capsule.library.fragments.CapsuleFragment;
+import com.pitchedapps.capsule.library.R;
+import com.pitchedapps.capsule.library.logging.CLog;
 
 /**
  * Created by Allan Wang on 2016-08-21.
  * <p>
  * Handles all views
  */
-public abstract class ViewActivity extends AppCompatActivity {
+public abstract class ViewActivity extends BaseActivity {
 
     protected FloatingActionButton cFab;
     protected Toolbar cToolbar;
 
     public FloatingActionButton getFab() {
         if (cFab == null)
-            throw new RuntimeException("Fab not set in CapsuleActivity; use setupFab method");
+            throw new RuntimeException(s(R.string.fab_not_set));
         return cFab;
     }
 
@@ -34,7 +34,7 @@ public abstract class ViewActivity extends AppCompatActivity {
         if (context instanceof CapsuleActivity) {
             ((CapsuleActivity) context).getFab().hide();
         } else {
-            Log.e("hideFab", "context not instance of CapsuleActivity");
+            CLog.d(s(context, R.string.capsule_activity_context_error));
         }
     }
 
@@ -90,7 +90,7 @@ public abstract class ViewActivity extends AppCompatActivity {
     private CapsuleFragment getCurrentBaseFragment() {
         Fragment current = getSupportFragmentManager().findFragmentById(getFragmentId());
         if (!(current instanceof CapsuleFragment))
-            throw new RuntimeException("Fragment does not extend CapsuleFragment");
+            throw new RuntimeException(s(R.string.base_fragment_context_error));
         return (CapsuleFragment) current;
     }
 

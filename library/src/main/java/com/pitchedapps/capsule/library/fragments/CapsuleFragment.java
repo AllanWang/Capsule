@@ -1,4 +1,4 @@
-package com.pitchedapps.capsule.library;
+package com.pitchedapps.capsule.library.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
@@ -13,23 +13,32 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.pitchedapps.capsule.library.R;
 import com.pitchedapps.capsule.library.activities.CapsuleActivity;
+import com.pitchedapps.capsule.library.logging.CLog;
 import com.pitchedapps.capsule.library.permissions.CPermissionCallback;
+
+import timber.log.Timber;
 
 /**
  * Created by Allan Wang on 2016-08-19.
- *
  */
-public abstract class CapsuleFragment extends Fragment {
+public abstract class CapsuleFragment extends BaseFragment {
 
     public abstract void onFabClick(View v);
 
-    public abstract @StringRes int getTitleId();
+    public abstract
+    @StringRes
+    int getTitleId();
 
     protected abstract
     @DrawableRes
     int getFabIcon();
 
+    /**
+     * Will hide the fab if false; the fab is still in the viewgroup and is used for various other tasks such as the snackbar
+     * @return
+     */
     protected abstract boolean hasFab();
 
     protected void showFab() {
@@ -42,7 +51,7 @@ public abstract class CapsuleFragment extends Fragment {
 
     private CapsuleActivity capsuleActivity() {
         if (!(getActivity() instanceof CapsuleActivity)) {
-            throw new RuntimeException("Context is not an instance of CapsuleActivity");
+            throw new RuntimeException(s(R.string.capsule_activity_context_error));
         }
         return ((CapsuleActivity) getActivity());
     }
@@ -51,12 +60,14 @@ public abstract class CapsuleFragment extends Fragment {
         capsuleActivity().getFab().setImageResource(icon);
     }
 
-    protected void fabSnackbar(String text, int duration) {
-        if (!hasFab()) {
-            Log.d("Capsule", "fab not attached, stopping snackbar");
-            return; //TODO log
-        }
-        Snackbar.make(capsuleActivity().getFab(), text, duration);
+    protected void snackbar(String text, int duration) {
+        CLog.d("Making snackbar");
+        Snackbar.make(capsuleActivity().getFab(), text, duration).show();
+    }
+
+    protected Snackbar snackbarCustom(String text, int duration) {
+        CLog.d("Making custom snackbar, make sure you use .show()");
+        return Snackbar.make(capsuleActivity().getFab(), text, duration);
     }
 
     @CallSuper

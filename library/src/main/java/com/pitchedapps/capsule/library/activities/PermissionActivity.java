@@ -7,6 +7,7 @@ import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 
+import com.pitchedapps.capsule.library.logging.CLog;
 import com.pitchedapps.capsule.library.permissions.CPermissionCallback;
 import com.pitchedapps.capsule.library.permissions.PermissionResult;
 
@@ -16,6 +17,8 @@ import java.util.List;
 
 /**
  * Created by Allan Wang on 2016-08-21.
+ *
+ * Handles permissions
  */
 public abstract class PermissionActivity extends ViewActivity {
 
@@ -65,6 +68,7 @@ public abstract class PermissionActivity extends ViewActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (!cPermissionMap.containsKey(requestCode)) return;
+        CLog.d("Permission request finished for #%d", requestCode);
         cPermissionMap.get(requestCode).mCallback.onResult(new PermissionResult(permissions, grantResults, cPermissionMap.get(requestCode).mAlreadyAccepted));
         cPermissionMap.remove(requestCode);
         if (cPermissionMap.isEmpty()) cPermissionMap = null;

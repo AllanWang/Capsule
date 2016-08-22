@@ -25,7 +25,9 @@ public class MainActivity extends CapsuleActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        enableCLog();
         super.onCreate(savedInstanceState);
         capsulate().toolbar(R.id.toolbar);
+        switchFragment(new FragmentSample());
     }
 }
