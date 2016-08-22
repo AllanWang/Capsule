@@ -9,6 +9,14 @@ import timber.log.Timber;
  */
 public class CLogTree extends Timber.DebugTree {
 
+    /**
+     * Special logging tree that only logs Capsule related logs
+     *
+     * @param priority
+     * @param tag
+     * @param message
+     * @param t
+     */
     @Override
     protected void log(int priority, String tag, String message, Throwable t) {
         switch (priority) {
