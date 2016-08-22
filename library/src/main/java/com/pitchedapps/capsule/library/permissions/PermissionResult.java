@@ -19,16 +19,19 @@ public class PermissionResult {
             mResults[i] = new CPR(permissions[i], grantResult);
     }
 
-    public PermissionResult(@NonNull String[] permissions, @NonNull int[] grantResults) {
-        mResults = new CPR[permissions.length];
+    public PermissionResult(@NonNull String[] permissions, @NonNull int[] grantResults, @NonNull String[] grantedPermissions) {
+        mResults = new CPR[permissions.length + grantedPermissions.length];
         for (int i = 0; i < permissions.length; i++)
             mResults[i] = new CPR(permissions[i], grantResults[i]);
+        for (int j = 0; j < grantedPermissions.length; j++)
+            mResults[permissions.length + j] = new CPR(grantedPermissions[j], PackageManager.PERMISSION_GRANTED);
+
     }
 
     public String[] getPermissions() {
         String[] perms = new String[mResults.length];
         for (int i = 0; i < perms.length; i++)
-            perms[i] = mResults[i].getPermission();
+            perms[i] = mResults[i].mPermission;
         return perms;
     }
 
@@ -42,7 +45,7 @@ public class PermissionResult {
 
     public boolean isAllGranted() {
         for (CPR c : mResults) {
-            if (!c.isGranted()) return false;
+            if (!c.mGranted) return false;
         }
         return true;
     }
@@ -50,28 +53,19 @@ public class PermissionResult {
     private String[] getByGrant(final boolean b) {
         List<String> result = new ArrayList<>();
         for (CPR c : mResults) {
-            if (c.isGranted() == b) result.add(c.getPermission());
+            if (c.mGranted == b) result.add(c.mPermission);
         }
         return result.toArray(new String[result.size()]);
     }
 
     private class CPR {
 
-        private String mPermission;
-        private boolean mGranted;
+        private final String mPermission;
+        private final boolean mGranted;
 
         private CPR(@NonNull String permission, int granted) {
             mPermission = permission;
             mGranted = granted == PackageManager.PERMISSION_GRANTED;
-        }
-
-        @NonNull
-        private String getPermission() {
-            return mPermission;
-        }
-
-        private boolean isGranted() {
-            return mGranted;
         }
     }
 

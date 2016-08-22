@@ -19,15 +19,15 @@ import com.pitchedapps.capsule.library.CapsuleFragment;
  * <p>
  * Handles all views
  */
-public abstract class FrameActivity extends AppCompatActivity {
+public abstract class ViewActivity extends AppCompatActivity {
 
-    protected FloatingActionButton mFab;
-    protected Toolbar mToolbar;
+    protected FloatingActionButton cFab;
+    protected Toolbar cToolbar;
 
     public FloatingActionButton getFab() {
-        if (mFab == null)
+        if (cFab == null)
             throw new RuntimeException("Fab not set in CapsuleActivity; use setupFab method");
-        return mFab;
+        return cFab;
     }
 
     public static void hideFab(Context context) {
@@ -78,8 +78,8 @@ public abstract class FrameActivity extends AppCompatActivity {
     }
 
     private void setupFab() {
-        mFab = (FloatingActionButton) findViewById(getFabId());
-        mFab.setOnClickListener(new View.OnClickListener() {
+        cFab = (FloatingActionButton) findViewById(getFabId());
+        cFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getCurrentBaseFragment().onFabClick(view);
@@ -107,8 +107,8 @@ public abstract class FrameActivity extends AppCompatActivity {
     protected class Capsulate {
 
         public Capsulate toolbar(@IdRes int id) {
-            mToolbar = (Toolbar) findViewById(id);
-            setSupportActionBar(mToolbar);
+            cToolbar = (Toolbar) findViewById(id);
+            setSupportActionBar(cToolbar);
             return this;
         }
     }
