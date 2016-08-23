@@ -37,6 +37,7 @@ public abstract class CapsuleFragment extends BaseFragment {
 
     /**
      * Will hide the fab if false; the fab is still in the viewgroup and is used for various other tasks such as the snackbar
+     *
      * @return
      */
     protected abstract boolean hasFab();
@@ -58,6 +59,10 @@ public abstract class CapsuleFragment extends BaseFragment {
 
     protected void setFabIcon(@DrawableRes int icon) {
         capsuleActivity().getFab().setImageResource(icon);
+    }
+
+    protected void snackbar(String text) {
+        snackbar(text, Snackbar.LENGTH_LONG);
     }
 
     protected void snackbar(String text, int duration) {
