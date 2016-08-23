@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+    <version title="v"/>
+    <item text="" />
+    -->
+
+    <version title="v3.0"/>
+    <item text="Themed contacts and dialer" />
+    <item text="Changed theming style to include self referencing" />
+    <item text="Added notification on app update for easier rebuilding" />
+    <item text="" />
+    <item text="" />
+
+    <version title="v2.0"/>
+    <item text="Fix up and add more custom variables" />
+    <item text="Created built notifications and added services and receivers" />
+
+    <version title="v1.0"/>
+    <item text="Themed framework, systemui, and settings" />
+    <item text="Added theme customizations" />
+
+    <version title="v0.1:"/>
+    <item text="August 1, 2016 - Project Zed is born"/>
+</resources>

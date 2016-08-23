@@ -31,6 +31,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.pitchedapps.capsule.library.R;
+import com.pitchedapps.capsule.library.logging.CLog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +45,7 @@ public class ChangelogDialog extends DialogFragment {
     public static final String changelog_tag = "capsule_changelog_dialog";
 
     public static void show (final AppCompatActivity context, final @XmlRes int xmlId) {
+        CLog.d("Showing changelog");
         Fragment frag = context.getSupportFragmentManager().findFragmentByTag(changelog_tag);
         if (frag != null) {
             ((ChangelogDialog) frag).dismiss();

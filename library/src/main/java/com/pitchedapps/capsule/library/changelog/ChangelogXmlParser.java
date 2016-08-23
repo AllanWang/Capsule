@@ -6,8 +6,10 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.XmlRes;
+import android.util.Log;
 
 import com.pitchedapps.capsule.library.R;
+import com.pitchedapps.capsule.library.logging.CLog;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -89,16 +91,18 @@ public class ChangelogXmlParser {
                     case XmlPullParser.START_TAG:
                         final String tagName = parser.getName();
                         if (tagName.equalsIgnoreCase("version")) {
-                            if (parser.getAttributeValue(null, "title").isEmpty()) continue;
-                            mCurrentChangelogItem = new ChangelogItem(parser.getAttributeValue(null, "title"));
-                            mChangelogItems.add(mCurrentChangelogItem);
-                        } else if (tagName.equalsIgnoreCase("item")) {
-                            if (parser.getAttributeValue(null, "text").isEmpty()) continue;
-                            if (mCurrentChangelogItem == null) {
-                                mCurrentChangelogItem = new ChangelogItem(context.getString(R.string.default_new_version_title));
+                            if (!parser.getAttributeValue(null, "title").isEmpty()) {
+                                mCurrentChangelogItem = new ChangelogItem(parser.getAttributeValue(null, "title"));
                                 mChangelogItems.add(mCurrentChangelogItem);
                             }
-                            mCurrentChangelogItem.addItem(parser.getAttributeValue(null, "text"));
+                        } else if (tagName.equalsIgnoreCase("item")) {
+                            if (!parser.getAttributeValue(null, "text").isEmpty()) {
+                                if (mCurrentChangelogItem == null) {
+                                    mCurrentChangelogItem = new ChangelogItem(context.getString(R.string.default_new_version_title));
+                                    mChangelogItems.add(mCurrentChangelogItem);
+                                }
+                                mCurrentChangelogItem.addItem(parser.getAttributeValue(null, "text"));
+                            }
                         }
                         break;
                 }
@@ -111,6 +115,7 @@ public class ChangelogXmlParser {
             if (parser != null)
                 parser.close();
         }
+        CLog.d("Returning parsed changelog xml");
         return mChangelogItems;
     }
 }
