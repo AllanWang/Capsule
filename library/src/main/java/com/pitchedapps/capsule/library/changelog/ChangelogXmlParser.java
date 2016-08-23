@@ -26,24 +26,24 @@ public class ChangelogXmlParser {
         private final String mTitle;
         private final ArrayList<String> mPoints;
 
-        public ChangelogItem (String name) {
+        public ChangelogItem(String name) {
             mTitle = name;
             mPoints = new ArrayList<>();
         }
 
-        public String getTitle () {
+        public String getTitle() {
             return mTitle;
         }
 
-        public List<String> getItems () {
+        public List<String> getItems() {
             return mPoints;
         }
 
-        public void addItem (String s) {
+        public void addItem(String s) {
             mPoints.add(s);
         }
 
-        public int size () {
+        public int size() {
             return mPoints.size();
         }
 
@@ -76,7 +76,7 @@ public class ChangelogXmlParser {
         };
     }
 
-    public static ArrayList<ChangelogItem> parse (@NonNull Context context, @XmlRes int xmlRes) {
+    public static ArrayList<ChangelogItem> parse(@NonNull Context context, @XmlRes int xmlRes) {
         ChangelogItem mCurrentChangelogItem = null;
         ArrayList<ChangelogItem> mChangelogItems = new ArrayList<>();
 
@@ -89,9 +89,11 @@ public class ChangelogXmlParser {
                     case XmlPullParser.START_TAG:
                         final String tagName = parser.getName();
                         if (tagName.equalsIgnoreCase("version")) {
+                            if (parser.getAttributeValue(null, "title").isEmpty()) continue;
                             mCurrentChangelogItem = new ChangelogItem(parser.getAttributeValue(null, "title"));
                             mChangelogItems.add(mCurrentChangelogItem);
                         } else if (tagName.equalsIgnoreCase("item")) {
+                            if (parser.getAttributeValue(null, "text").isEmpty()) continue;
                             if (mCurrentChangelogItem == null) {
                                 mCurrentChangelogItem = new ChangelogItem(context.getString(R.string.default_new_version_title));
                                 mChangelogItems.add(mCurrentChangelogItem);
