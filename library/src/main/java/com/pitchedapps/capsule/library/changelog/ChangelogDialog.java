@@ -41,8 +41,7 @@ import java.util.TimerTask;
  */
 public class ChangelogDialog extends DialogFragment {
 
-    private static final String changelog_items = "changelog_items";
-    private static final String changelog_tag = "changelog_dialog";
+    public static final String changelog_tag = "capsule_changelog_dialog";
 
     public static void show (final AppCompatActivity context, final @XmlRes int xmlId) {
         Fragment frag = context.getSupportFragmentManager().findFragmentByTag(changelog_tag);
@@ -70,7 +69,7 @@ public class ChangelogDialog extends DialogFragment {
         ChangelogDialog f = new ChangelogDialog();
         if (!items.isEmpty()) {
             Bundle args = new Bundle();
-            args.putParcelableArrayList(changelog_items, items);
+            args.putParcelableArrayList("changelog_items", items);
             f.setArguments(args);
         }
         return f;
@@ -84,10 +83,10 @@ public class ChangelogDialog extends DialogFragment {
                 .title(R.string.changelog_dialog_title)
                 .positiveText(R.string.great);
 
-        if (getArguments() == null || !getArguments().containsKey(changelog_items)) {
+        if (getArguments() == null || !getArguments().containsKey("changelog_items")) {
             builder.content(R.string.empty_changelog);
         } else {
-            List<ChangelogXmlParser.ChangelogItem> items = getArguments().getParcelableArrayList(changelog_items);
+            List<ChangelogXmlParser.ChangelogItem> items = getArguments().getParcelableArrayList("changelog_items");
             builder.adapter(new ChangelogAdapter(items), null);
         }
 
