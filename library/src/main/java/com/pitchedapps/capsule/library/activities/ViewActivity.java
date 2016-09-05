@@ -108,7 +108,7 @@ public abstract class ViewActivity extends BaseActivity {
         if (cCoordinatorLayout == null)
             throw new RuntimeException(String.format(s(R.string.generic_not_set), "cCoordinatorLayout"));
         cAppBarLayout.setExpanded(b);
-        cCoordinatorLayout.setScrollAllowed(true);
+        cCoordinatorLayout.setScrollAllowed(b);
     }
 
     public void collapseAppBar() {
@@ -138,7 +138,7 @@ public abstract class ViewActivity extends BaseActivity {
             return this;
         }
 
-        public Capsulate cCoordinatorLayout(@IdRes int id) {
+        public Capsulate coordinatorLayout(@IdRes int id) {
             cCoordinatorLayout = (CapsuleCoordinatorLayout) findViewById(id);
             return this;
         }
