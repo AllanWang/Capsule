@@ -5,13 +5,15 @@ import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.pitchedapps.capsule.library.fragments.CapsuleFragment;
 import com.pitchedapps.capsule.library.R;
+import com.pitchedapps.capsule.library.custom.CapsuleCoordinatorLayout;
+import com.pitchedapps.capsule.library.fragments.CapsuleFragment;
 import com.pitchedapps.capsule.library.logging.CLog;
 
 /**
@@ -23,10 +25,11 @@ public abstract class ViewActivity extends BaseActivity {
 
     protected FloatingActionButton cFab;
     protected Toolbar cToolbar;
+    protected AppBarLayout cAppBarLayout;
+    protected CapsuleCoordinatorLayout cCoordinatorLayout;
 
     public FloatingActionButton getFab() {
-        if (cFab == null)
-            throw new RuntimeException(s(R.string.fab_not_set));
+        if (cFab == null) throw new RuntimeException(s(R.string.fab_not_set));
         return cFab;
     }
 
@@ -39,9 +42,9 @@ public abstract class ViewActivity extends BaseActivity {
     }
 
     /**
-     * Gets the Layout ID of the view that will be replaced by Fragments with the SupportFragmentManager
+     * Gets the View ID of the view that will be replaced by Fragments with the SupportFragmentManager
      *
-     * @return layoutID
+     * @return viewID
      */
     protected abstract
     @IdRes
@@ -67,6 +70,7 @@ public abstract class ViewActivity extends BaseActivity {
 
     /**
      * Initializes the necessary views; always call super
+     *
      * @param savedInstanceState
      */
     @Override
@@ -98,6 +102,23 @@ public abstract class ViewActivity extends BaseActivity {
         return new Capsulate();
     }
 
+    private void ceAppBar(boolean b) {
+        if (cAppBarLayout == null)
+            throw new RuntimeException(String.format(s(R.string.generic_not_set), "cAppBarLayout"));
+        if (cCoordinatorLayout == null)
+            throw new RuntimeException(String.format(s(R.string.generic_not_set), "cCoordinatorLayout"));
+        cAppBarLayout.setExpanded(b);
+        cCoordinatorLayout.setScrollAllowed(true);
+    }
+
+    public void collapseAppBar() {
+        ceAppBar(false);
+    }
+
+    public void expandAppBar() {
+        ceAppBar(true);
+    }
+
     /**
      * Capsulate
      * <p>
@@ -109,6 +130,16 @@ public abstract class ViewActivity extends BaseActivity {
         public Capsulate toolbar(@IdRes int id) {
             cToolbar = (Toolbar) findViewById(id);
             setSupportActionBar(cToolbar);
+            return this;
+        }
+
+        public Capsulate appBarLayout(@IdRes int id) {
+            cAppBarLayout = (AppBarLayout) findViewById(id);
+            return this;
+        }
+
+        public Capsulate cCoordinatorLayout(@IdRes int id) {
+            cCoordinatorLayout = (CapsuleCoordinatorLayout) findViewById(id);
             return this;
         }
     }

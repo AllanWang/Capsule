@@ -2,4 +2,5 @@
     <string name="base_fragment_context_error">Fragment does not extend CapsuleFragment; You may have forgotten to switch the main id with a CapsuleFragment</string>
     <string name="capsule_activity_context_error">Context not instance of CapsuleActivity</string>
     <string name="fab_not_set">Fab not set in CapsuleActivity; use setupFab method</string>
+    <string name="generic_not_set">%s is not set</string>
 </resources>
