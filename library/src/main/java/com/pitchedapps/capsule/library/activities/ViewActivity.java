@@ -7,6 +7,7 @@ import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -142,5 +143,19 @@ public abstract class ViewActivity extends BaseActivity {
             cCoordinatorLayout = (CapsuleCoordinatorLayout) findViewById(id);
             return this;
         }
+    }
+
+    protected void snackbar(String text) {
+        snackbar(text, Snackbar.LENGTH_LONG);
+    }
+
+    protected void snackbar(String text, int duration) {
+        CLog.d("Making snackbar");
+        Snackbar.make(getFab(), text, duration).show();
+    }
+
+    protected Snackbar snackbarCustom(String text, int duration) {
+        CLog.d("Making custom snackbar, make sure you use .show()");
+        return Snackbar.make(getFab(), text, duration);
     }
 }
