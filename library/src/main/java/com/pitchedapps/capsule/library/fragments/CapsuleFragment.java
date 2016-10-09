@@ -24,15 +24,24 @@ import timber.log.Timber;
 /**
  * Created by Allan Wang on 2016-08-19.
  */
-public abstract class CapsuleFragment extends BaseFragment implements CFragmentCore{
+public abstract class CapsuleFragment extends BaseFragment implements CFragmentCore {
 
-    @Override
-    public void showFab() {
+    protected abstract
+    @DrawableRes
+    int getFabIcon();
+
+    /**
+     * Will hide the fab if false; the fab is still in the viewgroup and is used for various other tasks such as the snackbar
+     *
+     * @return fab existence
+     */
+    protected abstract boolean hasFab();
+
+    protected void showFab() {
         capsuleActivity().getFab().show();
     }
 
-    @Override
-    public void hideFab() {
+    protected void hideFab() {
         capsuleActivity().getFab().hide();
     }
 

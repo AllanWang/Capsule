@@ -6,6 +6,8 @@ import android.support.annotation.CallSuper;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.util.SparseArrayCompat;
+import android.util.SparseArray;
 
 import com.pitchedapps.capsule.library.logging.CLog;
 import com.pitchedapps.capsule.library.permissions.CPermissionCallback;
@@ -22,7 +24,7 @@ import java.util.List;
  */
 public abstract class PermissionActivity extends ViewActivity {
 
-    private HashMap<Integer, PermissionHolder> cPermissionMap;
+    private SparseArrayCompat<PermissionHolder> cPermissionMap;
 
     private class PermissionHolder {
 
@@ -59,7 +61,7 @@ public abstract class PermissionActivity extends ViewActivity {
             callback.onResult(new PermissionResult(permissions, PackageManager.PERMISSION_GRANTED));
             return;
         }
-        if (cPermissionMap == null) cPermissionMap = new HashMap<>();
+        if (cPermissionMap == null) cPermissionMap = new SparseArrayCompat<>();
         cPermissionMap.put(requestCode, new PermissionHolder(acceptedPermissions, callback));
         ActivityCompat.requestPermissions(this, missingPermissions.toArray(new String[missingPermissions.size()]), requestCode);
     }
@@ -67,11 +69,11 @@ public abstract class PermissionActivity extends ViewActivity {
     @CallSuper
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (!cPermissionMap.containsKey(requestCode)) return;
+        if (cPermissionMap.get(requestCode) == null) return;
         CLog.d("Permission request finished for #%d", requestCode);
         cPermissionMap.get(requestCode).mCallback.onResult(new PermissionResult(permissions, grantResults, cPermissionMap.get(requestCode).mAlreadyAccepted));
         cPermissionMap.remove(requestCode);
-        if (cPermissionMap.isEmpty()) cPermissionMap = null;
+        if (cPermissionMap.size() == 0) cPermissionMap = null;
     }
 
 

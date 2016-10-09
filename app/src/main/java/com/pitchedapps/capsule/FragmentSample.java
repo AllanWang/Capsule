@@ -25,12 +25,12 @@ public class FragmentSample extends CapsuleFragment {
     }
 
     @Override
-    public int getFabIcon() {
+    protected int getFabIcon() {
         return android.R.drawable.ic_dialog_email;
     }
 
     @Override
-    public boolean hasFab() {
+    protected boolean hasFab() {
         return true;
     }
 
