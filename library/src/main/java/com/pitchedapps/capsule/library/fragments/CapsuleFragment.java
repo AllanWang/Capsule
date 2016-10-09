@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.pitchedapps.capsule.library.R;
 import com.pitchedapps.capsule.library.activities.CapsuleActivity;
+import com.pitchedapps.capsule.library.interfaces.CFragmentCore;
 import com.pitchedapps.capsule.library.logging.CLog;
 import com.pitchedapps.capsule.library.permissions.CPermissionCallback;
 
@@ -23,30 +24,15 @@ import timber.log.Timber;
 /**
  * Created by Allan Wang on 2016-08-19.
  */
-public abstract class CapsuleFragment extends BaseFragment {
+public abstract class CapsuleFragment extends BaseFragment implements CFragmentCore{
 
-    public abstract void onFabClick(View v);
-
-    public abstract
-    @StringRes
-    int getTitleId();
-
-    protected abstract
-    @DrawableRes
-    int getFabIcon();
-
-    /**
-     * Will hide the fab if false; the fab is still in the viewgroup and is used for various other tasks such as the snackbar
-     *
-     * @return
-     */
-    protected abstract boolean hasFab();
-
-    protected void showFab() {
+    @Override
+    public void showFab() {
         capsuleActivity().getFab().show();
     }
 
-    protected void hideFab() {
+    @Override
+    public void hideFab() {
         capsuleActivity().getFab().hide();
     }
 

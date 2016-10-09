@@ -3,9 +3,9 @@ package com.pitchedapps.capsule.library.cards;
 /**
  * Created by Allan Wang on 2016-08-24.
  */
-public class CapsueCardFrame {
+public class CapsuleCardFrame {
 
-    public CapsueCardFrame() {
+    public CapsuleCardFrame() {
 
     }
 }

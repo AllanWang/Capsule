@@ -24,7 +24,7 @@ public abstract class CapsuleDialog<T> extends DialogFragment {
 
     /**
      * Loads the dialog; the most basic implementation would be
-     * to just call showDialog()
+     * to just call showDialog(); no param? Try CapsuleDialogBasic
      */
     public abstract void initialize(final T param);
 

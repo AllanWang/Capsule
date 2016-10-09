@@ -14,7 +14,7 @@ import android.view.View;
 
 import com.pitchedapps.capsule.library.R;
 import com.pitchedapps.capsule.library.custom.CapsuleCoordinatorLayout;
-import com.pitchedapps.capsule.library.fragments.CapsuleFragment;
+import com.pitchedapps.capsule.library.interfaces.CFragmentCore;
 import com.pitchedapps.capsule.library.logging.CLog;
 
 /**
@@ -92,11 +92,11 @@ public abstract class ViewActivity extends BaseActivity {
         });
     }
 
-    private CapsuleFragment getCurrentBaseFragment() {
+    private CFragmentCore getCurrentBaseFragment() {
         Fragment current = getSupportFragmentManager().findFragmentById(getFragmentId());
-        if (!(current instanceof CapsuleFragment))
+        if ((current == null) || !(current instanceof CFragmentCore))
             throw new RuntimeException(s(R.string.base_fragment_context_error));
-        return (CapsuleFragment) current;
+        return (CFragmentCore) current;
     }
 
     protected Capsulate capsulate() {
