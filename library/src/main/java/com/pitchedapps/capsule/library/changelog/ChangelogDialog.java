@@ -1,37 +1,13 @@
-/*
- * Copyright (c) 2016 Jahir Fiquitiva
- *
- * Licensed under the CreativeCommons Attribution-ShareAlike
- * 4.0 International License. You may not use this file except in compliance
- * with the License. You may obtain a copy of the License at
- *
- *    http://creativecommons.org/licenses/by-sa/4.0/legalcode
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * Special thanks to the project contributors and collaborators
- * 	https://github.com/jahirfiquitiva/IconShowcase#special-thanks
- */
-
 package com.pitchedapps.capsule.library.changelog;
 
-import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.XmlRes;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.pitchedapps.capsule.library.R;
-import com.pitchedapps.capsule.library.logging.CLog;
+import com.pitchedapps.capsule.library.dialog.CapsuleDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,58 +16,68 @@ import java.util.TimerTask;
 /**
  * @author Allan Wang
  */
-public class ChangelogDialog extends DialogFragment {
+public class ChangelogDialog extends CapsuleDialog<Integer> {
 
-    public static final String changelog_tag = "capsule_changelog_dialog";
+    //Just for the annotation
+    @Override
+    public void show(@XmlRes Integer xmlRes) {
+        super.show(xmlRes);
+    }
 
-    public static void show (final AppCompatActivity context, final @XmlRes int xmlId) {
-        CLog.d("Showing changelog");
-        Fragment frag = context.getSupportFragmentManager().findFragmentByTag(changelog_tag);
-        if (frag != null) {
-            ((ChangelogDialog) frag).dismiss();
-            return;
-        }
+    /**
+     * Retrieves tag
+     *
+     * @return tag
+     */
+    @Override
+    public String getFragmentTag() {
+        return "capsule_changelog_dialog";
+    }
+
+    /**
+     * Loads the dialog; the most basic implementation would be
+     * to just call showDialog()
+     */
+    @Override
+    public void initialize(@XmlRes final Integer xmlRes) {
         final Handler mHandler = new Handler();
         new Thread(new Runnable() {
             @Override
-            public void run () {
-                final ArrayList<ChangelogXmlParser.ChangelogItem> items = ChangelogXmlParser.parse(context, xmlId);
+            public void run() {
+                final ArrayList<ChangelogXmlParser.ChangelogItem> items = ChangelogXmlParser.parse(getActivity(), xmlRes);
                 mHandler.post(new TimerTask() {
                     @Override
-                    public void run () {
-                        ChangelogDialog.newInstance(items).show(context.getSupportFragmentManager(), changelog_tag);
+                    public void run() {
+                        ChangelogDialog f = new ChangelogDialog();
+                        if (!items.isEmpty()) {
+                            Bundle args = new Bundle();
+                            args.putParcelableArrayList("changelog_items", items);
+                            f.setArguments(args);
+                        }
+                        f.showDialog();
                     }
                 });
             }
         }).start();
-
     }
 
-    public static ChangelogDialog newInstance (final ArrayList<ChangelogXmlParser.ChangelogItem> items) {
-        ChangelogDialog f = new ChangelogDialog();
-        if (!items.isEmpty()) {
-            Bundle args = new Bundle();
-            args.putParcelableArrayList("changelog_items", items);
-            f.setArguments(args);
-        }
-        return f;
-    }
-
-    @SuppressLint("InflateParams")
-    @NonNull
+    /**
+     * Dialog builder from within onCreateDialog
+     *
+     * @param builder MaterialDialog.Builder
+     * @param args    arguments from any passed bundle
+     */
     @Override
-    public Dialog onCreateDialog (Bundle savedInstanceState) {
-        MaterialDialog.Builder builder = new MaterialDialog.Builder(getActivity())
-                .title(R.string.changelog_dialog_title)
+    public void buildDialog(MaterialDialog.Builder builder, @Nullable Bundle args) {
+        builder.title(R.string.changelog_dialog_title)
                 .positiveText(R.string.great);
 
-        if (getArguments() == null || !getArguments().containsKey("changelog_items")) {
+        if (args == null || !args.containsKey("changelog_items")) {
             builder.content(R.string.empty_changelog);
         } else {
-            List<ChangelogXmlParser.ChangelogItem> items = getArguments().getParcelableArrayList("changelog_items");
+            List<ChangelogXmlParser.ChangelogItem> items = args.getParcelableArrayList("changelog_items");
             builder.adapter(new ChangelogAdapter(items), null);
         }
-
-        return builder.build();
     }
+
 }
