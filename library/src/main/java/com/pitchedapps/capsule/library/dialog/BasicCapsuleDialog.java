@@ -13,7 +13,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
  * Created by Allan Wang on 2016-10-09.
  */
 
-public abstract class CapsuleDialogBasic extends DialogFragment {
+public abstract class BasicCapsuleDialog extends DialogFragment {
 
     /**
      * Retrieves tag
@@ -32,7 +32,7 @@ public abstract class CapsuleDialogBasic extends DialogFragment {
      */
     public void show() {
         Fragment frag = getActivity().getSupportFragmentManager().findFragmentByTag(getFragmentTag());
-        if (frag != null) ((CapsuleDialogBasic) frag).dismiss();
+        if (frag != null) ((BasicCapsuleDialog) frag).dismiss();
         showDialog();
     }
 

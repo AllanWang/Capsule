@@ -5,26 +5,20 @@ import android.support.annotation.CallSuper;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
-import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.pitchedapps.capsule.library.R;
-import com.pitchedapps.capsule.library.activities.CapsuleActivity;
-import com.pitchedapps.capsule.library.interfaces.CFragmentCore;
+import com.pitchedapps.capsule.library.interfaces.CActivityCore;
 import com.pitchedapps.capsule.library.logging.CLog;
 import com.pitchedapps.capsule.library.permissions.CPermissionCallback;
-
-import timber.log.Timber;
 
 /**
  * Created by Allan Wang on 2016-08-19.
  */
-public abstract class CapsuleFragment extends BaseFragment implements CFragmentCore {
+public abstract class CapsuleFragment extends BaseFragment {
 
     protected abstract
     @DrawableRes
@@ -45,11 +39,11 @@ public abstract class CapsuleFragment extends BaseFragment implements CFragmentC
         capsuleActivity().getFab().hide();
     }
 
-    private CapsuleActivity capsuleActivity() {
-        if (!(getActivity() instanceof CapsuleActivity)) {
+    private CActivityCore capsuleActivity() {
+        if (!(getActivity() instanceof CActivityCore)) {
             throw new RuntimeException(s(R.string.capsule_activity_context_error));
         }
-        return ((CapsuleActivity) getActivity());
+        return ((CActivityCore) getActivity());
     }
 
     protected void setFabIcon(@DrawableRes int icon) {

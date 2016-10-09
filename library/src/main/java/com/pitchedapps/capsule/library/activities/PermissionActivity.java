@@ -43,6 +43,7 @@ public abstract class PermissionActivity extends ViewActivity {
      * @param requestCode unique code to keep track of which callback to use
      * @param permissions one or many permission names to check for
      */
+    @Override
     public void requestPermission(@NonNull CPermissionCallback callback, @IntRange(from = 1, to = Integer.MAX_VALUE) int requestCode, @NonNull String... permissions) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) { //Grant all permissions
             callback.onResult(new PermissionResult(permissions, PackageManager.PERMISSION_GRANTED));

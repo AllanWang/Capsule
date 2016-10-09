@@ -29,6 +29,7 @@ public abstract class ViewActivity extends BaseActivity {
     protected AppBarLayout cAppBarLayout;
     protected CapsuleCoordinatorLayout cCoordinatorLayout;
 
+    @Override
     public FloatingActionButton getFab() {
         if (cFab == null) throw new RuntimeException(s(R.string.fab_not_set));
         return cFab;

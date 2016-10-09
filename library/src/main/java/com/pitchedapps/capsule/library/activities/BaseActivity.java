@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 
+import com.pitchedapps.capsule.library.interfaces.CActivityCore;
 import com.pitchedapps.capsule.library.logging.CLog;
 import com.pitchedapps.capsule.library.logging.CLogTree;
 
@@ -15,7 +16,7 @@ import timber.log.Timber;
  * <p/>
  * The core's core
  */
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements CActivityCore {
 
     protected String s(@StringRes int id) {
         return getString(id);

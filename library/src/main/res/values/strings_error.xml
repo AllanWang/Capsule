@@ -1,6 +1,6 @@
 <resources>
     <string name="base_fragment_context_error">Fragment is invalid or does not implement CFragmentCore; You may have forgotten to switch the main id with a compatible fragment</string>
-    <string name="capsule_activity_context_error">Context not instance of CapsuleActivity</string>
-    <string name="fab_not_set">Fab not set in CapsuleActivity; use setupFab method</string>
+    <string name="capsule_activity_context_error">Context not instance of CActivityCore</string>
+    <string name="fab_not_set">Fab not set in CapsuleActivity; use setupFab method or see getFab in CActivityCore</string>
     <string name="generic_not_set">%s is not set</string>
 </resources>
