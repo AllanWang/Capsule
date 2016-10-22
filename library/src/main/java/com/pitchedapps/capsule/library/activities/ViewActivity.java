@@ -22,7 +22,7 @@ import com.pitchedapps.capsule.library.logging.CLog;
  * <p>
  * Handles all views
  */
-abstract class ViewActivity extends BaseActivity {
+abstract class ViewActivity extends PermissionActivity {
 
     protected FloatingActionButton cFab;
     protected Toolbar cToolbar;

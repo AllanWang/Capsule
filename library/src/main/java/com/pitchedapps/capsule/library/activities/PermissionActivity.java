@@ -22,7 +22,7 @@ import java.util.List;
  *
  * Handles permissions
  */
-abstract class PermissionActivity extends ViewActivity {
+abstract class PermissionActivity extends BaseActivity {
 
     private SparseArrayCompat<PermissionHolder> cPermissionMap;
 

@@ -11,7 +11,7 @@ import com.pitchedapps.capsule.library.interfaces.CFragmentCore;
  * <p>
  * The activity that holds everything
  */
-public abstract class CapsuleActivity extends PermissionActivity {
+public abstract class CapsuleActivity extends ViewActivity {
 
     protected <T extends Fragment & CFragmentCore> void switchFragment(T fragment) {
         switchFragmentCustom(fragment).commit();
