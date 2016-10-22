@@ -16,7 +16,7 @@ import timber.log.Timber;
  * <p/>
  * The core's core
  */
-public abstract class BaseActivity extends AppCompatActivity implements CActivityCore {
+abstract class BaseActivity extends AppCompatActivity implements CActivityCore {
 
     protected String s(@StringRes int id) {
         return getString(id);
