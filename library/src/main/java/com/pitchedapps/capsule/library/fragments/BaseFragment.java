@@ -10,7 +10,7 @@ import com.pitchedapps.capsule.library.interfaces.CFragmentCore;
 /**
  * Created by Allan Wang on 2016-08-21.
  */
-public abstract class BaseFragment extends Fragment implements CFragmentCore {
+abstract class BaseFragment extends Fragment implements CFragmentCore {
 
     protected String s(@StringRes int id) {
         return getString(id);

@@ -13,11 +13,11 @@ import java.util.List;
 /**
  * @author Allan Wang
  */
-public class ChangelogAdapter extends RecyclerView.Adapter<ChangelogAdapter.ChangelogVH> {
+class ChangelogAdapter extends RecyclerView.Adapter<ChangelogAdapter.ChangelogVH> {
 
     private final List<ChangelogXmlParser.ChangelogItem> mItems;
 
-    public ChangelogAdapter(List<ChangelogXmlParser.ChangelogItem> items) {
+    ChangelogAdapter(List<ChangelogXmlParser.ChangelogItem> items) {
         mItems = items;
     }
 
@@ -56,11 +56,11 @@ public class ChangelogAdapter extends RecyclerView.Adapter<ChangelogAdapter.Chan
         return mItems != null ? mItems.size() : 0;
     }
 
-    public static class ChangelogVH extends RecyclerView.ViewHolder {
+    static class ChangelogVH extends RecyclerView.ViewHolder {
 
         final TextView title, content;
 
-        public ChangelogVH (View itemView) {
+        ChangelogVH (View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.changelog_title);
             content = (TextView) itemView.findViewById(R.id.changelog_content);

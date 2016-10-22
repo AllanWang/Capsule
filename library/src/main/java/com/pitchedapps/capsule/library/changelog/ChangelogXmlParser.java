@@ -21,9 +21,9 @@ import java.util.List;
 /**
  * @author Allan Wang
  */
-public class ChangelogXmlParser {
+class ChangelogXmlParser {
 
-    public static class ChangelogItem implements Parcelable {
+    static class ChangelogItem implements Parcelable {
 
         private final String mTitle;
         private final ArrayList<String> mPoints;
@@ -78,7 +78,7 @@ public class ChangelogXmlParser {
         };
     }
 
-    public static ArrayList<ChangelogItem> parse(@NonNull Context context, @XmlRes int xmlRes) {
+    static ArrayList<ChangelogItem> parse(@NonNull Context context, @XmlRes int xmlRes) {
         ChangelogItem mCurrentChangelogItem = null;
         ArrayList<ChangelogItem> mChangelogItems = new ArrayList<>();
 

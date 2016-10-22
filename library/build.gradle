@@ -1,18 +1,18 @@
 apply plugin: 'com.android.library'
 
 ext {
-    TARGET_SDK = 24
-    BUILD_TOOLS = "24.0.1"
-    ANDROID_SUPPORT_LIBS = "24.2.0"
+    TARGET_SDK = 25
+    BUILD_TOOLS = "25.0.0"
+    ANDROID_SUPPORT_LIBS = "25.0.0"
 }
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.3"
+    compileSdkVersion TARGET_SDK
+    buildToolsVersion BUILD_TOOLS
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 24
+        targetSdkVersion TARGET_SDK
         versionCode 1
         versionName "1.0"
     }
@@ -30,9 +30,14 @@ dependencies {
     compile "com.android.support:appcompat-v7:$ANDROID_SUPPORT_LIBS"
     compile "com.android.support:support-v4:$ANDROID_SUPPORT_LIBS"
     compile "com.android.support:design:$ANDROID_SUPPORT_LIBS"
-    compile 'com.jakewharton.timber:timber:4.3.0'
-    compile 'com.afollestad.material-dialogs:core:0.9.0.1'
-    compile 'org.greenrobot:eventbus:3.0.0'
+    compile "com.android.support:recyclerview-v7:$ANDROID_SUPPORT_LIBS"
+    compile "com.android.support:cardview-v7:$ANDROID_SUPPORT_LIBS"
+
+    compile 'com.jakewharton.timber:timber:4.3.1'
+    compile 'com.afollestad.material-dialogs:core:0.9.0.2'
+    compile('com.mikepenz:materialdrawer:5.6.0@aar') {
+        transitive = true
+    }
 }
 
 // build a jar with source files
