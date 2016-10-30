@@ -4,16 +4,42 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.os.Build;
+import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.DecelerateInterpolator;
 
 /**
  * Created by Allan Wang on 2016-10-22.
  */
 public class AnimUtils {
+
+    public interface ViewCallback {
+        void onFinish(View v);
+    }
+
+    public static void rootCircularReview(View rootView) {
+        rootView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop,
+                                       int oldRight, int oldBottom) {
+                v.removeOnLayoutChangeListener(this);
+//                int cx = right / 2;
+//                int cy = bottom / 2;
+                int radius = (int) Math.hypot(right, bottom);
+
+                Animator reveal = ViewAnimationUtils.createCircularReveal(v, 0, 0, 0, radius);
+                reveal.setInterpolator(new DecelerateInterpolator(1f));
+                reveal.setDuration(500);
+                reveal.start();
+            }
+        });
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static void circleReveal(Context c, View v, int x, int y, double radius) {
         circleReveal(c, v, x, y, radius, radius * 0.6);
@@ -165,5 +191,29 @@ public class AnimUtils {
             viewList[i].startAnimation(fadeIn);
             viewList[i].setVisibility(View.VISIBLE);
         }
+    }
+
+    public static void slideEnter(final View v) {
+        v.setVisibility(View.VISIBLE);
+        v.setAlpha(0.0f);
+        v.animate()
+//                .translationY(v.getHeight())
+                .alpha(1.0f)
+                .setDuration(3000);
+    }
+
+    public static void slideExit(final View v, @Nullable final ViewCallback callback) {
+        v.animate()
+//                .translationY(0)
+                .alpha(0.0f)
+                .setDuration(3000)
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                        v.setVisibility(View.GONE);
+                        if (callback != null) callback.onFinish(v);
+                    }
+                });
     }
 }

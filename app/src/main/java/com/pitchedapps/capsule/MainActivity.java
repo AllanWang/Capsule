@@ -1,37 +1,67 @@
 package com.pitchedapps.capsule;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.pitchedapps.capsule.library.activities.CapsuleActivity;
+import com.mikepenz.google_material_typeface_library.GoogleMaterial;
+import com.mikepenz.materialdrawer.AccountHeader;
+import com.mikepenz.materialdrawer.AccountHeaderBuilder;
+import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
+import com.pitchedapps.capsule.library.activities.CapsuleActivityFrame;
 import com.pitchedapps.capsule.library.changelog.ChangelogDialog;
+import com.pitchedapps.capsule.library.interfaces.CDrawerItem;
+import com.pitchedapps.capsule.library.item.DrawerItem;
 
 /**
  * Created by Allan Wang on 2016-08-21.
  */
-public class MainActivity extends CapsuleActivity {
-    @Override
-    protected int getFragmentId() {
-        return R.id.main;
-    }
-
-    @Override
-    protected int getFabId() {
-        return R.id.fab;
-    }
-
-    @Override
-    protected int getContentViewId() {
-        return R.layout.activity_main;
-    }
+public class MainActivity extends CapsuleActivityFrame {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        enableCLog();
         super.onCreate(savedInstanceState);
-        capsulate().toolbar(R.id.toolbar);
-        switchFragment(new FragmentSample());
+        cCoordinatorLayout.setScrollAllowed(false);
+    }
+
+    /**
+     * @return desired header
+     * Sets up account header
+     * will not be added if null
+     */
+    @Nullable
+    @Override
+    protected AccountHeader getAccountHeader() {
+        return new AccountHeaderBuilder().withActivity(this)
+                .withHeaderBackground(R.color.colorPrimary)
+                .withSelectionFirstLine(s(R.string.app_name))
+                .withSelectionSecondLine(BuildConfig.VERSION_NAME)
+                .withProfileImagesClickable(false)
+                .withResetDrawerOnProfileListClick(false)
+                .addProfiles(
+                        new ProfileDrawerItem().withIcon(ContextCompat.getDrawable(this, R.drawable.ctf))
+                )
+                .withSelectionListEnabled(false)
+                .withSelectionListEnabledForSingleProfile(false)
+                .build();
+    }
+
+    /**
+     * Sets up array of drawer items
+     *
+     * @return array of drawer items
+     */
+    @Override
+    protected CDrawerItem[] getDrawerItems() {
+        return new CDrawerItem[]{
+                new DrawerItem(new FragmentSample(), R.string.home, GoogleMaterial.Icon.gmd_dashboard, true),
+                new DrawerItem(new ViewPagerFragmentSample(), R.string.room, GoogleMaterial.Icon.gmd_weekend, true),
+                new DrawerItem(new FragmentSample(), R.string.account, GoogleMaterial.Icon.gmd_person, true),
+                new DrawerItem(new FragmentSample(), R.string.report, GoogleMaterial.Icon.gmd_error, true),
+                new DrawerItem(new FragmentSample(), R.string.settings, GoogleMaterial.Icon.gmd_settings, true)
+        };
     }
 
     @Override
@@ -50,7 +80,7 @@ public class MainActivity extends CapsuleActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_changelog) {
-            new ChangelogDialog().show(R.xml.changelog);
+            new ChangelogDialog().show(this, R.xml.changelog);
             return true;
         }
 

@@ -18,11 +18,13 @@ public interface CActivityCore {
 
     /**
      * Modified permission request method
-     * @param callback callback for fragment
+     *
+     * @param callback    callback for fragment
      * @param requestCode unique request code
      * @param permissions array of permissions
      */
     void requestPermission(@NonNull CPermissionCallback callback, @IntRange(from = 1, to = Integer.MAX_VALUE) int requestCode, @NonNull String... permissions);
 
     FloatingActionButton getFab();
+
 }

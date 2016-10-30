@@ -2,8 +2,11 @@ package com.pitchedapps.capsule.library.activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.View;
 
+import com.mikepenz.google_material_typeface_library.GoogleMaterial;
+import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -13,6 +16,9 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.pitchedapps.capsule.library.R;
 import com.pitchedapps.capsule.library.interfaces.CDrawerItem;
+import com.pitchedapps.capsule.library.interfaces.CFragmentCore;
+import com.pitchedapps.capsule.library.logging.CLog;
+import com.pitchedapps.capsule.library.utils.ViewUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,8 +52,18 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        capsulate().toolbar(R.id.toolbar).appBarLayout(R.id.appbar).coordinatorLayout(R.id.coordinator);
+        capsulate()
+                .toolbar(R.id.toolbar)
+                .appBarLayout(R.id.appbar)
+                .coordinatorLayout(R.id.coordinator)
+                .tabLayout(R.id.tabs);
         setupDrawer();
+        switchFragment(mDrawerItems.get(0).getFragment());
+    }
+
+    @Override
+    protected <T extends Fragment & CFragmentCore> void switchFragment(T fragment) {
+        switchFragment(fragment, R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
     }
 
     /**
@@ -95,8 +111,8 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        // do something with the clicked item :D
-                        switchFragment(mDrawerItems.get(position).getFragment());
+                        // position is index + 1; but since the identifier is changed to reflect index, we'll use that
+                        switchFragment(mDrawerItems.get((int) drawerItem.getIdentifier()).getFragment());
                         return false;
                     }
                 });
@@ -105,7 +121,7 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
         if (header != null) builder.withAccountHeader(header);
 
         CDrawerItem[] items = getDrawerItems();
-        if (items != null) {
+        if (items != null && items.length > 0) {
             for (int i = 0; i < items.length; i++) {
                 CDrawerItem item = items[i];
                 mDrawerItems.add(item);
@@ -114,7 +130,7 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
                 } else if (item.isPrimary()) {
                     PrimaryDrawerItem drawerItem = new PrimaryDrawerItem().withName(item.getTitleId()).withIdentifier(i);
                     if (item.getIcon() != null) {
-                        drawerItem.withIcon(item.getIcon()).withIconTintingEnabled(true);
+                        drawerItem.withIcon(ViewUtils.iconDrawable(this, item.getIcon())).withIconTintingEnabled(true);
                     }
                     builder.addDrawerItems(drawerItem);
                 } else {
@@ -122,9 +138,22 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
                     builder.addDrawerItems(drawerItem);
                 }
             }
+        } else {
+            CLog.d("Drawer items is an empty list");
         }
         setupDrawerFurther(builder);
         cDrawer = builder.build();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (cDrawer.isDrawerOpen()) {
+            cDrawer.closeDrawer();
+        } else if (cDrawer.getCurrentSelection() != 0) {
+            cDrawer.setSelection(0);
+        } else {
+            super.onBackPressed();
+        }
     }
 
 }

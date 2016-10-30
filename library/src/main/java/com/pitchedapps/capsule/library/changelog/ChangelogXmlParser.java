@@ -60,7 +60,7 @@ class ChangelogXmlParser {
             dest.writeStringList(this.mPoints);
         }
 
-        protected ChangelogItem(Parcel in) {
+        ChangelogItem(Parcel in) {
             this.mTitle = in.readString();
             this.mPoints = in.createStringArrayList();
         }

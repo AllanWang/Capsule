@@ -5,10 +5,13 @@ import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
@@ -16,6 +19,7 @@ import com.pitchedapps.capsule.library.R;
 import com.pitchedapps.capsule.library.custom.CapsuleCoordinatorLayout;
 import com.pitchedapps.capsule.library.interfaces.CFragmentCore;
 import com.pitchedapps.capsule.library.logging.CLog;
+import com.pitchedapps.capsule.library.utils.AnimUtils;
 
 /**
  * Created by Allan Wang on 2016-08-21.
@@ -28,6 +32,7 @@ abstract class ViewActivity extends PermissionActivity {
     protected Toolbar cToolbar;
     protected AppBarLayout cAppBarLayout;
     protected CapsuleCoordinatorLayout cCoordinatorLayout;
+    protected TabLayout cTabs;
 
     @Override
     public FloatingActionButton getFab() {
@@ -106,9 +111,9 @@ abstract class ViewActivity extends PermissionActivity {
 
     private void ceAppBar(boolean b) {
         if (cAppBarLayout == null)
-            throw new RuntimeException(String.format(s(R.string.generic_not_set), "cAppBarLayout"));
+            throw new RuntimeException(sf(R.string.generic_not_set, "cAppBarLayout"));
         if (cCoordinatorLayout == null)
-            throw new RuntimeException(String.format(s(R.string.generic_not_set), "cCoordinatorLayout"));
+            throw new RuntimeException(sf(R.string.generic_not_set, "cCoordinatorLayout"));
         cAppBarLayout.setExpanded(b);
         cCoordinatorLayout.setScrollAllowed(b);
     }
@@ -121,13 +126,32 @@ abstract class ViewActivity extends PermissionActivity {
         ceAppBar(true);
     }
 
+    public void showTabs(@NonNull ViewPager viewPager) {
+        if (cTabs == null) throw new RuntimeException(sf(R.string.generic_not_set, "TabLayout"));
+        cTabs.setupWithViewPager(viewPager);
+        AnimUtils.slideEnter(cTabs);
+//        cTabs.setVisibility(View.VISIBLE);
+    }
+
+    public void hideTabs() {
+        if (cTabs == null) throw new RuntimeException(sf(R.string.generic_not_set, "TabLayout"));
+        AnimUtils.slideExit(cTabs, new AnimUtils.ViewCallback() {
+            @Override
+            public void onFinish(View v) {
+                cTabs.removeAllTabs();
+            }
+        });
+//        cTabs.setVisibility(View.GONE);
+//        cTabs.removeAllTabs();
+    }
+
     /**
      * Capsulate
      * <p>
      * Helps with initializing and managing other types of views
      */
 
-    protected class Capsulate {
+    public class Capsulate {
 
         public Capsulate toolbar(@IdRes int id) {
             cToolbar = (Toolbar) findViewById(id);
@@ -142,6 +166,11 @@ abstract class ViewActivity extends PermissionActivity {
 
         public Capsulate coordinatorLayout(@IdRes int id) {
             cCoordinatorLayout = (CapsuleCoordinatorLayout) findViewById(id);
+            return this;
+        }
+
+        public Capsulate tabLayout(@IdRes int id) {
+            cTabs = (TabLayout) findViewById(id);
             return this;
         }
     }

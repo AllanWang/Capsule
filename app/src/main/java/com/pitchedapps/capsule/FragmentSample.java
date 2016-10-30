@@ -6,9 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 
+import com.mikepenz.google_material_typeface_library.GoogleMaterial;
+import com.mikepenz.iconics.typeface.IIcon;
 import com.pitchedapps.capsule.library.fragments.CapsuleFragment;
 import com.pitchedapps.capsule.library.logging.CLog;
+import com.pitchedapps.capsule.library.utils.AnimUtils;
+import com.pitchedapps.capsule.library.utils.ViewUtils;
 
 /**
  * Created by Allan Wang on 2016-08-21.
@@ -25,12 +30,12 @@ public class FragmentSample extends CapsuleFragment {
     }
 
     @Override
-    protected int getFabIcon() {
-        return android.R.drawable.ic_dialog_email;
+    public IIcon getFabIcon() {
+        return GoogleMaterial.Icon.gmd_open_in_new;
     }
 
     @Override
-    protected boolean hasFab() {
+    public boolean hasFab() {
         return true;
     }
 
@@ -38,6 +43,9 @@ public class FragmentSample extends CapsuleFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View v = inflater.inflate(R.layout.fragment_sample, container, false);
+        FrameLayout frame = (FrameLayout) v.findViewById(R.id.fragment_main);
+        frame.setBackgroundColor(ViewUtils.randomLightColor());
+//        AnimUtils.rootCircularReview(v);
         ((Button) v.findViewById(R.id.button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,4 +54,5 @@ public class FragmentSample extends CapsuleFragment {
         });
         return v;
     }
+
 }

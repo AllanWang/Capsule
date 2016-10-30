@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.annotation.XmlRes;
+import android.support.v4.app.FragmentActivity;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.pitchedapps.capsule.library.R;
@@ -17,11 +18,11 @@ import java.util.TimerTask;
  * @author Allan Wang
  */
 public class ChangelogDialog extends CapsuleDialog<Integer> {
-
+    //TODO fix dialogs
     //Just for the annotation
     @Override
-    public void show(@XmlRes Integer xmlRes) {
-        super.show(xmlRes);
+    public void show(FragmentActivity activity, @XmlRes Integer xmlRes) {
+        super.show(activity, xmlRes);
     }
 
     /**
@@ -44,7 +45,7 @@ public class ChangelogDialog extends CapsuleDialog<Integer> {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final ArrayList<ChangelogXmlParser.ChangelogItem> items = ChangelogXmlParser.parse(getActivity(), xmlRes);
+                final ArrayList<ChangelogXmlParser.ChangelogItem> items = ChangelogXmlParser.parse(cActivity, xmlRes);
                 mHandler.post(new TimerTask() {
                     @Override
                     public void run() {
@@ -54,7 +55,7 @@ public class ChangelogDialog extends CapsuleDialog<Integer> {
                             args.putParcelableArrayList("changelog_items", items);
                             f.setArguments(args);
                         }
-                        f.showDialog();
+                        f.showDialog(cActivity.getSupportFragmentManager());
                     }
                 });
             }
