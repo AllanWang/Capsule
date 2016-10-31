@@ -2,6 +2,7 @@ package com.pitchedapps.capsule.library.changelog;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.XmlRes;
 import android.support.v4.app.FragmentActivity;
@@ -18,10 +19,10 @@ import java.util.TimerTask;
  * @author Allan Wang
  */
 public class ChangelogDialog extends CapsuleDialog<Integer> {
-    //TODO fix dialogs
+
     //Just for the annotation
     @Override
-    public void show(FragmentActivity activity, @XmlRes Integer xmlRes) {
+    public void show(@NonNull FragmentActivity activity, @XmlRes Integer xmlRes) {
         super.show(activity, xmlRes);
     }
 
@@ -31,7 +32,7 @@ public class ChangelogDialog extends CapsuleDialog<Integer> {
      * @return tag
      */
     @Override
-    public String getFragmentTag() {
+    protected String getFragmentTag() {
         return "capsule_changelog_dialog";
     }
 
@@ -40,12 +41,12 @@ public class ChangelogDialog extends CapsuleDialog<Integer> {
      * to just call showDialog()
      */
     @Override
-    public void initialize(@XmlRes final Integer xmlRes) {
+    protected void initialize(final FragmentActivity activity, @XmlRes final Integer xmlRes) {
         final Handler mHandler = new Handler();
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final ArrayList<ChangelogXmlParser.ChangelogItem> items = ChangelogXmlParser.parse(cActivity, xmlRes);
+                final ArrayList<ChangelogXmlParser.ChangelogItem> items = ChangelogXmlParser.parse(activity, xmlRes);
                 mHandler.post(new TimerTask() {
                     @Override
                     public void run() {
@@ -55,7 +56,7 @@ public class ChangelogDialog extends CapsuleDialog<Integer> {
                             args.putParcelableArrayList("changelog_items", items);
                             f.setArguments(args);
                         }
-                        f.showDialog(cActivity.getSupportFragmentManager());
+                        f.showDialog(activity.getSupportFragmentManager());
                     }
                 });
             }
@@ -69,7 +70,7 @@ public class ChangelogDialog extends CapsuleDialog<Integer> {
      * @param args    arguments from any passed bundle
      */
     @Override
-    public void buildDialog(MaterialDialog.Builder builder, @Nullable Bundle args) {
+    protected void buildDialog(MaterialDialog.Builder builder, @Nullable Bundle args) {
         builder.title(R.string.changelog_dialog_title)
                 .positiveText(R.string.great);
 

@@ -40,11 +40,11 @@ abstract class BaseFragment extends Fragment implements CFragmentCore {
         capsuleActivity().getFab().hide();
     }
 
-    protected CapsuleActivity capsuleActivity() {
-        if (!(getActivity() instanceof CapsuleActivity)) {
+    protected CActivityCore capsuleActivity() {
+        if (!(getActivity() instanceof CActivityCore)) {
             throw new RuntimeException(s(R.string.capsule_activity_context_error));
         }
-        return ((CapsuleActivity) getActivity());
+        return ((CActivityCore) getActivity());
     }
 
     protected void setFabIcon(IIcon iicon) {

@@ -23,20 +23,18 @@ import timber.log.Timber;
 
 public abstract class CapsuleDialog<T> extends DialogFragment {
 
-    protected FragmentActivity cActivity;
-
     /**
      * Retrieves tag
      *
      * @return tag
      */
-    public abstract String getFragmentTag();
+    protected abstract String getFragmentTag();
 
     /**
      * Loads the dialog; the most basic implementation would be
      * to just call showDialog(); no param? Try BasicCapsuleDialog
      */
-    public abstract void initialize(final T param);
+    protected abstract void initialize(final FragmentActivity activity, final T param);
 
     /**
      * Dialog builder from within onCreateDialog
@@ -44,16 +42,15 @@ public abstract class CapsuleDialog<T> extends DialogFragment {
      * @param builder MaterialDialog.Builder
      * @param args    arguments from any passed bundle
      */
-    public abstract void buildDialog(MaterialDialog.Builder builder, @Nullable Bundle args);
+    protected abstract void buildDialog(MaterialDialog.Builder builder, @Nullable Bundle args);
 
     /**
      * Main method for launching dialog; hides opened dialogs with same tag
      */
     public void show(@NonNull FragmentActivity activity, T param) {
-        cActivity = activity;
-        Fragment frag = cActivity.getSupportFragmentManager().findFragmentByTag(getFragmentTag());
+        Fragment frag = activity.getSupportFragmentManager().findFragmentByTag(getFragmentTag());
         if (frag != null) ((CapsuleDialog) frag).dismiss();
-        initialize(param);
+        initialize(activity, param);
     }
 
     /**
@@ -67,7 +64,7 @@ public abstract class CapsuleDialog<T> extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        MaterialDialog.Builder builder = new MaterialDialog.Builder(cActivity);
+        MaterialDialog.Builder builder = new MaterialDialog.Builder(getContext());
         buildDialog(builder, getArguments());
         return builder.build();
     }
