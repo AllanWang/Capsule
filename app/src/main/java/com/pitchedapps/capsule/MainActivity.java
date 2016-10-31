@@ -80,7 +80,7 @@ public class MainActivity extends CapsuleActivityFrame {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_changelog) {
-            new ChangelogDialog().show(this, R.xml.changelog);
+            ChangelogDialog.show(this, R.xml.changelog);
             return true;
         }
 

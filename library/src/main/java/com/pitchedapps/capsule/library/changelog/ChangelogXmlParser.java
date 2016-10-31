@@ -28,7 +28,7 @@ class ChangelogXmlParser {
         private final String mTitle;
         private final ArrayList<String> mPoints;
 
-        public ChangelogItem(String name) {
+        ChangelogItem(String name) {
             mTitle = name;
             mPoints = new ArrayList<>();
         }
@@ -37,11 +37,11 @@ class ChangelogXmlParser {
             return mTitle;
         }
 
-        public List<String> getItems() {
+        List<String> getItems() {
             return mPoints;
         }
 
-        public void addItem(String s) {
+        void addItem(String s) {
             mPoints.add(s);
         }
 
