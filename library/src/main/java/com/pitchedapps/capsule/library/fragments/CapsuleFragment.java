@@ -17,13 +17,15 @@ public abstract class CapsuleFragment extends BaseFragment implements CFab {
     @CallSuper
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if (hasFab()) {
-            showFab();
-            if (getFabIcon() != null) {
-                setFabIcon(getFabIcon());
+        if (hasFab() != null) {
+            if (hasFab()) {
+                showFab();
+                if (getFabIcon() != null) {
+                    setFabIcon(getFabIcon());
+                }
+            } else {
+                hideFab();
             }
-        } else {
-            hideFab();
         }
         return null;
     }

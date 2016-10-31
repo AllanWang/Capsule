@@ -11,14 +11,12 @@ import android.widget.FrameLayout;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.typeface.IIcon;
 import com.pitchedapps.capsule.library.fragments.CapsuleFragment;
-import com.pitchedapps.capsule.library.logging.CLog;
-import com.pitchedapps.capsule.library.utils.AnimUtils;
 import com.pitchedapps.capsule.library.utils.ViewUtils;
 
 /**
  * Created by Allan Wang on 2016-08-21.
  */
-public class FragmentSample extends CapsuleFragment {
+public class FragmentSampleNoFab extends CapsuleFragment {
     @Override
     public void onFabClick(View v) {
         snackbar("Test", Snackbar.LENGTH_LONG);
@@ -36,7 +34,7 @@ public class FragmentSample extends CapsuleFragment {
 
     @Override
     public Boolean hasFab() {
-        return true;
+        return false;
     }
 
     @Override

@@ -22,7 +22,7 @@ import com.pitchedapps.capsule.library.utils.ViewUtils;
 /**
  * Created by Allan Wang on 2016-08-21.
  */
-abstract class BaseFragment extends Fragment implements CFragmentCore {
+public abstract class BaseFragment extends Fragment implements CFragmentCore {
 
     protected String s(@StringRes int id) {
         return getString(id);

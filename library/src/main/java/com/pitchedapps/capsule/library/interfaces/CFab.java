@@ -1,7 +1,5 @@
 package com.pitchedapps.capsule.library.interfaces;
 
-import android.support.annotation.DrawableRes;
-
 import com.mikepenz.iconics.typeface.IIcon;
 
 /**
@@ -13,10 +11,13 @@ public interface CFab {
     IIcon getFabIcon();
 
     /**
-     * Will hide the fab if false; the fab is still in the viewgroup and is used for various other tasks such as the snackbar
+     * Defines the visibility of the fab
+     * true will show it
+     * false will hide it
+     * null will not modify the state
      *
      * @return fab existence
      */
-    boolean hasFab();
+    Boolean hasFab();
 
 }

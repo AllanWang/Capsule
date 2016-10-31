@@ -12,7 +12,7 @@ import com.pitchedapps.capsule.library.interfaces.CFragmentCore;
  * <p>
  * The activity that holds everything
  */
-public abstract class CapsuleActivity extends ViewActivity {
+public abstract class CapsuleActivity extends UtilsActivity {
 
     protected <T extends Fragment & CFragmentCore> void switchFragment(T fragment) {
         getSupportFragmentManager()

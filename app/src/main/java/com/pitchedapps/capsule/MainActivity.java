@@ -12,6 +12,7 @@ import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.pitchedapps.capsule.library.activities.CapsuleActivityFrame;
 import com.pitchedapps.capsule.library.changelog.ChangelogDialog;
+import com.pitchedapps.capsule.library.interfaces.CCallback;
 import com.pitchedapps.capsule.library.interfaces.CDrawerItem;
 import com.pitchedapps.capsule.library.item.DrawerItem;
 
@@ -24,6 +25,12 @@ public class MainActivity extends CapsuleActivityFrame {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         cCoordinatorLayout.setScrollAllowed(false);
+        onVersionUpdate(BuildConfig.VERSION_CODE, new CCallback() {
+            @Override
+            public void onResult() {
+                ChangelogDialog.show(MainActivity.this, R.xml.changelog);
+            }
+        });
     }
 
     /**
@@ -59,8 +66,8 @@ public class MainActivity extends CapsuleActivityFrame {
                 new DrawerItem(new FragmentSample(), R.string.home, GoogleMaterial.Icon.gmd_dashboard, true),
                 new DrawerItem(new ViewPagerFragmentSample(), R.string.room, GoogleMaterial.Icon.gmd_weekend, true),
                 new DrawerItem(new FragmentSample(), R.string.account, GoogleMaterial.Icon.gmd_person, true),
-                new DrawerItem(new FragmentSample(), R.string.report, GoogleMaterial.Icon.gmd_error, true),
-                new DrawerItem(new FragmentSample(), R.string.settings, GoogleMaterial.Icon.gmd_settings, true)
+                new DrawerItem(new FragmentSampleNoIcon(), R.string.report, GoogleMaterial.Icon.gmd_error, true),
+                new DrawerItem(new FragmentSampleNoFab(), R.string.settings, GoogleMaterial.Icon.gmd_settings, true)
         };
     }
 

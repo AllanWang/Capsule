@@ -18,16 +18,16 @@ public class ViewPagerFragmentSample extends ViewPagerFragment {
     @Override
     protected List<CPage> setPages() {
         return Arrays.asList(new CPage[]{
-                new PageItem(new FragmentSample(), R.string.home, GoogleMaterial.Icon.gmd_3d_rotation, new View.OnClickListener() {
+                new PageItem(new FragmentSampleNoIcon(), R.string.account, GoogleMaterial.Icon.gmd_satellite, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        snackbar("tes");
                     }
                 }),
-                new PageItem(new FragmentSample(), R.string.settings, GoogleMaterial.Icon.gmd_access_alarm, new View.OnClickListener() {
+                new PageItem(new FragmentSampleNoIcon(), R.string.settings, GoogleMaterial.Icon.gmd_access_alarm, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        setFabIcon(GoogleMaterial.Icon.gmd_image);
                     }
                 })
         });

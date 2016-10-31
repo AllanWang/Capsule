@@ -28,13 +28,16 @@ public class ViewPagerAdapter extends FragmentPagerAdapter implements ViewPager.
     private List<CPage> mPages;
     private int mPosition = 0;
 
-    public ViewPagerAdapter(Context context, FragmentManager fm, @NonNull List<CPage> pages) {
+    public ViewPagerAdapter(Context context, FragmentManager fm, ViewPager viewPager, @NonNull List<CPage> pages) {
         super(fm);
         mContext = context;
         mPages = pages;
         if (pages.size() <= 1) {
             CLog.d("ViewPager list is less than 2. No need for ViewPager");
         }
+        viewPager.setAdapter(this);
+        viewPager.addOnPageChangeListener(this);
+        setupFab();
     }
 
     /**
@@ -68,6 +71,18 @@ public class ViewPagerAdapter extends FragmentPagerAdapter implements ViewPager.
         return mPages.get(mPosition);
     }
 
+    private void setupFab() {
+        CActivityCore core = ContextUtils.capsuleActivity(mContext);
+        if (getCurrentPage().hasFab()) {
+            if (getCurrentPage().getFabIcon() != null) {
+                core.getFab().setImageDrawable(ViewUtils.iconDrawable(mContext, getCurrentPage().getFabIcon()));
+            }
+            core.getFab().show();
+        } else {
+            core.getFab().hide();
+        }
+    }
+
     /**
      * This method will be invoked when the current page is scrolled, either as part
      * of a programmatically initiated smooth scroll or a user initiated touch scroll.
@@ -91,16 +106,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter implements ViewPager.
     @Override
     public void onPageSelected(int position) {
         mPosition = position;
-        CLog.e("Position " + position); //TODO figure out why this isn't logging
-        CActivityCore core = ContextUtils.capsuleActivity(mContext);
-        if (getCurrentPage().hasFab()) {
-            if (getCurrentPage().getFabIcon() != null) {
-                core.getFab().setImageDrawable(ViewUtils.iconDrawable(mContext, getCurrentPage().getFabIcon()));
-            }
-            core.getFab().show();
-        } else {
-            core.getFab().hide();
-        }
+        setupFab();
     }
 
     /**
