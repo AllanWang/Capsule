@@ -1,9 +1,11 @@
 package com.pitchedapps.capsule.library.activities;
 
 import android.support.annotation.AnimRes;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 
+import com.pitchedapps.capsule.library.R;
 import com.pitchedapps.capsule.library.fragments.CapsuleFragment;
 import com.pitchedapps.capsule.library.interfaces.CFragmentCore;
 
@@ -33,4 +35,21 @@ public abstract class CapsuleActivity extends UtilsActivity {
                 .replace(getFragmentId(), fragment, s(fragment.getTitleId())).commit();
     }
 
+    /**
+     * Gets current fragment and executes callback if type matches
+     * @param clazz class of desired fragment
+     * @param callback callback if match
+     * @param <T> Type of class
+     */
+    @SuppressWarnings("unchecked")
+    protected <T extends Fragment & CFragmentCore> void onCurrentFragment(Class<T> clazz, @NonNull Current<T> callback) {
+        Fragment current = getSupportFragmentManager().findFragmentById(getFragmentId());
+        if (clazz.isInstance(current.getClass())) {
+            callback.onMatch((T) current);
+        }
+    }
+
+    public interface Current<T extends Fragment & CFragmentCore> {
+        void onMatch(T currentFragment);
+    }
 }
