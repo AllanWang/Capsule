@@ -3,7 +3,7 @@ apply plugin: 'com.android.library'
 ext {
     TARGET_SDK = 25
     BUILD_TOOLS = "25.0.0"
-    ANDROID_SUPPORT_LIBS = "25.0.0"
+    ANDROID_SUPPORT_LIBS = "25.0.1"
 }
 
 android {
@@ -33,11 +33,21 @@ dependencies {
     compile "com.android.support:recyclerview-v7:$ANDROID_SUPPORT_LIBS"
     compile "com.android.support:cardview-v7:$ANDROID_SUPPORT_LIBS"
 
+    //Decoupled events
+    compile 'org.greenrobot:eventbus:3.0.0'
+
+    //Logging
     compile 'com.jakewharton.timber:timber:4.3.1'
+
+    //Dialog
     compile 'com.afollestad.material-dialogs:core:0.9.0.2'
+
+    //Drawer
     compile('com.mikepenz:materialdrawer:5.6.0@aar') {
         transitive = true
     }
+
+    //Icons
     compile "com.mikepenz:iconics-core:2.8.1@aar"
     compile 'com.mikepenz:google-material-typeface:2.2.0.3.original@aar'
 }

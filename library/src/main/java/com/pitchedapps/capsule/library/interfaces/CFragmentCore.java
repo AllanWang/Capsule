@@ -11,8 +11,6 @@ import android.view.View;
 
 public interface CFragmentCore {
 
-    void onFabClick(View v);
-
     @StringRes
     int getTitleId();
 

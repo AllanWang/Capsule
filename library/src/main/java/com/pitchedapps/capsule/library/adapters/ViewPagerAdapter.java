@@ -7,16 +7,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
-import com.pitchedapps.capsule.library.R;
-import com.pitchedapps.capsule.library.interfaces.CActivityCore;
 import com.pitchedapps.capsule.library.interfaces.CPage;
 import com.pitchedapps.capsule.library.logging.CLog;
-import com.pitchedapps.capsule.library.utils.ContextUtils;
-import com.pitchedapps.capsule.library.utils.ViewUtils;
 
 import java.util.List;
-
-import timber.log.Timber;
 
 /**
  * Created by Allan Wang on 2016-10-30.
@@ -26,7 +20,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter implements ViewPager.
 
     private Context mContext;
     private List<CPage> mPages;
-    private int mPosition = 0;
+    private int mPosition;
 
     public ViewPagerAdapter(Context context, FragmentManager fm, ViewPager viewPager, @NonNull List<CPage> pages) {
         super(fm);
@@ -37,7 +31,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter implements ViewPager.
         }
         viewPager.setAdapter(this);
         viewPager.addOnPageChangeListener(this);
-        setupFab();
+        onPageSelected(0);
     }
 
     /**
@@ -60,7 +54,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter implements ViewPager.
 
     @Override
     public String getPageTitle(int position) {
-        return (mContext.getString(mPages.get(position).getTitle()));
+        return (mContext.getString(mPages.get(position).getTitleId()));
     }
 
     public int getPosition() {
@@ -69,18 +63,6 @@ public class ViewPagerAdapter extends FragmentPagerAdapter implements ViewPager.
 
     public CPage getCurrentPage() {
         return mPages.get(mPosition);
-    }
-
-    private void setupFab() {
-        CActivityCore core = ContextUtils.capsuleActivity(mContext);
-        if (getCurrentPage().hasFab()) {
-            if (getCurrentPage().getFabIcon() != null) {
-                core.getFab().setImageDrawable(ViewUtils.iconDrawable(mContext, getCurrentPage().getFabIcon()));
-            }
-            core.getFab().show();
-        } else {
-            core.getFab().hide();
-        }
     }
 
     /**
@@ -106,7 +88,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter implements ViewPager.
     @Override
     public void onPageSelected(int position) {
         mPosition = position;
-        setupFab();
+        mPages.get(position).getFragment().onSelected();
     }
 
     /**

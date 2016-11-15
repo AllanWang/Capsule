@@ -1,7 +1,7 @@
 package com.pitchedapps.capsule;
 
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,33 +9,21 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
-import com.mikepenz.iconics.typeface.IIcon;
-import com.pitchedapps.capsule.library.fragments.CapsuleFragment;
+import com.pitchedapps.capsule.library.event.CFabEvent;
+import com.pitchedapps.capsule.library.event.SnackbarEvent;
+import com.pitchedapps.capsule.library.fragments.CapsulePageFragment;
 import com.pitchedapps.capsule.library.utils.ViewUtils;
 
 /**
- * Created by Allan Wang on 2016-08-21.
+ * Created by Allan Wang on 2016-11-14.
  */
-public class FragmentSampleNoIcon extends CapsuleFragment {
-    @Override
-    public void onFabClick(View v) {
-        snackbar("Test", Snackbar.LENGTH_LONG);
-    }
 
+public class FragmentPageSample extends CapsulePageFragment {
     @Override
     public int getTitleId() {
         return R.string.sample_fragment;
     }
 
-    @Override
-    public IIcon getFabIcon() {
-        return null;
-    }
-
-    @Override
-    public Boolean hasFab() {
-        return null;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,10 +35,20 @@ public class FragmentSampleNoIcon extends CapsuleFragment {
         ((Button) v.findViewById(R.id.button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                snackbar("TEST", Snackbar.LENGTH_LONG);
+                snackbar(new SnackbarEvent("TEST"));
             }
         });
         return v;
     }
 
+    @Nullable
+    @Override
+    protected CFabEvent updateFab() {
+        return new CFabEvent(GoogleMaterial.Icon.gmd_access_alarm, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                snackbar(new SnackbarEvent("Hi"));
+            }
+        });
+    }
 }

@@ -14,42 +14,38 @@ import com.pitchedapps.capsule.library.interfaces.CFragmentCore;
  * <p>
  * The activity that holds everything
  */
-public abstract class CapsuleActivity extends UtilsActivity {
+public abstract class CapsuleActivity extends EventActivity {
 
-    protected <T extends Fragment & CFragmentCore> void switchFragment(T fragment) {
+    protected void switchFragment(Fragment fragment) {
+        String tag = null;
+        if (fragment instanceof CFragmentCore && ((CFragmentCore) fragment).getTitleId() > 0) {
+            tag = s(((CFragmentCore) fragment).getTitleId());
+        }
         getSupportFragmentManager()
-                .beginTransaction().replace(getFragmentId(), fragment, s(fragment.getTitleId())).commit();
+                .beginTransaction().replace(getFragmentId(), fragment, tag).commit();
     }
 
-    protected <T extends Fragment & CFragmentCore> void switchFragment(T fragment, @AnimRes int enter,
-                                                                       @AnimRes int exit) {
+    protected void switchFragment(Fragment fragment, @AnimRes int enter,
+                                  @AnimRes int exit) {
+        String tag = null;
+        if (fragment instanceof CFragmentCore && ((CFragmentCore) fragment).getTitleId() > 0) {
+            tag = s(((CFragmentCore) fragment).getTitleId());
+        }
         getSupportFragmentManager()
                 .beginTransaction().setCustomAnimations(enter, exit)
-                .replace(getFragmentId(), fragment, s(fragment.getTitleId())).commit();
+                .replace(getFragmentId(), fragment, tag).commit();
     }
 
-    protected <T extends Fragment & CFragmentCore> void switchFragment(T fragment, @AnimRes int enter,
-                                                                       @AnimRes int exit, @AnimRes int popEnter, @AnimRes int popExit) {
+    protected void switchFragment(Fragment fragment, @AnimRes int enter,
+                                  @AnimRes int exit, @AnimRes int popEnter, @AnimRes int popExit) {
+
+        String tag = null;
+        if (fragment instanceof CFragmentCore && ((CFragmentCore) fragment).getTitleId() > 0) {
+            tag = s(((CFragmentCore) fragment).getTitleId());
+        }
         getSupportFragmentManager()
                 .beginTransaction().setCustomAnimations(enter, exit, popEnter, popExit)
-                .replace(getFragmentId(), fragment, s(fragment.getTitleId())).commit();
+                .replace(getFragmentId(), fragment, tag).commit();
     }
 
-    /**
-     * Gets current fragment and executes callback if type matches
-     * @param clazz class of desired fragment
-     * @param callback callback if match
-     * @param <T> Type of class
-     */
-    @SuppressWarnings("unchecked")
-    protected <T extends Fragment & CFragmentCore> void onCurrentFragment(Class<T> clazz, @NonNull Current<T> callback) {
-        Fragment current = getSupportFragmentManager().findFragmentById(getFragmentId());
-        if (clazz.isInstance(current.getClass())) {
-            callback.onMatch((T) current);
-        }
-    }
-
-    public interface Current<T extends Fragment & CFragmentCore> {
-        void onMatch(T currentFragment);
-    }
 }

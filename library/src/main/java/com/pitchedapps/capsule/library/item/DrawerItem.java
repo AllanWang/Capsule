@@ -19,7 +19,7 @@ public class DrawerItem implements CDrawerItem {
     private IIcon mIcon;
     private boolean mIsPrimary;
 
-    public <T extends Fragment & CFragmentCore> DrawerItem(T fragment, @StringRes int titleId, IIcon icon, boolean isPrimary) {
+    public DrawerItem(Fragment fragment, @StringRes int titleId, IIcon icon, boolean isPrimary) {
         mFragment = fragment;
         mTitleId = titleId;
         mIcon = icon;
@@ -28,8 +28,8 @@ public class DrawerItem implements CDrawerItem {
 
     @Nullable
     @Override
-    public <T extends Fragment & CFragmentCore> T getFragment() {
-        return (T) mFragment;
+    public Fragment getFragment() {
+        return mFragment;
     }
 
     @Override

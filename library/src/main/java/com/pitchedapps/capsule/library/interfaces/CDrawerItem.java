@@ -13,7 +13,7 @@ import com.mikepenz.iconics.typeface.IIcon;
 public interface CDrawerItem {
 
     @Nullable
-    <T extends Fragment & CFragmentCore> T getFragment();
+    Fragment getFragment();
 
     @StringRes
     int getTitleId();

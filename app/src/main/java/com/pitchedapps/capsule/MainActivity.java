@@ -66,7 +66,7 @@ public class MainActivity extends CapsuleActivityFrame {
                 new DrawerItem(new FragmentSample(), R.string.home, GoogleMaterial.Icon.gmd_dashboard, true),
                 new DrawerItem(new ViewPagerFragmentSample(), R.string.room, GoogleMaterial.Icon.gmd_weekend, true),
                 new DrawerItem(new FragmentSample(), R.string.account, GoogleMaterial.Icon.gmd_person, true),
-                new DrawerItem(new FragmentSampleNoIcon(), R.string.report, GoogleMaterial.Icon.gmd_error, true),
+                new DrawerItem(new FragmentSampleNoFab(), R.string.report, GoogleMaterial.Icon.gmd_error, true),
                 new DrawerItem(new FragmentSampleNoFab(), R.string.settings, GoogleMaterial.Icon.gmd_settings, true)
         };
     }

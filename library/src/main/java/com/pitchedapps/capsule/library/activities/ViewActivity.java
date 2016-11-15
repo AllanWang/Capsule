@@ -90,12 +90,6 @@ abstract class ViewActivity extends PermissionActivity {
 
     private void setupFab() {
         cFab = (FloatingActionButton) findViewById(getFabId());
-        cFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getCurrentBaseFragment().onFabClick(view);
-            }
-        });
     }
 
     private CFragmentCore getCurrentBaseFragment() {
