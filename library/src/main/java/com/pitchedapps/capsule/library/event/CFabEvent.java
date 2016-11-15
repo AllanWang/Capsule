@@ -39,7 +39,7 @@ public class CFabEvent {
         mListener = listener;
     }
 
-    public void load(@NonNull Context context, @NonNull FloatingActionButton fab) {
+    public void load(@NonNull FloatingActionButton fab) {
         //change fab visibility
         if (show) {
             fab.show();
@@ -49,7 +49,7 @@ public class CFabEvent {
         }
         //change icon if applicable
         if (mIcon != null) {
-            fab.setImageDrawable(ViewUtils.iconDrawable(context, mIcon));
+            fab.setImageDrawable(ViewUtils.iconDrawable(fab.getContext(), mIcon));
         } else if (drawable != -1) {
             fab.setImageResource(drawable);
         }

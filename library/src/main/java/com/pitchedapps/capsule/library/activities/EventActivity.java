@@ -1,8 +1,6 @@
 package com.pitchedapps.capsule.library.activities;
 
 import android.support.annotation.NonNull;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.pitchedapps.capsule.library.event.CFabEvent;
 import com.pitchedapps.capsule.library.event.SnackbarEvent;
@@ -15,20 +13,16 @@ import org.greenrobot.eventbus.Subscribe;
  * Activity with all the EventBus hooks
  */
 
-public abstract class EventActivity extends UtilsActivity {
+abstract class EventActivity extends UtilsActivity {
 
     @Subscribe
     public void onFabEvent(@NonNull CFabEvent event) {
-        event.load(this, cFab);
+        event.load(cFab);
     }
 
     @Subscribe
     public void onSnackbarEvent(@NonNull SnackbarEvent event) {
-        View view = cFab; //hooking to fab helps move it with the snackbar
-        if (view == null) {
-            view = ((ViewGroup) findViewById(android.R.id.content)).getChildAt(0);
-        }
-        event.load(view);
+        event.load(cFab);
     }
 
     @Override

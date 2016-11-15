@@ -2,9 +2,12 @@ package com.pitchedapps.capsule.library.event;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.pitchedapps.capsule.library.utils.ResUtils;
 
@@ -44,14 +47,13 @@ public class SnackbarEvent {
         return this;
     }
 
+    //It is guaranteed that one of the two contains a value
     private String getText(Context context, String s, @StringRes int si) {
-        if (s != null) return s;
-        if (si == -1) return null;
-        return ResUtils.s(context, si);
+        if (si != -1) return ResUtils.s(context, si);
+        return s;
     }
 
     public void load(@NonNull View view) {
-        //if text is not defined, textId is
         Snackbar snackbar = Snackbar.make(view, getText(view.getContext(), text, textId), duration);
         if (mListener != null)
             snackbar.setAction(getText(view.getContext(), actionText, actionTextId), mListener);

@@ -17,7 +17,6 @@ import android.view.View;
 
 import com.pitchedapps.capsule.library.R;
 import com.pitchedapps.capsule.library.custom.CapsuleCoordinatorLayout;
-import com.pitchedapps.capsule.library.interfaces.CFragmentCore;
 import com.pitchedapps.capsule.library.logging.CLog;
 import com.pitchedapps.capsule.library.utils.AnimUtils;
 
@@ -92,11 +91,8 @@ abstract class ViewActivity extends PermissionActivity {
         cFab = (FloatingActionButton) findViewById(getFabId());
     }
 
-    private CFragmentCore getCurrentBaseFragment() {
-        Fragment current = getSupportFragmentManager().findFragmentById(getFragmentId());
-        if ((current == null) || !(current instanceof CFragmentCore))
-            throw new RuntimeException(s(R.string.base_fragment_context_error));
-        return (CFragmentCore) current;
+    private Fragment getCurrentBaseFragment() {
+        return getSupportFragmentManager().findFragmentById(getFragmentId());
     }
 
     protected Capsulate capsulate() {
@@ -145,7 +141,7 @@ abstract class ViewActivity extends PermissionActivity {
      * Helps with initializing and managing other types of views
      */
 
-    public class Capsulate {
+    protected class Capsulate {
 
         public Capsulate toolbar(@IdRes int id) {
             cToolbar = (Toolbar) findViewById(id);
