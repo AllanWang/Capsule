@@ -75,14 +75,13 @@ abstract class ViewActivity extends PermissionActivity {
     int getContentViewId();
 
     /**
-     * Initializes the necessary views; always call super
-     *
+     * Capsule's view creation
      * @param savedInstanceState
      */
     @Override
     @CallSuper
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void capsuleOnCreate(Bundle savedInstanceState) {
+        super.capsuleOnCreate(savedInstanceState);
         setContentView(getContentViewId());
         setupFab();
     }

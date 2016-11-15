@@ -52,6 +52,15 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        capsuleFrameOnCreate(savedInstanceState);
+    }
+
+    /**
+     * Separate onCreate for frame
+     * should be called after capsuleOnCreate and preCapsuleOnCreate
+     * @param savedInstanceState
+     */
+    protected void capsuleFrameOnCreate(Bundle savedInstanceState) {
         capsulate()
                 .toolbar(R.id.toolbar)
                 .appBarLayout(R.id.appbar)

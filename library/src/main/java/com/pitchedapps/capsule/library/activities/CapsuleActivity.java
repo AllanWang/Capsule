@@ -1,6 +1,8 @@
 package com.pitchedapps.capsule.library.activities;
 
+import android.os.Bundle;
 import android.support.annotation.AnimRes;
+import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -15,6 +17,13 @@ import com.pitchedapps.capsule.library.interfaces.CFragmentCore;
  * The activity that holds everything
  */
 public abstract class CapsuleActivity extends EventActivity {
+
+    @Override
+    @CallSuper
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        capsuleOnCreate(savedInstanceState);
+    }
 
     protected void switchFragment(Fragment fragment) {
         String tag = null;

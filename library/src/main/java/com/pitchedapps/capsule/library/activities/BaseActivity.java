@@ -22,11 +22,17 @@ import timber.log.Timber;
  */
 abstract class BaseActivity extends AppCompatActivity implements CActivityCore {
 
-    @Override
     @CallSuper
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void capsuleOnCreate(Bundle savedInstanceState) {
         enableCLog();
+    }
+
+    /**
+     * If you need to skip Capsule's initialization for later
+     * @param savedInstanceState
+     */
+    protected void preCapsuleOnCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     protected String s(@StringRes int id) {
