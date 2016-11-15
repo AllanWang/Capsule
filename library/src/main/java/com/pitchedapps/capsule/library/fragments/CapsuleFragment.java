@@ -33,7 +33,6 @@ public abstract class CapsuleFragment extends BaseFragment {
 
     protected void postEvent(Object event) {
         if (event == null) return;
-        CLog.e("New event");
         EventBus.getDefault().post(event);
     }
 

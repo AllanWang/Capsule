@@ -35,7 +35,7 @@ public class FragmentPageSample extends CapsulePageFragment {
         ((Button) v.findViewById(R.id.button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                snackbar(new SnackbarEvent("TEST"));
+                snackbar(new SnackbarEvent("TEST from page"));
             }
         });
         return v;
@@ -47,7 +47,7 @@ public class FragmentPageSample extends CapsulePageFragment {
         return new CFabEvent(GoogleMaterial.Icon.gmd_access_alarm, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                snackbar(new SnackbarEvent("Hi"));
+                snackbar(new SnackbarEvent("Hi from page"));
             }
         });
     }

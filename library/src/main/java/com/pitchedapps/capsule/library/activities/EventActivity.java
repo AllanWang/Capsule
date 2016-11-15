@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 
 import com.pitchedapps.capsule.library.event.CFabEvent;
 import com.pitchedapps.capsule.library.event.SnackbarEvent;
-import com.pitchedapps.capsule.library.logging.CLog;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -25,9 +24,11 @@ public abstract class EventActivity extends UtilsActivity {
 
     @Subscribe
     public void onSnackbarEvent(@NonNull SnackbarEvent event) {
-        final View mainView = ((ViewGroup) this
-                .findViewById(android.R.id.content)).getChildAt(0);
-        event.load(mainView);
+        View view = cFab; //hooking to fab helps move it with the snackbar
+        if (view == null) {
+            view = ((ViewGroup) findViewById(android.R.id.content)).getChildAt(0);
+        }
+        event.load(view);
     }
 
     @Override
