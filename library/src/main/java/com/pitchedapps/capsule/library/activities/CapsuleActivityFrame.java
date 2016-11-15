@@ -55,8 +55,7 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
         capsulate()
                 .toolbar(R.id.toolbar)
                 .appBarLayout(R.id.appbar)
-                .coordinatorLayout(R.id.coordinator)
-                .tabLayout(R.id.tabs);
+                .coordinatorLayout(R.id.coordinator);
         setupDrawer();
         switchFragment(mDrawerItems.get(0).getFragment());
     }
