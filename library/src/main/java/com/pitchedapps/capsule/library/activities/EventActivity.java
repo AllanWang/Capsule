@@ -26,13 +26,13 @@ abstract class EventActivity extends UtilsActivity {
     }
 
     @Override
-    public void onStart() {
+    protected void onStart() {
         EventBus.getDefault().register(this);
         super.onStart();
     }
 
     @Override
-    public void onStop() {
+    protected void onStop() {
         super.onStop();
         EventBus.getDefault().unregister(this);
     }
