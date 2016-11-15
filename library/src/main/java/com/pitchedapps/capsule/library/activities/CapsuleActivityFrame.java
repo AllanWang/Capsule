@@ -53,6 +53,7 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         capsuleFrameOnCreate(savedInstanceState);
+        switchFragment(mDrawerItems.get(0).getFragment());
     }
 
     /**
@@ -66,7 +67,6 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
                 .appBarLayout(R.id.appbar)
                 .coordinatorLayout(R.id.coordinator);
         setupDrawer();
-        switchFragment(mDrawerItems.get(0).getFragment());
     }
 
     @Override
