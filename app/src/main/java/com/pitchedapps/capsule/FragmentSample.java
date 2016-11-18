@@ -12,6 +12,7 @@ import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.pitchedapps.capsule.library.event.CFabEvent;
 import com.pitchedapps.capsule.library.event.SnackbarEvent;
 import com.pitchedapps.capsule.library.fragments.CapsuleFragment;
+import com.pitchedapps.capsule.library.utils.ColourUtils;
 import com.pitchedapps.capsule.library.utils.ViewUtils;
 
 /**
@@ -30,9 +31,9 @@ public class FragmentSample extends CapsuleFragment {
         super.onCreateView(inflater, container, savedInstanceState);
         View v = inflater.inflate(R.layout.fragment_sample, container, false);
         FrameLayout frame = (FrameLayout) v.findViewById(R.id.fragment_main);
-        frame.setBackgroundColor(ViewUtils.randomLightColor());
+        frame.setBackgroundColor(ColourUtils.randomLightColor());
 //        AnimUtils.rootCircularReview(v);
-        ((Button) v.findViewById(R.id.button)).setOnClickListener(new View.OnClickListener() {
+        v.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 snackbar(new SnackbarEvent("TEST"));

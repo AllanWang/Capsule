@@ -1,19 +1,16 @@
 package com.pitchedapps.capsule.library.fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v7.preference.PreferenceFragmentCompat;
-import android.support.v7.preference.PreferenceManager;
-import android.support.v7.preference.PreferenceScreen;
-import android.support.v7.view.ContextThemeWrapper;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.pitchedapps.capsule.library.R;
 import com.pitchedapps.capsule.library.activities.CapsuleActivity;
-import com.pitchedapps.capsule.library.views.RippleView;
+import com.pitchedapps.capsule.library.views.RippleCanvas;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -23,7 +20,7 @@ import org.greenrobot.eventbus.EventBus;
 
 public abstract class CapsulePreferenceFragment extends PreferenceFragmentCompat {
 
-    private RippleView mRippleView;
+    private RippleCanvas mRippleCanvas;
 
 //    @Override
 //    public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,14 +30,15 @@ public abstract class CapsulePreferenceFragment extends PreferenceFragmentCompat
 //        return super.onCreateView(themedInflater, container, savedInstanceState);
 //    }
 
+    @SuppressLint("InlinedApi")
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mRippleView = (RippleView) view.findViewById(R.id.ripple_bg);
+        mRippleCanvas = (RippleCanvas) view.findViewById(R.id.ripple_bg);
     }
 
-    public RippleView bg() {
-        return mRippleView;
+    public RippleCanvas bg() {
+        return mRippleCanvas;
     }
 
     protected String s(@StringRes int id) {
@@ -62,4 +60,8 @@ public abstract class CapsulePreferenceFragment extends PreferenceFragmentCompat
         }
         return ((CapsuleActivity) getActivity());
     }
+
+//    public void updateTextColor() {
+//        mFrame.
+//    }
 }

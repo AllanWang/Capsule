@@ -15,24 +15,24 @@ import android.view.View;
  * Extends to view dimensions
  */
 
-public class RippleView extends View {
+public class RippleCanvas extends View {
 
     private Paint mPaint;
     private int baseColor = Color.TRANSPARENT, newColor;
     private float x, y, radius, maxRadius;
     public static final float MIDDLE = -1.0f;
 
-    public RippleView(Context context) {
+    public RippleCanvas(Context context) {
         super(context);
         init();
     }
 
-    public RippleView(Context context, AttributeSet attrs) {
+    public RippleCanvas(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public RippleView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RippleCanvas(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }

@@ -9,6 +9,5 @@
         <CheckBoxPreference
             android:key="prefer wifi"
             android:title="Prefer WiFi" />
-        ... other preferences here ...
     </PreferenceScreen>
 </PreferenceScreen>

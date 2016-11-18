@@ -94,4 +94,14 @@ public class MainActivity extends CapsuleActivityFrame {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public int switchTheme() {
+        if (new SamplePrefs(this).switchTheme()) {
+            setTheme(R.style.AppTheme);
+            return R.style.AppTheme;
+        } else {
+            setTheme(R.style.AppTheme_Dark);
+            return R.style.AppTheme_Dark;
+        }
+    }
 }

@@ -30,28 +30,6 @@ public class ViewUtils {
                 .sizeDp(24);
     }
 
-    public static int randomLightColor() {
-        Random rnd = new Random();
-        float r = rnd.nextInt(255);
-        float g = rnd.nextInt(255);
-        float b = rnd.nextInt(255);
-        r = r * 0.1f + 255 * 0.9f;
-        g = g * 0.1f + 255 * 0.9f;
-        b = b * 0.1f + 255 * 0.9f;
-        return Color.rgb((int) r, (int) g, (int) b);
-    }
-
-    public static int randomDarkColor() {
-        Random rnd = new Random();
-        float r = rnd.nextInt(255);
-        float g = rnd.nextInt(255);
-        float b = rnd.nextInt(255);
-        r *= 0.1f;
-        g *= 0.1f;
-        b *= 0.1f;
-        return Color.rgb((int) r, (int) g, (int) b);
-    }
-
     public static void setOnClickPositionListener(View v, @NonNull final OnClickPositionListener listener) {
         v.setOnTouchListener(new View.OnTouchListener() {
             @Override
