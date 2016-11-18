@@ -43,9 +43,10 @@ public class RippleFragment extends CapsulePreferenceFragment {
         postEvent(new CFabEvent(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                themeStyle = ((MainActivity) getContext()).switchTheme();
-                reload();
-                bg().ripple(ColourUtils.getBackgroundColor(getContext()), v.getX(), v.getY());
+//                themeStyle = ((MainActivity) getContext()).switchTheme();
+//                reload();
+                bg().ripple(ColourUtils.randomLightColor(), v.getX(), v.getY());
+//                bg().ripple(ColourUtils.getBackgroundColor(getContext()), v.getX(), v.getY());
             }
         }));
     }
