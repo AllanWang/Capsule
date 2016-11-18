@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
+import android.view.MotionEvent;
+import android.view.View;
 
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.typeface.IIcon;
@@ -48,5 +50,22 @@ public class ViewUtils {
         g *= 0.1f;
         b *= 0.1f;
         return Color.rgb((int) r, (int) g, (int) b);
+    }
+
+    public static void setOnClickPositionListener(View v, @NonNull final OnClickPositionListener listener) {
+        v.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    listener.onClick(view, motionEvent.getX(), motionEvent.getY());
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
+
+    public interface OnClickPositionListener {
+        void onClick(View view, float x, float y);
     }
 }

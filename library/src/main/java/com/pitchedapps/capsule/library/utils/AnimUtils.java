@@ -22,17 +22,22 @@ public class AnimUtils {
     }
 
     public static void rootCircularReview(View rootView) {
+        rootCircularReview(rootView, 0, 0);
+    }
+
+    public static void rootCircularReview(View rootView, final int x, final int y) {
         rootView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop,
                                        int oldRight, int oldBottom) {
                 v.removeOnLayoutChangeListener(this);
-//                int cx = right / 2;
-//                int cy = bottom / 2;
-                int radius = (int) Math.hypot(right, bottom);
-
-                Animator reveal = ViewAnimationUtils.createCircularReveal(v, 0, 0, 0, radius);
+                int x2 = x;
+                int y2 = y;
+                if (x2 > right) x2 = 0;
+                if (y2 > bottom) y2 = 0;
+                int radius = (int) Math.hypot(Math.max(x2, right - x2), Math.max(y2, bottom - y2));
+                Animator reveal = ViewAnimationUtils.createCircularReveal(v, x2, y2, 0, radius);
                 reveal.setInterpolator(new DecelerateInterpolator(1f));
                 reveal.setDuration(500);
                 reveal.start();
