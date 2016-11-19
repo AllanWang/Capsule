@@ -25,6 +25,10 @@ public class CFabEvent {
         show = false;
     }
 
+    public CFabEvent(boolean show) {
+        this.show = show;
+    }
+
     public CFabEvent(View.OnClickListener listener) {
         mListener = listener;
     }
@@ -43,7 +47,7 @@ public class CFabEvent {
         //change fab visibility
         if (show) {
             fab.show();
-            fab.setOnClickListener(mListener);
+            if (mListener != null) fab.setOnClickListener(mListener);
         } else {
             fab.hide();
         }
