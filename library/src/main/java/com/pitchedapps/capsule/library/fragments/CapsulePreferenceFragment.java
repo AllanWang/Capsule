@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.view.View;
-import android.widget.FrameLayout;
 
 import com.pitchedapps.capsule.library.R;
 import com.pitchedapps.capsule.library.activities.CapsuleActivity;

@@ -14,7 +14,6 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.pitchedapps.capsule.library.R;
 import com.pitchedapps.capsule.library.interfaces.CDrawerItem;
-import com.pitchedapps.capsule.library.item.DrawerItem;
 import com.pitchedapps.capsule.library.logging.CLog;
 import com.pitchedapps.capsule.library.utils.ViewUtils;
 

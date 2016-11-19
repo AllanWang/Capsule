@@ -36,7 +36,7 @@ public class RippleFragment extends CapsuleFragment {
     @Nullable
     @Override
     protected CFabEvent updateFab() {
-        return new CFabEvent();
+        return new CFabEvent(false);
     }
 
     @Override

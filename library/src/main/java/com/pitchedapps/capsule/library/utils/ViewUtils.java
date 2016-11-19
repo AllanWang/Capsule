@@ -1,8 +1,6 @@
 package com.pitchedapps.capsule.library.utils;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
@@ -10,8 +8,6 @@ import android.view.View;
 
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.typeface.IIcon;
-
-import java.util.Random;
 
 /**
  * Created by Allan Wang on 2016-10-30.

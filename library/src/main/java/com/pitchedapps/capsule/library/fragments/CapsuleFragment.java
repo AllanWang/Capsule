@@ -10,7 +10,6 @@ import com.pitchedapps.capsule.library.R;
 import com.pitchedapps.capsule.library.activities.CapsuleActivity;
 import com.pitchedapps.capsule.library.event.CFabEvent;
 import com.pitchedapps.capsule.library.event.SnackbarEvent;
-import com.pitchedapps.capsule.library.logging.CLog;
 import com.pitchedapps.capsule.library.permissions.CPermissionCallback;
 import com.pitchedapps.capsule.library.utils.ViewUtils;
 

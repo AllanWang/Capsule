@@ -1,8 +1,6 @@
 package com.pitchedapps.capsule.library.item;
 
-import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
-import android.support.v4.app.Fragment;
 
 import com.mikepenz.iconics.typeface.IIcon;
 import com.pitchedapps.capsule.library.interfaces.CDrawerItem;

@@ -10,6 +10,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 /**
  * Created by Allan Wang on 2016-11-14.
+ * <p>
  * Activity with all the EventBus hooks
  */
 
@@ -27,7 +28,7 @@ abstract class EventActivity extends UtilsActivity {
 
     @Override
     protected void onStart() {
-        EventBus.getDefault().register(this);
+        EventBus.getDefault().register(this); //register first as fragments may post events immediately
         super.onStart();
     }
 

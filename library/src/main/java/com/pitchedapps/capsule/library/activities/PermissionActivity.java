@@ -7,14 +7,12 @@ import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.util.SparseArrayCompat;
-import android.util.SparseArray;
 
 import com.pitchedapps.capsule.library.logging.CLog;
 import com.pitchedapps.capsule.library.permissions.CPermissionCallback;
 import com.pitchedapps.capsule.library.permissions.PermissionResult;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**

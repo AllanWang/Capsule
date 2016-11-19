@@ -8,7 +8,7 @@ import com.pitchedapps.capsule.library.utils.CPrefs;
 /**
  * Created by Allan Wang on 2016-10-30.
  *
- * Activity containing some useful methods
+ * Activity containing some useful methods that aren't critical to the activity
  */
 
 abstract class UtilsActivity extends ViewActivity {

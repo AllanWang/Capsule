@@ -1,6 +1,5 @@
 package com.pitchedapps.capsule.library.activities;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.support.annotation.IdRes;
@@ -8,7 +7,6 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -17,7 +15,7 @@ import android.view.View;
 
 import com.pitchedapps.capsule.library.R;
 import com.pitchedapps.capsule.library.custom.CapsuleCoordinatorLayout;
-import com.pitchedapps.capsule.library.logging.CLog;
+import com.pitchedapps.capsule.library.event.SnackbarEvent;
 import com.pitchedapps.capsule.library.utils.AnimUtils;
 
 /**
@@ -37,14 +35,6 @@ abstract class ViewActivity extends PermissionActivity {
     public FloatingActionButton getFab() {
         if (cFab == null) throw new RuntimeException(s(R.string.fab_not_set));
         return cFab;
-    }
-
-    public static void hideFab(Context context) {
-        if (context instanceof CapsuleActivity) {
-            ((CapsuleActivity) context).getFab().hide();
-        } else {
-            CLog.d(s(context, R.string.capsule_activity_context_error));
-        }
     }
 
     /**
@@ -76,6 +66,7 @@ abstract class ViewActivity extends PermissionActivity {
 
     /**
      * Capsule's view creation
+     *
      * @param savedInstanceState
      */
     @Override
@@ -90,14 +81,28 @@ abstract class ViewActivity extends PermissionActivity {
         cFab = (FloatingActionButton) findViewById(getFabId());
     }
 
-    private Fragment getCurrentBaseFragment() {
+    /**
+     * Returns fragment in viewgroup
+     * @return current fragment in view
+     */
+    protected Fragment getCurrentFragment() {
         return getSupportFragmentManager().findFragmentById(getFragmentId());
     }
 
+    /**
+     * Method to send various ids to Capsule to get their appropriate views
+     *
+     * @return inner class holding capsulate methods
+     */
     protected Capsulate capsulate() {
         return new Capsulate();
     }
 
+    /**
+     * Collapse/Expand AppBar
+     *
+     * @param b true for expand, false for collapse
+     */
     private void ceAppBar(boolean b) {
         if (cAppBarLayout == null)
             throw new RuntimeException(sf(R.string.generic_not_set, "cAppBarLayout"));
@@ -164,17 +169,7 @@ abstract class ViewActivity extends PermissionActivity {
         }
     }
 
-    protected void snackbar(String text) {
-        snackbar(text, Snackbar.LENGTH_LONG);
-    }
-
-    protected void snackbar(String text, int duration) {
-        CLog.d("Making snackbar");
-        Snackbar.make(getFab(), text, duration).show();
-    }
-
-    protected Snackbar snackbarCustom(String text, int duration) {
-        CLog.d("Making custom snackbar, make sure you use .show()");
-        return Snackbar.make(getFab(), text, duration);
+    protected void snackbar(SnackbarEvent event) {
+        postEvent(event);
     }
 }

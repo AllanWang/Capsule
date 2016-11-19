@@ -1,7 +1,6 @@
 package com.pitchedapps.capsule.library.interfaces;
 
 import android.support.annotation.StringRes;
-import android.view.View;
 
 /**
  * Created by Allan Wang on 2016-10-09.

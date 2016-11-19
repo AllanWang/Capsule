@@ -6,7 +6,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.XmlRes;
-import android.util.Log;
 
 import com.pitchedapps.capsule.library.R;
 import com.pitchedapps.capsule.library.logging.CLog;

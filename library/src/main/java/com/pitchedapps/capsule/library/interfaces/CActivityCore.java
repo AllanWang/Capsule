@@ -2,9 +2,7 @@ package com.pitchedapps.capsule.library.interfaces;
 
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
-import android.support.annotation.StringRes;
 import android.support.design.widget.FloatingActionButton;
-import android.view.View;
 
 import com.pitchedapps.capsule.library.permissions.CPermissionCallback;
 

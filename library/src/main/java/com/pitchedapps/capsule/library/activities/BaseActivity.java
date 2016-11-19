@@ -8,8 +8,9 @@ import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 
 import com.pitchedapps.capsule.library.interfaces.CActivityCore;
-import com.pitchedapps.capsule.library.logging.CLog;
 import com.pitchedapps.capsule.library.logging.CLogTree;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.Locale;
 
@@ -17,11 +18,16 @@ import timber.log.Timber;
 
 /**
  * Created by Allan Wang on 2016-08-21.
- * <p/>
+ * <p>
  * The core's core
  */
 abstract class BaseActivity extends AppCompatActivity implements CActivityCore {
 
+    /**
+     * onCreate for capsule
+     *
+     * @param savedInstanceState
+     */
     @CallSuper
     protected void capsuleOnCreate(Bundle savedInstanceState) {
         enableCLog();
@@ -29,6 +35,7 @@ abstract class BaseActivity extends AppCompatActivity implements CActivityCore {
 
     /**
      * If you need to skip Capsule's initialization for later
+     *
      * @param savedInstanceState
      */
     protected void preCapsuleOnCreate(Bundle savedInstanceState) {
@@ -62,5 +69,10 @@ abstract class BaseActivity extends AppCompatActivity implements CActivityCore {
             Timber.uproot(cTree);
             cTree = null;
         }
+    }
+
+    protected void postEvent(Object event) {
+        if (event == null) return;
+        EventBus.getDefault().post(event);
     }
 }
