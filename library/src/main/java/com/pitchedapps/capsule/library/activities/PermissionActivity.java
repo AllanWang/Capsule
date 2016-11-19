@@ -24,7 +24,7 @@ import java.util.List;
  */
 abstract class PermissionActivity extends BaseActivity {
 
-    private SparseArrayCompat<PermissionHolder> cPermissionMap;
+    private SparseArrayCompat<PermissionHolder> cPermissionMap = new SparseArrayCompat<>();;
 
     private class PermissionHolder {
 
@@ -62,7 +62,6 @@ abstract class PermissionActivity extends BaseActivity {
             callback.onResult(new PermissionResult(permissions, PackageManager.PERMISSION_GRANTED));
             return;
         }
-        if (cPermissionMap == null) cPermissionMap = new SparseArrayCompat<>();
         cPermissionMap.put(requestCode, new PermissionHolder(acceptedPermissions, callback));
         ActivityCompat.requestPermissions(this, missingPermissions.toArray(new String[missingPermissions.size()]), requestCode);
     }
@@ -74,7 +73,6 @@ abstract class PermissionActivity extends BaseActivity {
         CLog.d("Permission request finished for #%d", requestCode);
         cPermissionMap.get(requestCode).mCallback.onResult(new PermissionResult(permissions, grantResults, cPermissionMap.get(requestCode).mAlreadyAccepted));
         cPermissionMap.remove(requestCode);
-        if (cPermissionMap.size() == 0) cPermissionMap = null;
     }
 
 
