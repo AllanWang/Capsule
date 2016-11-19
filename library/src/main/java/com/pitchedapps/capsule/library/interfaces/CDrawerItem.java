@@ -15,6 +15,8 @@ public interface CDrawerItem {
     @Nullable
     Fragment getFragment();
 
+    void setFragment(Fragment fragment);
+
     @StringRes
     int getTitleId();
 

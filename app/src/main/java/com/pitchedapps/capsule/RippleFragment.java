@@ -2,14 +2,12 @@ package com.pitchedapps.capsule;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.preference.PreferenceManager;
-import android.support.v7.preference.PreferenceScreen;
-import android.support.v7.view.ContextThemeWrapper;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.pitchedapps.capsule.library.event.CFabEvent;
-import com.pitchedapps.capsule.library.fragments.CapsulePreferenceFragment;
-import com.pitchedapps.capsule.library.logging.CLog;
+import com.pitchedapps.capsule.library.fragments.CapsuleFragment;
 import com.pitchedapps.capsule.library.utils.ColourUtils;
 import com.pitchedapps.capsule.library.utils.ViewUtils;
 import com.pitchedapps.capsule.library.views.RippleCanvas;
@@ -18,49 +16,31 @@ import com.pitchedapps.capsule.library.views.RippleCanvas;
  * Created by Allan Wang on 2016-11-17.
  */
 
-public class RippleFragment extends CapsulePreferenceFragment {
-    int themeStyle = R.style.AppTheme;
+public class RippleFragment extends CapsuleFragment {
 
-    /**
-     * Called during {@link #onCreate(Bundle)} to supply the preferences for this fragment.
-     * Subclasses are expected to call {@link #setPreferenceScreen(PreferenceScreen)} either
-     * directly or via helper methods such as {@link #addPreferencesFromResource(int)}.
-     *
-     * @param savedInstanceState If the fragment is being re-created from
-     *                           a previous saved state, this is the state.
-     * @param rootKey            If non-null, this preference fragment should be rooted at the
-     *                           {@link PreferenceScreen} with this key.
-     */
-    @Override
-    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        setPreferencesFromResource(R.xml.pref_test, null);
-    }
+    private RippleCanvas mRipple;
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        bg().set(ColourUtils.getBackgroundColor(getContext()));
-        postEvent(new CFabEvent(new View.OnClickListener() {
+    @Nullable
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.ripple_sample, container, false);
+        mRipple = (RippleCanvas) v.findViewById(R.id.ripple_bg);
+        ViewUtils.setOnClickPositionListener(mRipple, new ViewUtils.OnClickPositionListener() {
             @Override
-            public void onClick(View v) {
-//                themeStyle = ((MainActivity) getContext()).switchTheme();
-//                reload();
-                bg().ripple(ColourUtils.randomLightColor(), v.getX(), v.getY());
-//                bg().ripple(ColourUtils.getBackgroundColor(getContext()), v.getX(), v.getY());
+            public void onClick(View view, float x, float y) {
+                mRipple.ripple(ColourUtils.randomLightColor(), x, y);
             }
-        }));
+        });
+        return v;
     }
 
-    public void reload() {
-        ContextThemeWrapper newContext = new ContextThemeWrapper(getContext(), themeStyle); //TODO figure out context theme wrappers
-        final PreferenceScreen xmlRoot = getPreferenceManager().inflateFromResource(newContext,
-                R.xml.pref_test, null);
-//        getPreferenceScreen().removeAll();
-        setPreferenceScreen(xmlRoot);
+    @Nullable
+    @Override
+    protected CFabEvent updateFab() {
+        return new CFabEvent();
     }
 
     @Override
-    protected void onBindPreferences() {
-        CLog.e("Bind");
+    public int getTitleId() {
+        return R.string.ripple;
     }
 }

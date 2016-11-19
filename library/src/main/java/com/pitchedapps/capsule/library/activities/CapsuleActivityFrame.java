@@ -5,8 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
-import com.mikepenz.google_material_typeface_library.GoogleMaterial;
-import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -16,7 +14,7 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.pitchedapps.capsule.library.R;
 import com.pitchedapps.capsule.library.interfaces.CDrawerItem;
-import com.pitchedapps.capsule.library.interfaces.CFragmentCore;
+import com.pitchedapps.capsule.library.item.DrawerItem;
 import com.pitchedapps.capsule.library.logging.CLog;
 import com.pitchedapps.capsule.library.utils.ViewUtils;
 
@@ -59,6 +57,7 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
     /**
      * Separate onCreate for frame
      * should be called after capsuleOnCreate and preCapsuleOnCreate
+     *
      * @param savedInstanceState
      */
     protected void capsuleFrameOnCreate(Bundle savedInstanceState) {
@@ -111,6 +110,14 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
         selectDrawerItem(mDrawerItems.indexOf(item));
     }
 
+    protected void updateDrawerFragment(Fragment fragment, int index) {
+        if (index >= mDrawerItems.size()) return;
+        mDrawerItems.get(index).setFragment(fragment);
+        if (index == cDrawer.getCurrentSelection()) {
+            selectDrawerItem(index);
+        }
+    }
+
     private void setupDrawer() {
         DrawerBuilder builder = new DrawerBuilder()
                 .withActivity(this)
@@ -120,7 +127,9 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         // position is index + 1; but since the identifier is changed to reflect index, we'll use that
-                        switchFragment(mDrawerItems.get((int) drawerItem.getIdentifier()).getFragment());
+                        CDrawerItem item = mDrawerItems.get((int) drawerItem.getIdentifier());
+                        if (item.getTitleId() <= 0) return false; //special values
+                        if (item.getFragment() != null) switchFragment(item.getFragment());
                         return false;
                     }
                 });
@@ -133,7 +142,7 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
             for (int i = 0; i < items.length; i++) {
                 CDrawerItem item = items[i];
                 mDrawerItems.add(item);
-                if (item.getFragment() == null) {
+                if (item.getTitleId() == -1) {
                     builder.addDrawerItems(new DividerDrawerItem());
                 } else if (item.isPrimary()) {
                     PrimaryDrawerItem drawerItem = new PrimaryDrawerItem().withName(item.getTitleId()).withIdentifier(i);
