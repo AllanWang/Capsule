@@ -2,6 +2,7 @@ package com.pitchedapps.capsule;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -63,12 +64,48 @@ public class MainActivity extends CapsuleActivityFrame {
     @Override
     protected CDrawerItem[] getDrawerItems() {
         return new CDrawerItem[]{
-                new DrawerItem(new FragmentSample(), R.string.home, GoogleMaterial.Icon.gmd_dashboard, true),
-                new DrawerItem(new ViewPagerFragmentSample(), R.string.room, GoogleMaterial.Icon.gmd_weekend, true),
-                new DrawerItem(new FragmentSample(), R.string.account, GoogleMaterial.Icon.gmd_person, true),
-                new DrawerItem(new FragmentSampleNoFab(), R.string.report, GoogleMaterial.Icon.gmd_error, true),
-                new DrawerItem(new FragmentSampleNoFab(), R.string.settings, GoogleMaterial.Icon.gmd_settings, true),
-                new DrawerItem(new RippleFragment(), R.string.settings, GoogleMaterial.Icon.gmd_adb, true)
+                new DrawerItem(R.string.home, GoogleMaterial.Icon.gmd_dashboard, true) {
+                    @Nullable
+                    @Override
+                    public Fragment getFragment() {
+                        return new FragmentSample();
+                    }
+                },
+                new DrawerItem(R.string.room, GoogleMaterial.Icon.gmd_weekend, true) {
+                    @Nullable
+                    @Override
+                    public Fragment getFragment() {
+                        return new ViewPagerFragmentSample();
+                    }
+                },
+                new DrawerItem(R.string.account, GoogleMaterial.Icon.gmd_person, true) {
+                    @Nullable
+                    @Override
+                    public Fragment getFragment() {
+                        return new FragmentSample();
+                    }
+                },
+                new DrawerItem(R.string.report, GoogleMaterial.Icon.gmd_error, true) {
+                    @Nullable
+                    @Override
+                    public Fragment getFragment() {
+                        return new FragmentSampleNoFab();
+                    }
+                },
+                new DrawerItem(R.string.settings, GoogleMaterial.Icon.gmd_settings, true) {
+                    @Nullable
+                    @Override
+                    public Fragment getFragment() {
+                        return new FragmentSampleNoFab();
+                    }
+                },
+                new DrawerItem(R.string.ripple, GoogleMaterial.Icon.gmd_adb, true) {
+                    @Nullable
+                    @Override
+                    public Fragment getFragment() {
+                        return new RippleFragment();
+                    }
+                }
         };
     }
 

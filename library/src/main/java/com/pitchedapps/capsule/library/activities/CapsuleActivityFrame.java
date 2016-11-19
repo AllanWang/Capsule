@@ -110,14 +110,6 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
         selectDrawerItem(mDrawerItems.indexOf(item));
     }
 
-    protected void updateDrawerFragment(Fragment fragment, int index) {
-        if (index >= mDrawerItems.size()) return;
-        mDrawerItems.get(index).setFragment(fragment);
-        if (index == cDrawer.getCurrentSelection()) {
-            selectDrawerItem(index);
-        }
-    }
-
     private void setupDrawer() {
         DrawerBuilder builder = new DrawerBuilder()
                 .withActivity(this)

@@ -11,9 +11,8 @@ import com.pitchedapps.capsule.library.interfaces.CDrawerItem;
  * Created by Allan Wang on 2016-10-30.
  */
 
-public class DrawerItem implements CDrawerItem {
+public abstract class DrawerItem implements CDrawerItem {
 
-    private Fragment mFragment;
     private int mTitleId;
     private IIcon mIcon;
     private boolean mIsPrimary;
@@ -23,22 +22,10 @@ public class DrawerItem implements CDrawerItem {
         mTitleId = type;
     }
 
-    public DrawerItem(Fragment fragment, @StringRes int titleId, IIcon icon, boolean isPrimary) {
-        mFragment = fragment;
+    public DrawerItem(@StringRes int titleId, IIcon icon, boolean isPrimary) {
         mTitleId = titleId;
         mIcon = icon;
         mIsPrimary = isPrimary;
-    }
-
-    @Nullable
-    @Override
-    public Fragment getFragment() {
-        return mFragment;
-    }
-
-    @Override
-    public void setFragment(Fragment fragment) {
-        mFragment = fragment;
     }
 
     @Override
