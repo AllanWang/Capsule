@@ -83,6 +83,7 @@ abstract class ViewActivity extends PermissionActivity {
 
     /**
      * Returns fragment in viewgroup
+     *
      * @return current fragment in view
      */
     protected Fragment getCurrentFragment() {
@@ -139,6 +140,10 @@ abstract class ViewActivity extends PermissionActivity {
 //        cTabs.removeAllTabs();
     }
 
+    protected void snackbar(SnackbarEvent event) {
+        postEvent(event);
+    }
+
     /**
      * Capsulate
      * <p>
@@ -167,9 +172,5 @@ abstract class ViewActivity extends PermissionActivity {
             cTabs = (TabLayout) findViewById(id);
             return this;
         }
-    }
-
-    protected void snackbar(SnackbarEvent event) {
-        postEvent(event);
     }
 }

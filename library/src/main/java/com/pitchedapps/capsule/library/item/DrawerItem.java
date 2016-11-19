@@ -11,10 +11,10 @@ import com.pitchedapps.capsule.library.interfaces.CDrawerItem;
 
 public abstract class DrawerItem implements CDrawerItem {
 
+    public static final int DIVIDER = -1;
     private int mTitleId;
     private IIcon mIcon;
     private boolean mIsPrimary;
-    public static final int DIVIDER = -1;
 
     public DrawerItem(int type) {
         mTitleId = type;

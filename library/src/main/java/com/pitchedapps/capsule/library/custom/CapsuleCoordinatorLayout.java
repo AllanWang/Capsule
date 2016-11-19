@@ -9,7 +9,7 @@ import android.view.View;
 /**
  * Created by Allan Wang on 2016-09-05.
  */
-public class CapsuleCoordinatorLayout extends CoordinatorLayout{
+public class CapsuleCoordinatorLayout extends CoordinatorLayout {
 
     private boolean allowScroll = true;
 
@@ -26,20 +26,20 @@ public class CapsuleCoordinatorLayout extends CoordinatorLayout{
     }
 
     @Override
-    public boolean onStartNestedScroll (View child, View target, int nestedScrollAxes) {
+    public boolean onStartNestedScroll(View child, View target, int nestedScrollAxes) {
         return allowScroll && super.onStartNestedScroll(child, target, nestedScrollAxes);
     }
 
     @Override
-    public boolean onInterceptTouchEvent (MotionEvent ev) {
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
         return allowScroll && super.onInterceptTouchEvent(ev);
     }
 
-    public boolean isScrollAllowed () {
+    public boolean isScrollAllowed() {
         return allowScroll;
     }
 
-    public void setScrollAllowed (boolean allowScroll) {
+    public void setScrollAllowed(boolean allowScroll) {
         this.allowScroll = allowScroll;
     }
 }

@@ -22,10 +22,10 @@ import java.util.List;
 
 public class RippleCanvas extends View {
 
+    public static final float MIDDLE = -1.0f;
     private Paint mPaint;
     private int baseColor = Color.TRANSPARENT;
     private List<Ripple> mRipples = new ArrayList<>();
-    public static final float MIDDLE = -1.0f;
 
     public RippleCanvas(Context context) {
         super(context);
@@ -100,8 +100,8 @@ public class RippleCanvas extends View {
 
     private class Ripple {
         private final int color;
-        private float radius;
         private final float x, y, maxRadius;
+        private float radius;
 
         private Ripple(int c, float x, float y, float r, float max) {
             color = c;

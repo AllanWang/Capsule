@@ -17,10 +17,6 @@ import android.view.animation.DecelerateInterpolator;
  */
 public class AnimUtils {
 
-    public interface ViewCallback {
-        void onFinish(View v);
-    }
-
     public static void rootCircularReview(View rootView) {
         rootCircularReview(rootView, 0, 0);
     }
@@ -220,5 +216,9 @@ public class AnimUtils {
                         if (callback != null) callback.onFinish(v);
                     }
                 });
+    }
+
+    public interface ViewCallback {
+        void onFinish(View v);
     }
 }

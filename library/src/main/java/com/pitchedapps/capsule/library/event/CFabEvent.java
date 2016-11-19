@@ -27,6 +27,7 @@ public class CFabEvent {
     /**
      * Shows or hides the fab
      * Listeners and icons are unchanged
+     *
      * @param show true for show, false for hide
      */
     public CFabEvent(boolean show) {
@@ -35,6 +36,7 @@ public class CFabEvent {
 
     /**
      * Changes click result of fab; will show the fab
+     *
      * @param listener the new click callback
      */
     public CFabEvent(View.OnClickListener listener) {
@@ -53,6 +55,7 @@ public class CFabEvent {
 
     /**
      * Optional color change
+     *
      * @param color background color int
      * @return
      */
@@ -63,6 +66,7 @@ public class CFabEvent {
 
     /**
      * Optional color change
+     *
      * @param color background color res
      * @return
      */
@@ -73,6 +77,7 @@ public class CFabEvent {
 
     /**
      * Modifies the passed fab based on the event
+     *
      * @param fab to be modified
      */
     public void load(@NonNull FloatingActionButton fab) {

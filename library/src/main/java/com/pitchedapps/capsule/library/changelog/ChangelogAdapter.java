@@ -22,14 +22,14 @@ class ChangelogAdapter extends RecyclerView.Adapter<ChangelogAdapter.ChangelogVH
     }
 
     @Override
-    public ChangelogVH onCreateViewHolder (ViewGroup parent, int viewType) {
+    public ChangelogVH onCreateViewHolder(ViewGroup parent, int viewType) {
         final View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.changelog_content, parent, false);
         return new ChangelogVH(view);
     }
 
     @Override
-    public void onBindViewHolder (ChangelogVH holder, int position) {
+    public void onBindViewHolder(ChangelogVH holder, int position) {
         ChangelogXmlParser.ChangelogItem item = mItems.get(position);
 
         String contentStr = "";
@@ -47,12 +47,12 @@ class ChangelogAdapter extends RecyclerView.Adapter<ChangelogAdapter.ChangelogVH
     }
 
     @Override
-    public long getItemId (int position) {
+    public long getItemId(int position) {
         return position;
     }
 
     @Override
-    public int getItemCount () {
+    public int getItemCount() {
         return mItems != null ? mItems.size() : 0;
     }
 
@@ -60,7 +60,7 @@ class ChangelogAdapter extends RecyclerView.Adapter<ChangelogAdapter.ChangelogVH
 
         final TextView title, content;
 
-        ChangelogVH (View itemView) {
+        ChangelogVH(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.changelog_title);
             content = (TextView) itemView.findViewById(R.id.changelog_content);

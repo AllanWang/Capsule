@@ -23,6 +23,12 @@ import timber.log.Timber;
  */
 abstract class BaseActivity extends AppCompatActivity implements CActivityCore {
 
+    private CLogTree cTree;
+
+    protected static String s(@NonNull Context context, @StringRes int id) {
+        return context.getString(id);
+    }
+
     /**
      * onCreate for capsule
      *
@@ -50,12 +56,6 @@ abstract class BaseActivity extends AppCompatActivity implements CActivityCore {
     protected String sf(@StringRes int id, Object... o) {
         return String.format(Locale.CANADA, s(id), o);
     }
-
-    protected static String s(@NonNull Context context, @StringRes int id) {
-        return context.getString(id);
-    }
-
-    private CLogTree cTree;
 
     protected void enableCLog() {
         if (cTree == null) {

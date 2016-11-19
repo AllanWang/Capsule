@@ -17,27 +17,18 @@ import java.util.List;
 
 /**
  * Created by Allan Wang on 2016-08-21.
- *
+ * <p>
  * Handles permissions
  */
 abstract class PermissionActivity extends BaseActivity {
 
-    private SparseArrayCompat<PermissionHolder> cPermissionMap = new SparseArrayCompat<>();;
-
-    private class PermissionHolder {
-
-        private final String[] mAlreadyAccepted;
-        private final CPermissionCallback mCallback;
-
-        private PermissionHolder(List<String> accepted, CPermissionCallback callback) {
-            mAlreadyAccepted = accepted.toArray(new String[accepted.size()]);
-            mCallback = callback;
-        }
-    }
+    private SparseArrayCompat<PermissionHolder> cPermissionMap = new SparseArrayCompat<>();
+    ;
 
     /**
      * Request permissions; returns all granted automatically if SDK Version is below M
-     * @param callback called once request is finished
+     *
+     * @param callback    called once request is finished
      * @param requestCode unique code to keep track of which callback to use
      * @param permissions one or many permission names to check for
      */
@@ -71,6 +62,17 @@ abstract class PermissionActivity extends BaseActivity {
         CLog.d("Permission request finished for #%d", requestCode);
         cPermissionMap.get(requestCode).mCallback.onResult(new PermissionResult(permissions, grantResults, cPermissionMap.get(requestCode).mAlreadyAccepted));
         cPermissionMap.remove(requestCode);
+    }
+
+    private class PermissionHolder {
+
+        private final String[] mAlreadyAccepted;
+        private final CPermissionCallback mCallback;
+
+        private PermissionHolder(List<String> accepted, CPermissionCallback callback) {
+            mAlreadyAccepted = accepted.toArray(new String[accepted.size()]);
+            mCallback = callback;
+        }
     }
 
 

@@ -22,61 +22,6 @@ import java.util.List;
  */
 class ChangelogXmlParser {
 
-    static class ChangelogItem implements Parcelable {
-
-        private final String mTitle;
-        private final ArrayList<String> mPoints;
-
-        ChangelogItem(String name) {
-            mTitle = name;
-            mPoints = new ArrayList<>();
-        }
-
-        public String getTitle() {
-            return mTitle;
-        }
-
-        List<String> getItems() {
-            return mPoints;
-        }
-
-        void addItem(String s) {
-            mPoints.add(s);
-        }
-
-        public int size() {
-            return mPoints.size();
-        }
-
-        @Override
-        public int describeContents() {
-            return 0;
-        }
-
-        @Override
-        public void writeToParcel(Parcel dest, int flags) {
-            dest.writeString(this.mTitle);
-            dest.writeStringList(this.mPoints);
-        }
-
-        ChangelogItem(Parcel in) {
-            this.mTitle = in.readString();
-            this.mPoints = in.createStringArrayList();
-        }
-
-        public static final Creator<ChangelogItem> CREATOR = new Creator<ChangelogItem>() {
-            @Override
-            public ChangelogItem createFromParcel(Parcel source) {
-                return new ChangelogItem(source);
-            }
-
-            @Override
-            public ChangelogItem[] newArray(int size) {
-                return new ChangelogItem[size];
-            }
-        };
-    }
-
     static ArrayList<ChangelogItem> parse(@NonNull Context context, @XmlRes int xmlRes) {
         ChangelogItem mCurrentChangelogItem = null;
         ArrayList<ChangelogItem> mChangelogItems = new ArrayList<>();
@@ -116,5 +61,59 @@ class ChangelogXmlParser {
         }
         CLog.d("Returning parsed changelog xml");
         return mChangelogItems;
+    }
+
+    static class ChangelogItem implements Parcelable {
+
+        public static final Creator<ChangelogItem> CREATOR = new Creator<ChangelogItem>() {
+            @Override
+            public ChangelogItem createFromParcel(Parcel source) {
+                return new ChangelogItem(source);
+            }
+
+            @Override
+            public ChangelogItem[] newArray(int size) {
+                return new ChangelogItem[size];
+            }
+        };
+        private final String mTitle;
+        private final ArrayList<String> mPoints;
+
+        ChangelogItem(String name) {
+            mTitle = name;
+            mPoints = new ArrayList<>();
+        }
+
+        ChangelogItem(Parcel in) {
+            this.mTitle = in.readString();
+            this.mPoints = in.createStringArrayList();
+        }
+
+        public String getTitle() {
+            return mTitle;
+        }
+
+        List<String> getItems() {
+            return mPoints;
+        }
+
+        void addItem(String s) {
+            mPoints.add(s);
+        }
+
+        public int size() {
+            return mPoints.size();
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(this.mTitle);
+            dest.writeStringList(this.mPoints);
+        }
     }
 }

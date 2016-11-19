@@ -9,11 +9,11 @@ public class CLog {
 
     public static final int DEBUG = 111, ERROR = 666;
 
-    public static void d(String message, Object... o ) {
+    public static void d(String message, Object... o) {
         Timber.log(DEBUG, message, o);
     }
 
-    public static void e(String message, Object... o ) {
+    public static void e(String message, Object... o) {
         Timber.log(ERROR, message, o);
     }
 }

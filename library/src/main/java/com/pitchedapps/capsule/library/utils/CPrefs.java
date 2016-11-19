@@ -22,13 +22,12 @@ public class CPrefs {
         return context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);
     }
 
+    public int getVersionCode() {
+        return getInt(VERSION_CODE, 0);
+    }
 
     public void setVersionCode(int versionCode) {
         setInt(VERSION_CODE, versionCode);
-    }
-
-    public int getVersionCode() {
-        return getInt(VERSION_CODE, 0);
     }
 
     //GENERICS
