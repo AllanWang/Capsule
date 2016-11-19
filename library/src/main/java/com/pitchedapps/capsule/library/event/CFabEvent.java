@@ -20,11 +20,6 @@ public class CFabEvent {
     private boolean show = true;
     private View.OnClickListener mListener;
 
-    //You'll typically use this to hide the fab
-    public CFabEvent() {
-        show = false;
-    }
-
     public CFabEvent(boolean show) {
         this.show = show;
     }
@@ -45,12 +40,13 @@ public class CFabEvent {
 
     public void load(@NonNull FloatingActionButton fab) {
         //change fab visibility
-        if (show) {
-            fab.show();
-            if (mListener != null) fab.setOnClickListener(mListener);
-        } else {
+        if (!show) {
             fab.hide();
+            return;
         }
+
+        fab.show();
+        if (mListener != null) fab.setOnClickListener(mListener);
         //change icon if applicable
         if (mIcon != null) {
             fab.setImageDrawable(ViewUtils.iconDrawable(fab.getContext(), mIcon));
