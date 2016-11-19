@@ -23,7 +23,6 @@ import java.util.List;
 abstract class PermissionActivity extends BaseActivity {
 
     private SparseArrayCompat<PermissionHolder> cPermissionMap = new SparseArrayCompat<>();
-    ;
 
     /**
      * Request permissions; returns all granted automatically if SDK Version is below M
