@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.view.View;
@@ -86,26 +87,17 @@ public class AnimUtils {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static void circleHide(Context c, final View v, int x, int y, double radius, double duration) {
-        if (!v.isAttachedToWindow()) {
-            v.setVisibility(View.VISIBLE);
-            return;
-        }
-        Animator anim =
-                ViewAnimationUtils.createCircularReveal(v, x, y, (int) radius, 0).setDuration((long) duration);
-
-        // make the view invisible when the animation is done
-        anim.addListener(new AnimatorListenerAdapter() {
+        circleHide(c, v, x, y, radius, duration, new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
                 v.setVisibility(View.GONE);
             }
         });
-        anim.start();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public static void circleHide(Context c, final View v, int x, int y, double radius, double duration, final AnimatorListenerAdapter animListener) {
+    public static void circleHide(Context c, final View v, int x, int y, double radius, double duration, @NonNull final AnimatorListenerAdapter animListener) {
         if (!v.isAttachedToWindow()) {
             v.setVisibility(View.VISIBLE);
             return;
@@ -125,10 +117,8 @@ public class AnimUtils {
         return fadeInAnimation;
     }
 
-    public static Animation fadeInAnimation(Context c, double offset, double duration, Animation.AnimationListener mListener) {
-        Animation fadeInAnimation = AnimationUtils.loadAnimation(c, android.R.anim.fade_in);
-        fadeInAnimation.setStartOffset((int) offset);
-        fadeInAnimation.setDuration((int) duration);
+    public static Animation fadeInAnimation(Context c, double offset, double duration, @NonNull Animation.AnimationListener mListener) {
+        Animation fadeInAnimation = fadeInAnimation(c, offset, duration);
         fadeInAnimation.setAnimationListener(mListener);
         return fadeInAnimation;
     }
@@ -140,10 +130,8 @@ public class AnimUtils {
         return fadeOutAnimation;
     }
 
-    public static Animation fadeOutAnimation(Context c, double offset, double duration, Animation.AnimationListener mListener) {
-        Animation fadeOutAnimation = AnimationUtils.loadAnimation(c, android.R.anim.fade_out);
-        fadeOutAnimation.setStartOffset((int) offset);
-        fadeOutAnimation.setDuration((int) duration);
+    public static Animation fadeOutAnimation(Context c, double offset, double duration, @NonNull Animation.AnimationListener mListener) {
+        Animation fadeOutAnimation = fadeOutAnimation(c, offset, duration);
         fadeOutAnimation.setAnimationListener(mListener);
         return fadeOutAnimation;
     }
