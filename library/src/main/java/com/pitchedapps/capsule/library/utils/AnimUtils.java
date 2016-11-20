@@ -186,7 +186,7 @@ public class AnimUtils {
         v.setVisibility(View.VISIBLE);
         v.setAlpha(0.0f);
         v.animate()
-//                .translationY(v.getHeight())
+                .translationY(v.getHeight())
                 .alpha(1.0f)
                 .setDuration(3000);
     }

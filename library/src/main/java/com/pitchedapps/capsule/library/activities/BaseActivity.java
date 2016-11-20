@@ -75,4 +75,11 @@ abstract class BaseActivity extends AppCompatActivity implements CActivityCore {
         if (event == null) return;
         EventBus.getDefault().post(event);
     }
+
+    protected void reload() {
+        finish();
+        overridePendingTransition(0, 0); //No transitions
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
+    }
 }
