@@ -1,5 +1,6 @@
 package com.pitchedapps.capsule.library.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -51,19 +52,11 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         capsuleFrameOnCreate(savedInstanceState);
-        switchFragment(mDrawerItems.get(0).getFragment());
+        switchFragment(mDrawerItems.get(getLastDrawerPosition()).getFragment());
     }
 
-    protected int getLastDrawerPosition(Bundle savedInstanceState) {
-        if (savedInstanceState == null) return 0;
-        return savedInstanceState.getInt(DRAWER_POSITION);
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-        // Save drawer position
-        savedInstanceState.putInt(DRAWER_POSITION, (int) cDrawer.getCurrentSelection());
-        super.onSaveInstanceState(savedInstanceState);
+    protected int getLastDrawerPosition() {
+        return getIntent().getExtras().getInt(DRAWER_POSITION, 0);
     }
 
     /**
@@ -175,6 +168,16 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public void reload() {
+        finish();
+        overridePendingTransition(0, 0); //No transitions
+        Intent intent = getIntent();
+        intent.putExtra(DRAWER_POSITION, (int) cDrawer.getCurrentSelection());
+        startActivity(intent);
+        overridePendingTransition(0, 0);
     }
 
 }
