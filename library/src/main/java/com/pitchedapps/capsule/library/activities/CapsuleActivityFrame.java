@@ -56,7 +56,9 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
     }
 
     protected int getLastDrawerPosition() {
-        return getIntent().getExtras().getInt(DRAWER_POSITION, 0);
+        Bundle extras = getIntent().getExtras();
+        if (extras == null) return 0;
+        return extras.getInt(DRAWER_POSITION, 0);
     }
 
     /**
