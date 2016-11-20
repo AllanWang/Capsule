@@ -41,10 +41,10 @@ dependencies {
     compile 'com.jakewharton.timber:timber:4.3.1'
 
     //Dialog
-    compile 'com.afollestad.material-dialogs:core:0.9.0.2'
+    compile 'com.afollestad.material-dialogs:core:0.9.1.0'
 
     //Drawer
-    compile('com.mikepenz:materialdrawer:5.6.0@aar') {
+    compile('com.mikepenz:materialdrawer:5.8.0@aar') {
         transitive = true
     }
 
