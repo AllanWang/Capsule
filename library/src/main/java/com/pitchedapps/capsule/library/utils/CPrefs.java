@@ -8,7 +8,7 @@ import android.content.SharedPreferences;
  */
 
 public class CPrefs {
-    private static final String
+    protected static final String
             PREFERENCES_NAME = "CAPSULE_PREFERENCES",
             VERSION_CODE = "version_code";
 

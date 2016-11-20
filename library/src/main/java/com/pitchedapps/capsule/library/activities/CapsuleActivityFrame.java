@@ -30,6 +30,7 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
 
     protected Drawer cDrawer;
     private List<CDrawerItem> mDrawerItems = new ArrayList<>();
+    private static final String DRAWER_POSITION = "drawer_position";
 
     @Override
     protected int getFragmentId() {
@@ -51,6 +52,18 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
         super.onCreate(savedInstanceState);
         capsuleFrameOnCreate(savedInstanceState);
         switchFragment(mDrawerItems.get(0).getFragment());
+    }
+
+    protected int getLastDrawerPosition(Bundle savedInstanceState) {
+        if (savedInstanceState == null) return 0;
+        return savedInstanceState.getInt(DRAWER_POSITION);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        // Save drawer position
+        savedInstanceState.putInt(DRAWER_POSITION, (int) cDrawer.getCurrentSelection());
+        super.onSaveInstanceState(savedInstanceState);
     }
 
     /**
@@ -157,7 +170,7 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
     public void onBackPressed() {
         if (cDrawer.isDrawerOpen()) {
             cDrawer.closeDrawer();
-        } else if (cDrawer.getCurrentSelection() != 0) {
+        } else if ((int) cDrawer.getCurrentSelection() != 0) {
             cDrawer.setSelection(0);
         } else {
             super.onBackPressed();
