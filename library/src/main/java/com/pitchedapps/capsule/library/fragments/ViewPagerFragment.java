@@ -1,9 +1,11 @@
 package com.pitchedapps.capsule.library.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,7 +37,7 @@ public abstract class ViewPagerFragment extends CapsuleFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_viewpager, container, false);
         ViewPager mViewPager = (ViewPager) v.findViewById(R.id.viewpager);
-        ViewPagerAdapter mAdapter = new ViewPagerAdapter(getContext(), getChildFragmentManager(), mViewPager, setPages());
+        ViewPagerAdapter mAdapter = setAdapter(getContext(), getChildFragmentManager(), mViewPager, setPages());
         mViewPager.setAdapter(mAdapter);
         ((TabLayout) v.findViewById(R.id.tabs)).setupWithViewPager(mViewPager);
         return v;
@@ -44,6 +46,18 @@ public abstract class ViewPagerFragment extends CapsuleFragment {
     @Override
     public int getTitleId() {
         return 0;
+    }
+
+    /**
+     * Method for adapter retrieval; can be overriden
+     * @param context fragment context
+     * @param fragmentManager childFragmentManager
+     * @param viewPager the viewpager it will be set to
+     * @param pages all the pages for the tabs
+     * @return new adapter extending ViewPagerAdapter
+     */
+    protected ViewPagerAdapter setAdapter(Context context, FragmentManager fragmentManager, ViewPager viewPager, List<CPage> pages) {
+        return new ViewPagerAdapter(context, fragmentManager, viewPager, pages);
     }
 
 

@@ -54,6 +54,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter implements ViewPager.
 
     @Override
     public String getPageTitle(int position) {
+        if (mPages.get(position).getTitleId() <= 0) return null;
         return (mContext.getString(mPages.get(position).getTitleId()));
     }
 
