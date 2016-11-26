@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.pitchedapps.capsule.library.interfaces.CActivityCore;
 import com.pitchedapps.capsule.library.logging.CLogTree;
+import com.pitchedapps.capsule.library.utils.EventUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -72,8 +73,7 @@ abstract class BaseActivity extends AppCompatActivity implements CActivityCore {
     }
 
     protected void postEvent(Object event) {
-        if (event == null) return;
-        EventBus.getDefault().post(event);
+        EventUtils.post(event);
     }
 
     public void reload() {

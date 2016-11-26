@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.pitchedapps.capsule.library.R;
 import com.pitchedapps.capsule.library.activities.CapsuleActivity;
+import com.pitchedapps.capsule.library.utils.EventUtils;
 import com.pitchedapps.capsule.library.views.RippleCanvas;
 
 import org.greenrobot.eventbus.EventBus;
@@ -49,8 +50,7 @@ public abstract class CapsulePreferenceFragment extends PreferenceFragmentCompat
      */
 
     protected void postEvent(Object event) {
-        if (event == null) return;
-        EventBus.getDefault().post(event);
+        EventUtils.post(event);
     }
 
     protected CapsuleActivity capsuleActivity() {

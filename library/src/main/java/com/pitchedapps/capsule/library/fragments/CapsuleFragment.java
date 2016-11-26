@@ -11,6 +11,7 @@ import com.pitchedapps.capsule.library.activities.CapsuleActivity;
 import com.pitchedapps.capsule.library.event.CFabEvent;
 import com.pitchedapps.capsule.library.event.SnackbarEvent;
 import com.pitchedapps.capsule.library.permissions.CPermissionCallback;
+import com.pitchedapps.capsule.library.utils.EventUtils;
 import com.pitchedapps.capsule.library.utils.ViewUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -31,8 +32,7 @@ public abstract class CapsuleFragment extends BaseFragment {
      */
 
     protected void postEvent(Object event) {
-        if (event == null) return;
-        EventBus.getDefault().post(event);
+        EventUtils.post(event);
     }
 
     protected CapsuleActivity capsuleActivity() {
@@ -43,15 +43,15 @@ public abstract class CapsuleFragment extends BaseFragment {
     }
 
     protected void setFabIcon(IIcon iicon) {
-        capsuleActivity().getFab().setImageDrawable(ViewUtils.iconDrawable(getContext(), iicon));
+        postEvent(new CFabEvent(iicon, null));
     }
 
     protected void showFab() {
-        capsuleActivity().getFab().show();
+        postEvent(new CFabEvent(true));
     }
 
     protected void hideFab() {
-        capsuleActivity().getFab().hide();
+        postEvent(new CFabEvent(false));
     }
 
     //To allow for override
