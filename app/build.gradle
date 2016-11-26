@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 ext {
-    TARGET_SDK = 24
-    BUILD_TOOLS = "24.0.1"
-    ANDROID_SUPPORT_LIBS = "24.2.0"
-    APP_TAG = "Capsule"
+    TARGET_SDK = 25
+    BUILD_TOOLS = "25.0.1"
+    ANDROID_SUPPORT_LIBS = "25.0.1"
+    APP_TAG = "CapsuleSample"
 }
 
 android {
@@ -23,7 +23,7 @@ android {
         variant.outputs.each { output ->
             output.outputFile = new File(
                     output.outputFile.parent,
-                    output.outputFile.name.replace("app-release.apk", APP_TAG + "Sample-v" + versionName + ".apk"))
+                    output.outputFile.name.replace("app-release.apk", APP_TAG + "-v" + versionName + ".apk"))
         }
     }
 
@@ -39,5 +39,4 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile project (":library");
-    compile "com.android.support:appcompat-v7:$ANDROID_SUPPORT_LIBS"
 }

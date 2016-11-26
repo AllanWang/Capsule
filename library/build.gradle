@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 ext {
     TARGET_SDK = 25
-    BUILD_TOOLS = "25.0.0"
+    BUILD_TOOLS = "25.0.1"
     ANDROID_SUPPORT_LIBS = "25.0.1"
 }
 
