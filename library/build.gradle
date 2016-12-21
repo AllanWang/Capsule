@@ -2,8 +2,8 @@ apply plugin: 'com.android.library'
 
 ext {
     TARGET_SDK = 25
-    BUILD_TOOLS = "25.0.1"
-    ANDROID_SUPPORT_LIBS = "25.0.1"
+    BUILD_TOOLS = "25.0.2"
+    ANDROID_SUPPORT_LIBS = "25.1.0"
 }
 
 android {
@@ -38,13 +38,13 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
 
     //Logging
-    compile 'com.jakewharton.timber:timber:4.3.1'
+    compile 'com.jakewharton.timber:timber:4.4.0'
 
     //Dialog
     compile 'com.afollestad.material-dialogs:core:0.9.1.0'
 
     //Drawer
-    compile('com.mikepenz:materialdrawer:5.8.0@aar') {
+    compile('com.mikepenz:materialdrawer:5.8.1@aar') {
         transitive = true
     }
 
