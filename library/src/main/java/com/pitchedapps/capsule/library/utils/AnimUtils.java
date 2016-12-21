@@ -42,50 +42,57 @@ public class AnimUtils {
         });
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static void circleReveal(Context c, View v, int x, int y, double radius) {
         circleReveal(c, v, x, y, radius, radius * 0.6);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static void circleReveal(Context c, View v, int x, int y, double radius, double duration) {
-        if (!v.isAttachedToWindow()) {
-            v.setVisibility(View.VISIBLE);
-            return;
+        if (Utils.isKitkatPlus()) {
+            if (!v.isAttachedToWindow()) {
+                v.setVisibility(View.VISIBLE);
+                return;
+            }
         }
-        // create the animator for this view (the start radius is zero)
-        Animator anim =
-                ViewAnimationUtils.createCircularReveal(v, x, y, 0, (int) radius).setDuration((long) duration);
+        if (Utils.isLollipopPlus()) {
+            // create the animator for this view (the start radius is zero)
+            Animator anim =
+                    ViewAnimationUtils.createCircularReveal(v, x, y, 0, (int) radius).setDuration((long) duration);
 
-        // make the view visible and start the animation
-        v.bringToFront();
-        v.setVisibility(View.VISIBLE);
-        anim.start();
+            // make the view visible and start the animation
+            v.bringToFront();
+            v.setVisibility(View.VISIBLE);
+            anim.start();
+        } else if (Utils.isKitkatPlus()) {
+            fadeIn(c, v, 0, duration);
+        }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static void circleReveal(Context c, View v, int x, int y, double radius, AnimatorListenerAdapter animListener) {
         circleReveal(c, v, x, y, radius, radius * 0.6, animListener);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static void circleReveal(Context c, View v, int x, int y, double radius, double duration, final AnimatorListenerAdapter animListener) {
-        if (!v.isAttachedToWindow()) {
-            v.setVisibility(View.VISIBLE);
-            return;
+        if (Utils.isKitkatPlus()) {
+            if (Utils.isKitkatPlus() && !v.isAttachedToWindow()) {
+                v.setVisibility(View.VISIBLE);
+                return;
+            }
         }
-        // create the animator for this view (the start radius is zero)
-        Animator anim =
-                ViewAnimationUtils.createCircularReveal(v, x, y, 0, (int) radius).setDuration((long) duration);
+        if (Utils.isLollipopPlus()) {
+            // create the animator for this view (the start radius is zero)
+            Animator anim =
+                    ViewAnimationUtils.createCircularReveal(v, x, y, 0, (int) radius).setDuration((long) duration);
 
-        // make the view visible and start the animation
-        v.bringToFront();
-        v.setVisibility(View.VISIBLE);
-        anim.addListener(animListener);
-        anim.start();
+            // make the view visible and start the animation
+            v.bringToFront();
+            v.setVisibility(View.VISIBLE);
+            anim.addListener(animListener);
+            anim.start();
+        } else if (Utils.isKitkatPlus()) {
+            fadeIn(c, v, 0, duration);
+        }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static void circleHide(Context c, final View v, int x, int y, double radius, double duration) {
         circleHide(c, v, x, y, radius, duration, new AnimatorListenerAdapter() {
             @Override
@@ -96,18 +103,23 @@ public class AnimUtils {
         });
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static void circleHide(Context c, final View v, int x, int y, double radius, double duration, @NonNull final AnimatorListenerAdapter animListener) {
-        if (!v.isAttachedToWindow()) {
-            v.setVisibility(View.VISIBLE);
-            return;
+        if (Utils.isKitkatPlus()) {
+            if (!v.isAttachedToWindow()) {
+                v.setVisibility(View.VISIBLE);
+                return;
+            }
         }
-        Animator anim =
-                ViewAnimationUtils.createCircularReveal(v, x, y, (int) radius, 0).setDuration((long) duration);
+        if (Utils.isLollipopPlus()) {
+            Animator anim =
+                    ViewAnimationUtils.createCircularReveal(v, x, y, (int) radius, 0).setDuration((long) duration);
 
-        // make the view invisible when the animation is done
-        anim.addListener(animListener);
-        anim.start();
+            // make the view invisible when the animation is done
+            anim.addListener(animListener);
+            anim.start();
+        } else if (Utils.isKitkatPlus()) {
+            fadeOut(c, v, 0, duration);
+        }
     }
 
     public static Animation fadeInAnimation(Context c, double offset, double duration) {
@@ -136,37 +148,41 @@ public class AnimUtils {
         return fadeOutAnimation;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static void fadeOut(Context c, View v, double offset, double duration) {
         v.setVisibility(View.GONE);
-        if (v.isAttachedToWindow()) {
-            v.startAnimation(fadeOutAnimation(c, offset, duration));
+        if (Utils.isKitkatPlus()) {
+            if (v.isAttachedToWindow()) {
+                v.startAnimation(fadeOutAnimation(c, offset, duration));
+            }
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static void fadeOut(Context c, View v, double offset, double duration, Animation.AnimationListener mListener) {
         v.setVisibility(View.GONE);
-        if (v.isAttachedToWindow()) {
-            v.startAnimation(fadeOutAnimation(c, offset, duration, mListener));
+        if (Utils.isKitkatPlus()) {
+            if (v.isAttachedToWindow()) {
+                v.startAnimation(fadeOutAnimation(c, offset, duration, mListener));
+            }
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static void fadeIn(Context c, View v, double offset, double duration) {
         v.setVisibility(View.VISIBLE);
-        if (v.isAttachedToWindow()) {
-            v.bringToFront();
-            v.startAnimation(fadeInAnimation(c, offset, duration));
+        if (Utils.isKitkatPlus()) {
+            if (v.isAttachedToWindow()) {
+                v.bringToFront();
+                v.startAnimation(fadeInAnimation(c, offset, duration));
+            }
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static void fadeIn(Context c, View v, double offset, double duration, Animation.AnimationListener mListener) {
         v.setVisibility(View.VISIBLE);
-        if (v.isAttachedToWindow()) {
-            v.bringToFront();
-            v.startAnimation(fadeInAnimation(c, offset, duration, mListener));
+        if (Utils.isKitkatPlus()) {
+            if (v.isAttachedToWindow()) {
+                v.bringToFront();
+                v.startAnimation(fadeInAnimation(c, offset, duration, mListener));
+            }
         }
     }
 
