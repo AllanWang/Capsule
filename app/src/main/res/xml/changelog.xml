@@ -6,21 +6,51 @@
     <item text="" />
     -->
 
+    <version title="v3.2"/>
+    <item text="Made AnimUtils compatible to Kitkat" />
+    <item text="Create SwipeRecyclerFragment" />
+    <item text="Support RecyclerView animations" />
+    <item text="Added CollapsingToolbar support" />
+    <item text="" />
+
+    <version title="v3.1"/>
+    <item text="Add Capsule reload option with drawer position saved" />
+    <item text="Clean up AnimUtils" />
+    <item text="Update dependencies" />
+
     <version title="v3.0"/>
-    <item text="Themed contacts and dialer" />
-    <item text="Changed theming style to include self referencing" />
-    <item text="Added notification on app update for easier rebuilding" />
-    <item text="" />
-    <item text="" />
+    <item text="First fully stable release" />
+    <item text="Events for Fab and Snackbar" />
+    <item text="RippleCanvas for backgrounds with circular animations" />
+    <item text="Null fixes" />
+    <item text="More features for CFabEvent" />
+    <item text="Some extra Javadocs" />
+
+    <version title="v2.2"/>
+    <item text="Integrated EventBus - Fragments are no longer forced to extend CapsuleFragment" />
+    <item text="Split up onCreate to allow for more flexibility" />
+    <item text="Simplified fab creation" />
+
+    <version title="v2.1"/>
+    <item text="Finished up viewpager" />
+    <item text="Everything is working now" />
+    <item text="Preparation for EventBus" />
 
     <version title="v2.0"/>
-    <item text="Fix up and add more custom variables" />
-    <item text="Created built notifications and added services and receivers" />
+    <item text="Added Activity Frame for easier activity creation" />
+    <item text="Added viewpager support" />
+    <item text="Modified Fab to be more customisable" />
+    <item text="Lots of interfaces and separations" />
+
+    <version title="v1.1"/>
+    <item text="Added coordinator layout customization" />
+    <item text="Added snackbars for activities" />
 
     <version title="v1.0"/>
-    <item text="Themed framework, systemui, and settings" />
-    <item text="Added theme customizations" />
+    <item text="Separated Activity extensions for simplified reading" />
+    <item text="Added some javadocs" />
+    <item text="Fixed permission crash for null array" />
 
     <version title="v0.1:"/>
-    <item text="August 1, 2016 - Project Zed is born"/>
+    <item text="Initial"/>
 </resources>

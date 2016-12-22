@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.AnimRes;
 import android.support.annotation.CallSuper;
 import android.support.v4.app.Fragment;
+import android.view.View;
 
 import com.pitchedapps.capsule.library.interfaces.CFragmentCore;
 

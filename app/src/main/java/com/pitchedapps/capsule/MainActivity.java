@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.materialdrawer.AccountHeader;
@@ -25,7 +26,10 @@ public class MainActivity extends CapsuleActivityFrame {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        cCoordinatorLayout.setScrollAllowed(false);
+//        collapseAppBar();
+//        cCoordinatorLayout.setScrollAllowed(false);
+        addCollapsingToolbarView(R.layout.toolbar_view);
+        new CustomizeToolbar().hideTitleOnExpand().setHeight(200);
         onVersionUpdate(BuildConfig.VERSION_CODE, new CCallback() {
             @Override
             public void onResult() {

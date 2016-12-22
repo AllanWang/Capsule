@@ -71,7 +71,8 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
         capsulate()
                 .toolbar(R.id.toolbar)
                 .appBarLayout(R.id.appbar)
-                .coordinatorLayout(R.id.coordinator);
+                .coordinatorLayout(R.id.coordinator)
+                .collapsingToolbarLayout(R.id.collapsing_toolbar);
         setupDrawer();
     }
 

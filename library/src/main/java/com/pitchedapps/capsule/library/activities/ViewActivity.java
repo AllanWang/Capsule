@@ -1,22 +1,27 @@
 package com.pitchedapps.capsule.library.activities;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
+import android.support.annotation.ColorInt;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.pitchedapps.capsule.library.R;
 import com.pitchedapps.capsule.library.custom.CapsuleCoordinatorLayout;
 import com.pitchedapps.capsule.library.event.SnackbarEvent;
 import com.pitchedapps.capsule.library.utils.AnimUtils;
+import com.pitchedapps.capsule.library.utils.ViewUtils;
 
 /**
  * Created by Allan Wang on 2016-08-21.
@@ -30,6 +35,7 @@ abstract class ViewActivity extends PermissionActivity {
     protected AppBarLayout cAppBarLayout;
     protected CapsuleCoordinatorLayout cCoordinatorLayout;
     protected TabLayout cTabs;
+    protected CollapsingToolbarLayout cCollapsingToolbarLayout;
 
     @Override
     public FloatingActionButton getFab() {
@@ -121,8 +127,19 @@ abstract class ViewActivity extends PermissionActivity {
         ceAppBar(true);
     }
 
+    protected View addCollapsingToolbarView(View view) {
+        cCollapsingToolbarLayout.addView(view, 0);
+        return view;
+    }
+
+    protected View addCollapsingToolbarView(@LayoutRes int layoutId) {
+        View view = getLayoutInflater().inflate(layoutId, null);
+        return addCollapsingToolbarView(view);
+    }
+
     public void showTabs(@NonNull ViewPager viewPager) {
-        if (cTabs == null) throw new RuntimeException(sf(R.string.generic_not_set, "TabLayout"));
+        if (cTabs == null)
+            throw new NullPointerException(sf(R.string.generic_not_set, "TabLayout"));
         cTabs.setupWithViewPager(viewPager);
         AnimUtils.slideEnter(cTabs);
 //        cTabs.setVisibility(View.VISIBLE);
@@ -172,5 +189,42 @@ abstract class ViewActivity extends PermissionActivity {
             cTabs = (TabLayout) findViewById(id);
             return this;
         }
+
+        public Capsulate collapsingToolbarLayout(@IdRes int id) {
+            cCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(id);
+            return this;
+        }
+    }
+
+    protected class CustomizeToolbar {
+
+        public CustomizeToolbar() {
+            if (cCollapsingToolbarLayout == null)
+                throw new NullPointerException(sf(R.string.generic_not_set, "CollapsingToolbar"));
+        }
+
+        public CustomizeToolbar setHeight(int dp) {
+            ViewGroup.LayoutParams params = cCollapsingToolbarLayout.getLayoutParams();
+            if (dp > 0) params.height = ViewUtils.dpToPx(dp);
+            else params.height = dp;
+            cCollapsingToolbarLayout.setLayoutParams(params);
+            return this;
+        }
+
+        public CustomizeToolbar setTitleColor(@ColorInt int color) {
+            cCollapsingToolbarLayout.setCollapsedTitleTextColor(color);
+            return this;
+        }
+
+        public CustomizeToolbar hideTitleOnExpand() {
+            cCollapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
+            return this;
+        }
+
+        public CustomizeToolbar setScrimColor(@ColorInt int color) {
+            cCollapsingToolbarLayout.setContentScrimColor(color);
+            return this;
+        }
+
     }
 }
