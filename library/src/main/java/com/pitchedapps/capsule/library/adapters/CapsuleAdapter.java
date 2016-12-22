@@ -110,7 +110,7 @@ public abstract class CapsuleAdapter<T, V extends CapsuleViewHolder> extends Rec
     @Override
     public V onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = inflate(parent, getLayoutRes(viewType));
-        return inflateViewHolder(v, viewType);
+        return inflateViewHolder(v, getLayoutRes(viewType));
     }
 
     protected abstract
@@ -119,11 +119,14 @@ public abstract class CapsuleAdapter<T, V extends CapsuleViewHolder> extends Rec
 
     /**
      * Create ViewHolder (within onCreateViewHolder)
-     * @param view inflated with layoutId
+     *
+     * @param view     inflated with layoutId
      * @param layoutId the id of the inflated layout
      * @return sub ViewHolder
      */
-    protected abstract V inflateViewHolder(View view, @LayoutRes int layoutId);
+    protected abstract
+    @NonNull
+    V inflateViewHolder(View view, @LayoutRes int layoutId);
 
     private View inflate(ViewGroup viewGroup, @LayoutRes int id) {
         return LayoutInflater.from(viewGroup.getContext()).inflate(id, viewGroup, false);
