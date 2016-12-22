@@ -56,6 +56,11 @@ public abstract class SwipeRecyclerFragment<T, V extends CapsuleViewHolder> exte
 
     }
 
+    /**
+     * Return adapter used for the recyclerview
+     * @param context from getContext()
+     * @return
+     */
     protected abstract CapsuleAdapter<T, V> getAdapter(Context context);
 
     protected void showRefresh() {

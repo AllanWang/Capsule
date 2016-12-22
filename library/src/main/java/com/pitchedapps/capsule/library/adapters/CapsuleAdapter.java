@@ -113,12 +113,19 @@ public abstract class CapsuleAdapter<T, V extends CapsuleViewHolder> extends Rec
         return inflateViewHolder(v, getLayoutRes(viewType));
     }
 
+    /**
+     * Return layoutRes for view at given position
+     * Can be different for different positions
+     * @param position
+     * @return
+     */
     protected abstract
     @LayoutRes
     int getLayoutRes(int position);
 
     /**
      * Create ViewHolder (within onCreateViewHolder)
+     * eg return new ViewHolder(view, layoutId);
      *
      * @param view     inflated with layoutId
      * @param layoutId the id of the inflated layout
