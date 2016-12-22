@@ -56,12 +56,12 @@ public abstract class CapsuleAdapter<T, V extends CapsuleViewHolder> extends Rec
         }
     }
 
-    public void addItem(T item) {
+    public void addItem(@NonNull T item) {
         mList.add(item);
         notifyItemInserted(getItemCount() - 1);
     }
 
-    public void addItem(int index, T item) {
+    public void addItem(int index, @NonNull T item) {
         if (index >= getItemCount()) addItem(item);
         else {
             mList.add(index, item);
@@ -69,12 +69,26 @@ public abstract class CapsuleAdapter<T, V extends CapsuleViewHolder> extends Rec
         }
     }
 
-    public void removeItem(T item) {
+    public void addItems(@NonNull List<T> items) {
+        int initialSize = getItemCount();
+        mList.addAll(items);
+        notifyItemRangeInserted(initialSize, items.size());
+    }
+
+    public void addItems(int index, @NonNull List<T> items) {
+        if (index >= getItemCount()) addItems(items);
+        else {
+            mList.addAll(index, items);
+            notifyItemRangeInserted(index, items.size());
+        }
+    }
+
+    public void removeItem(@NonNull T item) {
         mList.add(item);
         notifyItemRemoved(getItemCount() - 1);
     }
 
-    public void removeItem(int index, T item) {
+    public void removeItem(int index, @NonNull T item) {
         if (index >= getItemCount()) addItem(item);
         else {
             mList.add(index, item);
