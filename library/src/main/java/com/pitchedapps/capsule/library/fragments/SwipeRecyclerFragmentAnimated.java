@@ -13,6 +13,8 @@ import java.util.List;
 
 /**
  * Created by Allan Wang on 2016-12-21.
+ * <p>
+ * Simplifies ItemAnimator and refresh functionality
  */
 
 public abstract class SwipeRecyclerFragmentAnimated<T, V extends CapsuleViewHolder> extends SwipeRecyclerFragment<T, V> {
@@ -25,6 +27,11 @@ public abstract class SwipeRecyclerFragmentAnimated<T, V extends CapsuleViewHold
 
     protected abstract RecyclerView.ItemAnimator getRecyclerAnimator();
 
+    /**
+     * Create new list and update cAdapter
+     *
+     * @param oldList previous list in the adapter
+     */
     protected abstract void updateList(List<T> oldList);
 
     protected void updateListShell() {

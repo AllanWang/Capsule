@@ -35,7 +35,7 @@ public class SampleSwipeRecyclerFragment extends SwipeRecyclerFragmentAnimated<S
     @CallSuper
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
        super.onViewCreated(view, savedInstanceState);
-        TextView textView = new TextView(view.getContext());
+        TextView textView = (TextView) inflate(R.layout.textview);
         textView.setText("This is a header");
         cLinear.addView(textView, 0);
     }

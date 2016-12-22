@@ -16,6 +16,8 @@ import java.util.List;
 
 /**
  * Created by Allan Wang on 2016-12-21.
+ * <p>
+ * Base adapter with helper methods to add to the list
  */
 
 public abstract class CapsuleAdapter<T, V extends CapsuleViewHolder> extends RecyclerView.Adapter<V> {
@@ -49,7 +51,7 @@ public abstract class CapsuleAdapter<T, V extends CapsuleViewHolder> extends Rec
 
     public void updateItem(int index, T item) {
         if (index >= mList.size()) {
-           addItem(item);
+            addItem(item);
         } else {
             mList.add(index, item);
             notifyItemChanged(index);
@@ -115,6 +117,12 @@ public abstract class CapsuleAdapter<T, V extends CapsuleViewHolder> extends Rec
     @LayoutRes
     int getLayoutRes(int position);
 
+    /**
+     * Create ViewHolder (within onCreateViewHolder)
+     * @param view inflated with layoutId
+     * @param layoutId the id of the inflated layout
+     * @return sub ViewHolder
+     */
     protected abstract V inflateViewHolder(View view, @LayoutRes int layoutId);
 
     private View inflate(ViewGroup viewGroup, @LayoutRes int id) {

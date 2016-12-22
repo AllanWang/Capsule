@@ -3,6 +3,7 @@ package com.pitchedapps.capsule.library.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
+import android.support.annotation.LayoutRes;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +39,19 @@ public abstract class SwipeRecyclerFragment<T, V extends CapsuleViewHolder> exte
         return v;
     }
 
+    /**
+     * Helper method to inflate view from inner LinearLayout (cLinear)
+     * @param id layout id to inflate
+     * @return inflated view
+     */
+    protected View inflate(@LayoutRes int id) {
+        return LayoutInflater.from(getContext()).inflate(id, cLinear, false);
+    }
+
+    /**
+     * Additional method to modify the recyclerView once it is created
+     * @param recyclerView
+     */
     protected void onRecyclerViewBound(RecyclerView recyclerView) {
 
     }

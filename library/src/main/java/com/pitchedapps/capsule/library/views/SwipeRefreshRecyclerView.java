@@ -8,6 +8,8 @@ import android.view.MotionEvent;
 
 /**
  * Created by Allan Wang on 2016-12-21.
+ * <p>
+ * Modified SwipeRefreshLayout to handle touch events for inner recyclerView
  */
 
 public class SwipeRefreshRecyclerView extends SwipeRefreshLayout {
