@@ -1,10 +1,14 @@
 package com.pitchedapps.capsule;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.CallSuper;
 import android.support.annotation.Nullable;
 import android.support.v4.view.animation.FastOutLinearInInterpolator;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.TextView;
 
 import com.pitchedapps.capsule.library.adapters.CapsuleAdapter;
 import com.pitchedapps.capsule.library.event.CFabEvent;
@@ -25,6 +29,15 @@ public class SampleSwipeRecyclerFragment extends SwipeRecyclerFragmentAnimated<S
     @Override
     protected CapsuleAdapter<String, SampleAdapter.SampleViewHolder> getAdapter(Context context) {
         return new SampleAdapter(null);
+    }
+
+    @Override
+    @CallSuper
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+       super.onViewCreated(view, savedInstanceState);
+        TextView textView = new TextView(view.getContext());
+        textView.setText("This is a header");
+        cLinear.addView(textView, 0);
     }
 
     @Nullable

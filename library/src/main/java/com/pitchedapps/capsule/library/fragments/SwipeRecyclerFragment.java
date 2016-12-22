@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.pitchedapps.capsule.library.R;
 import com.pitchedapps.capsule.library.adapters.CapsuleAdapter;
@@ -21,6 +22,7 @@ public abstract class SwipeRecyclerFragment<T, V extends CapsuleViewHolder> exte
 
     protected SwipeRefreshRecyclerView cSwipeRefreshRecyclerView;
     protected CapsuleAdapter<T, V> cAdapter;
+    protected LinearLayout cLinear;
 
     @Override
     @CallSuper
@@ -29,6 +31,7 @@ public abstract class SwipeRecyclerFragment<T, V extends CapsuleViewHolder> exte
         cSwipeRefreshRecyclerView = ((SwipeRefreshRecyclerView) v.findViewById(R.id.swipe_recycler));
         cSwipeRefreshRecyclerView.setOnRefreshListener(this);
         cAdapter = getAdapter(getContext());
+        cLinear = (LinearLayout) v.findViewById(R.id.inner_linear);
         RecyclerView rv = cAdapter.bindRecyclerView(v, R.id.inner_recycler);
         onRecyclerViewBound(rv);
         cSwipeRefreshRecyclerView.setInternalRecyclerView(rv);
