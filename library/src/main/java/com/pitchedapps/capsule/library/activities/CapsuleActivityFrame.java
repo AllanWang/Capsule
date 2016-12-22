@@ -32,6 +32,7 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
     protected Drawer cDrawer;
     private List<CDrawerItem> mDrawerItems = new ArrayList<>();
     private static final String DRAWER_POSITION = "drawer_position";
+    private int lastDrawerPosition = 0;
 
     @Override
     protected int getFragmentId() {
@@ -127,8 +128,12 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         // position is index + 1; but since the identifier is changed to reflect index, we'll use that
-                        CDrawerItem item = mDrawerItems.get((int) drawerItem.getIdentifier());
-                        if (item.getTitleId() <= 0) return false; //special values
+                        int index = (int) drawerItem.getIdentifier();
+                        CDrawerItem item = mDrawerItems.get(index);
+//                        if (item.getTitleId() <= 0) return false; //special values //TODO figure out what this is
+                        if (lastDrawerPosition == index) //Do not recreate fragment if it's at the same index
+                            return false;
+                        lastDrawerPosition = index;
                         if (item.getFragment() != null) switchFragment(item.getFragment());
                         return false;
                     }

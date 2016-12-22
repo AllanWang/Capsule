@@ -29,6 +29,7 @@ public abstract class CapsuleActivity extends EventActivity {
         }
         getSupportFragmentManager()
                 .beginTransaction().replace(getFragmentId(), fragment, tag).commit();
+        setTitle(tag);
     }
 
     protected void switchFragment(Fragment fragment, @AnimRes int enter,
@@ -40,6 +41,7 @@ public abstract class CapsuleActivity extends EventActivity {
         getSupportFragmentManager()
                 .beginTransaction().setCustomAnimations(enter, exit)
                 .replace(getFragmentId(), fragment, tag).commit();
+        setTitle(tag);
     }
 
     protected void switchFragment(Fragment fragment, @AnimRes int enter,
@@ -52,6 +54,7 @@ public abstract class CapsuleActivity extends EventActivity {
         getSupportFragmentManager()
                 .beginTransaction().setCustomAnimations(enter, exit, popEnter, popExit)
                 .replace(getFragmentId(), fragment, tag).commit();
+        setTitle(tag);
     }
 
 }

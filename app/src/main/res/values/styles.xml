@@ -2,7 +2,7 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="AppTheme.Base" />
-    <style name="AppTheme.Base" parent="MaterialDrawerTheme.Light.ActionBar">
+    <style name="AppTheme.Base" parent="MaterialDrawerTheme.Light.DarkToolbar.ActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

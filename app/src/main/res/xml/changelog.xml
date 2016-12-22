@@ -11,6 +11,9 @@
     <item text="Create SwipeRecyclerFragment" />
     <item text="Support RecyclerView animations" />
     <item text="Added CollapsingToolbar support" />
+    <item text="Do not switch drawerItems if selection is the same" />
+    <item text="" />
+    <item text="" />
     <item text="" />
 
     <version title="v3.1"/>

@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import com.pitchedapps.capsule.library.R;
 import com.pitchedapps.capsule.library.custom.CapsuleCoordinatorLayout;
 import com.pitchedapps.capsule.library.event.SnackbarEvent;
+import com.pitchedapps.capsule.library.logging.CLog;
 import com.pitchedapps.capsule.library.utils.AnimUtils;
 import com.pitchedapps.capsule.library.utils.ViewUtils;
 
@@ -128,6 +129,8 @@ abstract class ViewActivity extends PermissionActivity {
     }
 
     protected View addCollapsingToolbarView(View view) {
+        if (cCollapsingToolbarLayout == null) throw new NullPointerException(sf(R.string.generic_not_set, "CollapsingToolbarLayout"));
+        cCollapsingToolbarLayout.setTitleEnabled(true);
         cCollapsingToolbarLayout.addView(view, 0);
         return view;
     }
@@ -155,6 +158,12 @@ abstract class ViewActivity extends PermissionActivity {
         });
 //        cTabs.setVisibility(View.GONE);
 //        cTabs.removeAllTabs();
+    }
+
+    protected void setTitle(String title) {
+        if (title == null) return;
+        cToolbar.setTitle(title);
+        if (cCollapsingToolbarLayout != null) cCollapsingToolbarLayout.setTitle(title);
     }
 
     protected void snackbar(SnackbarEvent event) {
@@ -192,6 +201,7 @@ abstract class ViewActivity extends PermissionActivity {
 
         public Capsulate collapsingToolbarLayout(@IdRes int id) {
             cCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(id);
+            cCollapsingToolbarLayout.setTitleEnabled(false); //Until an inner view is added, show title from toolbar
             return this;
         }
     }
