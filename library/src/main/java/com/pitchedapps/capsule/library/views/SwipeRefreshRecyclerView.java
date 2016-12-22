@@ -11,29 +11,23 @@ import android.view.MotionEvent;
  */
 
 public class SwipeRefreshRecyclerView extends SwipeRefreshLayout {
-    /**
-     * Simple constructor to use when creating a SwipeRefreshLayout from code.
-     *
-     * @param context
-     */
+
+    private RecyclerView mInternalRecyclerView = null;
+
     public SwipeRefreshRecyclerView(Context context) {
         super(context);
     }
 
-    /**
-     * Constructor that is called when inflating SwipeRefreshLayout from XML.
-     *
-     * @param context
-     * @param attrs
-     */
     public SwipeRefreshRecyclerView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    private RecyclerView mInternalRecyclerView = null;
-
     public void setInternalRecyclerView(RecyclerView internalRecyclerView) {
         mInternalRecyclerView = internalRecyclerView;
+    }
+
+    public RecyclerView getInternalRecyclerView() {
+        return mInternalRecyclerView;
     }
 
     @Override

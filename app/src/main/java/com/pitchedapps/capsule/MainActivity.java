@@ -82,7 +82,7 @@ public class MainActivity extends CapsuleActivityFrame {
                     @Nullable
                     @Override
                     public Fragment getFragment() {
-                        return new FragmentSample();
+                        return new SampleSwipeRecyclerFragment();
                     }
                 },
                 new DrawerItem(R.string.report, GoogleMaterial.Icon.gmd_error, true) {

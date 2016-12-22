@@ -12,8 +12,6 @@ import com.pitchedapps.capsule.library.activities.CapsuleActivity;
 import com.pitchedapps.capsule.library.utils.EventUtils;
 import com.pitchedapps.capsule.library.views.RippleCanvas;
 
-import org.greenrobot.eventbus.EventBus;
-
 /**
  * Created by Allan Wang on 2016-11-17.
  */

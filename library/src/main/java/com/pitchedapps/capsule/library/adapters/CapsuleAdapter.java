@@ -1,42 +1,55 @@
 package com.pitchedapps.capsule.library.adapters;
 
 import android.support.annotation.IdRes;
+import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
-import java.util.Collections;
+import com.pitchedapps.capsule.library.item.CapsuleViewHolder;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Allan Wang on 2016-12-21.
  */
 
-public abstract class CapsuleAdapter<T, V extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<V> {
+public abstract class CapsuleAdapter<T, V extends CapsuleViewHolder> extends RecyclerView.Adapter<V> {
 
     public RecyclerView bindRecyclerView(View view, @IdRes int recyclerviewId) {
         RecyclerView rv = (RecyclerView) view.findViewById(recyclerviewId);
-        rv.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        return bindRecyclerView(rv);
+    }
+
+    public RecyclerView bindRecyclerView(@NonNull RecyclerView rv) {
+        rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
         rv.setAdapter(this);
         return rv;
     }
 
-    private List<T> mList = Collections.emptyList(); // the data entries to display
+    private List<T> mList = new ArrayList<>(); // the data entries to display
 
     public CapsuleAdapter(List<T> data) {
         if (data != null) mList = data;
     }
 
     public void updateList(List<T> data) {
+        final int initialCount = getItemCount();
         if (data != null) mList = data;
         else mList.clear();
         notifyItemRangeChanged(0, getItemCount()); //To allow for animations
+        if (initialCount > getItemCount()) {
+            notifyItemRangeRemoved(getItemCount(), initialCount - getItemCount());
+        }
     }
 
     public void updateItem(int index, T item) {
         if (index >= mList.size()) {
-            mList.add(item);
-            notifyItemChanged(getItemCount() - 1);
+           addItem(item);
         } else {
             mList.add(index, item);
             notifyItemChanged(index);
@@ -45,12 +58,53 @@ public abstract class CapsuleAdapter<T, V extends RecyclerView.ViewHolder> exten
 
     public void addItem(T item) {
         mList.add(item);
-        notifyItemChanged(getItemCount() - 1);
+        notifyItemInserted(getItemCount() - 1);
+    }
+
+    public void addItem(int index, T item) {
+        if (index >= getItemCount()) addItem(item);
+        else {
+            mList.add(index, item);
+            notifyItemInserted(index);
+        }
+    }
+
+    public void removeItem(T item) {
+        mList.add(item);
+        notifyItemRemoved(getItemCount() - 1);
+    }
+
+    public void removeItem(int index, T item) {
+        if (index >= getItemCount()) addItem(item);
+        else {
+            mList.add(index, item);
+            notifyItemRemoved(index);
+        }
     }
 
     public T getItem(int position) {
         if (position >= getItemCount()) return null;
         return mList.get(position);
+    }
+
+    public List<T> getList() {
+        return mList;
+    }
+
+    @Override
+    public V onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = inflate(parent, getLayoutRes(viewType));
+        return inflateViewHolder(v, viewType);
+    }
+
+    protected abstract
+    @LayoutRes
+    int getLayoutRes(int position);
+
+    protected abstract V inflateViewHolder(View view, @LayoutRes int layoutId);
+
+    private View inflate(ViewGroup viewGroup, @LayoutRes int id) {
+        return LayoutInflater.from(viewGroup.getContext()).inflate(id, viewGroup, false);
     }
 
     /**
@@ -62,7 +116,7 @@ public abstract class CapsuleAdapter<T, V extends RecyclerView.ViewHolder> exten
     }
 
     @Override
-    public long getItemId(int position) {
+    public int getItemViewType(int position) {
         return position;
     }
 

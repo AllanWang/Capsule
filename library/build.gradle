@@ -43,6 +43,9 @@ dependencies {
     //Dialog
     compile 'com.afollestad.material-dialogs:core:0.9.1.0'
 
+    //Recyclerview animations
+    compile 'jp.wasabeef:recyclerview-animators:2.2.5'
+
     //Drawer
     compile('com.mikepenz:materialdrawer:5.8.1@aar') {
         transitive = true

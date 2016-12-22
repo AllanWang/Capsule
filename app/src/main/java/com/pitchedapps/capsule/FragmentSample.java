@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
@@ -13,7 +12,6 @@ import com.pitchedapps.capsule.library.event.CFabEvent;
 import com.pitchedapps.capsule.library.event.SnackbarEvent;
 import com.pitchedapps.capsule.library.fragments.CapsuleFragment;
 import com.pitchedapps.capsule.library.utils.ColourUtils;
-import com.pitchedapps.capsule.library.utils.ViewUtils;
 
 /**
  * Created by Allan Wang on 2016-08-21.

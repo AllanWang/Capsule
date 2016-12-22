@@ -12,9 +12,6 @@ import com.pitchedapps.capsule.library.event.CFabEvent;
 import com.pitchedapps.capsule.library.event.SnackbarEvent;
 import com.pitchedapps.capsule.library.permissions.CPermissionCallback;
 import com.pitchedapps.capsule.library.utils.EventUtils;
-import com.pitchedapps.capsule.library.utils.ViewUtils;
-
-import org.greenrobot.eventbus.EventBus;
 
 /**
  * Created by Allan Wang on 2016-08-19.

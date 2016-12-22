@@ -11,8 +11,6 @@ import com.pitchedapps.capsule.library.interfaces.CActivityCore;
 import com.pitchedapps.capsule.library.logging.CLogTree;
 import com.pitchedapps.capsule.library.utils.EventUtils;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.util.Locale;
 
 import timber.log.Timber;

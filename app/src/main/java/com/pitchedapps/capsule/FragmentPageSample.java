@@ -13,7 +13,6 @@ import com.pitchedapps.capsule.library.event.CFabEvent;
 import com.pitchedapps.capsule.library.event.SnackbarEvent;
 import com.pitchedapps.capsule.library.fragments.CapsulePageFragment;
 import com.pitchedapps.capsule.library.utils.ColourUtils;
-import com.pitchedapps.capsule.library.utils.ViewUtils;
 
 /**
  * Created by Allan Wang on 2016-11-14.
