@@ -2,9 +2,12 @@ package com.pitchedapps.capsule.library.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.view.View;
+import android.widget.TextView;
 
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
@@ -94,6 +97,49 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
     AccountHeaderBuilder getAccountHeaderBuilder();
 
     /**
+     * Optional helper to further setup account header details
+     *
+     * @param changer protected helper class
+     */
+    protected void setupAccountHeaderFurther(@NonNull AccountHeaderChanger changer) {
+
+    }
+
+    protected class AccountHeaderChanger {
+        private AccountHeader header;
+
+        private AccountHeaderChanger(@NonNull AccountHeader header) {
+            this.header = header;
+        }
+
+        protected TextView getHeaderName() {
+            return ((TextView) header.getView().findViewById(R.id.material_drawer_account_header_name));
+        }
+
+        protected TextView getHeaderEmail() {
+            return ((TextView) header.getView().findViewById(R.id.material_drawer_account_header_email));
+        }
+
+        protected AccountHeaderChanger setTitle(@StringRes int id) {
+            return setTitle(s(CapsuleActivityFrame.this, id));
+        }
+
+        protected AccountHeaderChanger setTitle(@NonNull String text) {
+            getHeaderName().setText(text);
+            return this;
+        }
+
+        protected AccountHeaderChanger setSubtitle(@StringRes int id) {
+            return setSubtitle(s(CapsuleActivityFrame.this, id));
+        }
+
+        protected AccountHeaderChanger setSubtitle(@NonNull String text) {
+            getHeaderEmail().setText(text);
+            return this;
+        }
+    }
+
+    /**
      * Sets up array of drawer items
      *
      * @return array of drawer items
@@ -140,10 +186,12 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
                     }
                 });
 
-        AccountHeaderBuilder header = getAccountHeaderBuilder();
-        if (header != null) {
-            header.withSavedInstance(savedInstanceState);
-            builder.withAccountHeader(header.build());
+        AccountHeaderBuilder headerBuilder = getAccountHeaderBuilder();
+        if (headerBuilder != null) {
+            headerBuilder.withSavedInstance(savedInstanceState);
+            AccountHeader header = headerBuilder.build();
+            setupAccountHeaderFurther(new AccountHeaderChanger(header));
+            builder.withAccountHeader(header);
         }
 
         CDrawerItem[] items = getDrawerItems();
