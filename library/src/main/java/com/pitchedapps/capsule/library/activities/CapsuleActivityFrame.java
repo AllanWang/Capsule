@@ -105,26 +105,26 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
 
     }
 
-    protected class AccountHeaderChanger {
+    private class AccountHeaderChanger {
         private AccountHeader header;
 
         private AccountHeaderChanger(@NonNull AccountHeader header) {
             this.header = header;
         }
 
-        protected TextView getHeaderName() {
+        public TextView getHeaderName() {
             return ((TextView) header.getView().findViewById(R.id.material_drawer_account_header_name));
         }
 
-        protected TextView getHeaderEmail() {
+        public TextView getHeaderEmail() {
             return ((TextView) header.getView().findViewById(R.id.material_drawer_account_header_email));
         }
 
-        protected AccountHeaderChanger setTitle(@StringRes int id) {
+        public AccountHeaderChanger setTitle(@StringRes int id) {
             return setTitle(s(CapsuleActivityFrame.this, id));
         }
 
-        protected AccountHeaderChanger setTitle(@NonNull String text) {
+        public AccountHeaderChanger setTitle(@NonNull String text) {
             getHeaderName().setText(text);
             return this;
         }
