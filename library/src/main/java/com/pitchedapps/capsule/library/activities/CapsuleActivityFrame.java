@@ -166,6 +166,20 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
         selectDrawerItem(mDrawerItems.indexOf(item));
     }
 
+    protected void selectDrawerItemFromId(@StringRes int id) {
+        int index = getDrawerPositionFromId(id);
+        if (index == -1) CLog.e("Invalid drawer item id selection %s", s(this, id));
+        else selectDrawerItem(index);
+    }
+
+    protected int getDrawerPositionFromId(@StringRes int id) {
+        for (int i = 0; i < mDrawerItems.size(); i++) {
+            int current = mDrawerItems.get(i).getTitleId();
+            if (current == id) return i;
+        }
+        return -1;
+    }
+
     private void setupDrawer(Bundle savedInstanceState) {
         DrawerBuilder builder = new DrawerBuilder()
                 .withActivity(this)
@@ -238,6 +252,12 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
         intent.putExtra(DRAWER_POSITION, (int) cDrawer.getCurrentSelection());
         startActivity(intent);
         overridePendingTransition(0, 0);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState = cDrawer.saveInstanceState(outState);
+        super.onSaveInstanceState(outState);
     }
 
 }

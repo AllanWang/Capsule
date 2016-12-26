@@ -15,6 +15,10 @@ public interface CDrawerItem {
     @Nullable
     Fragment getFragment();
 
+    /**
+     * Should match the fragment's getTitleId. Please also make this unique if you plan on switchin drawer items by id
+     * @return valid StringRes id for the title
+     */
     @StringRes
     int getTitleId();
 
