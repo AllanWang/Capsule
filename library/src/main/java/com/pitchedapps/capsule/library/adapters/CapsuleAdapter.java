@@ -1,5 +1,8 @@
 package com.pitchedapps.capsule.library.adapters;
 
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
+import android.support.annotation.CallSuper;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -8,11 +11,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Interpolator;
+import android.view.animation.LinearInterpolator;
 
 import com.pitchedapps.capsule.library.item.CapsuleViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
+import jp.wasabeef.recyclerview.internal.ViewHelper;
 
 /**
  * Created by Allan Wang on 2016-12-21.
@@ -22,6 +30,13 @@ import java.util.List;
 
 public abstract class CapsuleAdapter<T, V extends CapsuleViewHolder> extends RecyclerView.Adapter<V> {
 
+    private int mDuration = 300;
+    private Interpolator mInterpolator = new LinearInterpolator();
+    private int mLastPosition = -1;
+    protected Animations mAnimations;
+
+    private boolean isFirstOnly = true;
+
     public RecyclerView bindRecyclerView(View view, @IdRes int recyclerviewId) {
         RecyclerView rv = (RecyclerView) view.findViewById(recyclerviewId);
         return bindRecyclerView(rv);
@@ -29,8 +44,57 @@ public abstract class CapsuleAdapter<T, V extends CapsuleViewHolder> extends Rec
 
     public RecyclerView bindRecyclerView(@NonNull RecyclerView rv) {
         rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
-        rv.setAdapter(this);
+        rv.setAdapter(new AlphaInAnimationAdapter(this));
         return rv;
+    }
+
+    /**
+     * Optional animations for new views
+     * call from onBindViewHolder
+     * @param holder item to be animated
+     */
+    protected void bindAnimation(V holder) {
+        int adapterPosition = holder.getAdapterPosition();
+        if (!isFirstOnly || adapterPosition > mLastPosition) {
+            for (Animator anim : mAnimations.getAnimators(holder.itemView)) {
+                anim.setDuration(mDuration).start();
+                anim.setInterpolator(mInterpolator);
+            }
+            mLastPosition = adapterPosition;
+        } else {
+            ViewHelper.clear(holder.itemView);
+        }
+    }
+
+    protected class Animations {
+        public void setDuration(int duration) {
+            mDuration = duration;
+        }
+
+        public Animations setInterpolator(Interpolator interpolator) {
+            mInterpolator = interpolator;
+            return this;
+        }
+
+        public Animations setStartPosition(int start) {
+            mLastPosition = start;
+            return this;
+        }
+
+        /**
+         * Animation for new items
+         * Default is fade in
+         * @param view to animate
+         * @return
+         */
+        protected Animator[] getAnimators(View view) {
+            return new Animator[] { ObjectAnimator.ofFloat(view, "alpha", 0f, 1f) };
+        }
+
+        public Animations setFirstOnly(boolean firstOnly) {
+            isFirstOnly = firstOnly;
+            return this;
+        }
     }
 
     private List<T> mList = new ArrayList<>(); // the data entries to display
@@ -116,6 +180,7 @@ public abstract class CapsuleAdapter<T, V extends CapsuleViewHolder> extends Rec
     /**
      * Return layoutRes for view at given position
      * Can be different for different positions
+     *
      * @param position
      * @return
      */

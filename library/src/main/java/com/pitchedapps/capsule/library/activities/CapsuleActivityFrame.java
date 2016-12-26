@@ -74,7 +74,7 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
                 .appBarLayout(R.id.appbar)
                 .coordinatorLayout(R.id.coordinator)
                 .collapsingToolbarLayout(R.id.collapsing_toolbar);
-        setupDrawer();
+        setupDrawer(savedInstanceState);
     }
 
     @Override
@@ -119,11 +119,11 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
         selectDrawerItem(mDrawerItems.indexOf(item));
     }
 
-    private void setupDrawer() {
+    private void setupDrawer(Bundle savedInstanceState) {
         DrawerBuilder builder = new DrawerBuilder()
                 .withActivity(this)
                 .withToolbar(cToolbar)
-
+                .withSavedInstance(savedInstanceState)
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
@@ -140,7 +140,10 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
                 });
 
         AccountHeader header = getAccountHeader();
-        if (header != null) builder.withAccountHeader(header);
+        if (header != null) {
+            header.saveInstanceState(savedInstanceState);
+            builder.withAccountHeader(header);
+        }
 
         CDrawerItem[] items = getDrawerItems();
         if (items != null && items.length > 0) {
