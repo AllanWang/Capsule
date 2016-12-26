@@ -105,7 +105,7 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
 
     }
 
-    private class AccountHeaderChanger {
+    protected class AccountHeaderChanger {
         private AccountHeader header;
 
         private AccountHeaderChanger(@NonNull AccountHeader header) {
