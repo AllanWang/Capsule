@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Random;
 
 import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 
 /**
  * Created by Allan Wang on 2016-12-21.
@@ -49,11 +50,6 @@ public class SampleSwipeRecyclerFragment extends SwipeRecyclerFragmentAnimated<S
     @Override
     public int getTitleId() {
         return 0;
-    }
-
-    @Override
-    protected RecyclerView.ItemAnimator getRecyclerAnimator() {
-        return new FadeInLeftAnimator(new FastOutLinearInInterpolator());
     }
 
     @Override

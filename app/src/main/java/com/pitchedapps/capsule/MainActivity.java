@@ -26,12 +26,12 @@ public class MainActivity extends CapsuleActivityFrame {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        expandAppBar();
-        collapseAppBar();
+
 //        cCoordinatorLayout.setScrollAllowed(false);
-//        addCollapsingToolbarView(R.layout.toolbar_view);
+//        addCollapsingToolbarView(new NumberMorphingView(this));
+        addCollapsingToolbarView(R.layout.toolbar_view);
 //        new CustomizeToolbar().setHeight(70);
-//        new CustomizeToolbar().hideTitleOnExpand().setHeight(200);
+        new CustomizeToolbar().hideTitleOnExpand().setHeight(200);
 
         onVersionUpdate(BuildConfig.VERSION_CODE, new CCallback() {
             @Override

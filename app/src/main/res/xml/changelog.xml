@@ -13,7 +13,7 @@
     <item text="Added CollapsingToolbar support" />
     <item text="Do not switch drawerItems if selection is the same" />
     <item text="Add savedInstanceState to material drawer" />
-    <item text="" />
+    <item text="Add option to select drawer item by title id" />
     <item text="" />
 
     <version title="v3.1"/>

@@ -1,6 +1,7 @@
 package com.pitchedapps.capsule;
 
 import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ public class SampleAdapter extends CapsuleAdapter<String, SampleAdapter.SampleVi
         return R.layout.textview;
     }
 
+    @NonNull
     @Override
     protected SampleViewHolder inflateViewHolder(View view, @LayoutRes int layoutId) {
         return new SampleViewHolder(view, layoutId);

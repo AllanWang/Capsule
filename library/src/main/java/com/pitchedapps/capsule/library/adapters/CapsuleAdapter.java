@@ -44,7 +44,7 @@ public abstract class CapsuleAdapter<T, V extends CapsuleViewHolder> extends Rec
 
     public RecyclerView bindRecyclerView(@NonNull RecyclerView rv) {
         rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
-        rv.setAdapter(new AlphaInAnimationAdapter(this));
+        rv.setAdapter(this);
         return rv;
     }
 
