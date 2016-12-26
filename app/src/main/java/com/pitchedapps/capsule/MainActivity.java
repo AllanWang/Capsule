@@ -48,7 +48,7 @@ public class MainActivity extends CapsuleActivityFrame {
      */
     @Nullable
     @Override
-    protected AccountHeader getAccountHeader() {
+    protected AccountHeaderBuilder getAccountHeaderBuilder() {
         return new AccountHeaderBuilder().withActivity(this)
                 .withHeaderBackground(R.color.colorPrimary)
                 .withSelectionFirstLine(s(R.string.app_name))
@@ -59,8 +59,7 @@ public class MainActivity extends CapsuleActivityFrame {
                         new ProfileDrawerItem().withIcon(ContextCompat.getDrawable(this, R.drawable.ctf))
                 )
                 .withSelectionListEnabled(false)
-                .withSelectionListEnabledForSingleProfile(false)
-                .build();
+                .withSelectionListEnabledForSingleProfile(false);
     }
 
     /**

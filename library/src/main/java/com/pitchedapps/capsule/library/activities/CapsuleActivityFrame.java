@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 
 import com.mikepenz.materialdrawer.AccountHeader;
+import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
@@ -90,7 +91,7 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
      */
     protected abstract
     @Nullable
-    AccountHeader getAccountHeader();
+    AccountHeaderBuilder getAccountHeaderBuilder();
 
     /**
      * Sets up array of drawer items
@@ -139,10 +140,10 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
                     }
                 });
 
-        AccountHeader header = getAccountHeader();
+        AccountHeaderBuilder header = getAccountHeaderBuilder();
         if (header != null) {
-            header.saveInstanceState(savedInstanceState);
-            builder.withAccountHeader(header);
+            header.withSavedInstance(savedInstanceState);
+            builder.withAccountHeader(header.build());
         }
 
         CDrawerItem[] items = getDrawerItems();
