@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 
-import com.pitchedapps.capsule.library.item.ParcelableHashMapWrapper;
+import com.pitchedapps.capsule.library.parcelable.hashmaps.ParcelableHashMap;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -94,8 +94,8 @@ public class ParcelUtils<T extends Fragment> {
         return true;
     }
 
-    public <K extends Parcelable, V extends Parcelable> ParcelUtils putHashMap(String key, HashMap<K, V> value, Class<K> keyClass, Class<V> valueClass) {
-        args.putParcelable(key, new ParcelableHashMapWrapper<K, V>(value, keyClass, valueClass));
+    public <K, V> ParcelUtils putHashMap(String key, ParcelableHashMap<K, V> hashMap) {
+        args.putParcelable(key, hashMap);
         return this;
     }
 
@@ -108,8 +108,8 @@ public class ParcelUtils<T extends Fragment> {
      * @param <V>    valid parcelable value used when writing
      * @return HashMap, null if not found
      */
-    public static <K extends Parcelable, V extends Parcelable> HashMap<K, V> getHashMap(Bundle bundle, String key) {
-        return getHashMap(bundle, key, false);
+    public static <P extends ParcelableHashMap<K, V>, K, V> HashMap<K, V> getHashMap(Bundle bundle, String key, Class<P> hashParcelClass) {
+        return getHashMap(bundle, key, hashParcelClass, false);
     }
 
     /**
@@ -122,13 +122,13 @@ public class ParcelUtils<T extends Fragment> {
      * @param <V>              valid parcelable value used when writing
      * @return HashMap, null/new map if not found
      */
-    public static <K extends Parcelable, V extends Parcelable> HashMap<K, V> getHashMap(Bundle bundle, String key, boolean initializeIfNull) {
+    public static <P extends ParcelableHashMap<K, V>, K, V> HashMap<K, V> getHashMap(Bundle bundle, String key, Class<P> hashParcelClass, boolean initializeIfNull) {
         if (bundle == null || !bundle.containsKey(key)) {
             if (initializeIfNull) return new HashMap<>();
             return null;
         }
-        ParcelableHashMapWrapper<K, V> mapWrapper = bundle.getParcelable(key);
-        if (mapWrapper == null) {
+        P mapWrapper = bundle.getParcelable(key);
+        if (mapWrapper == null || mapWrapper.getMap() == null || mapWrapper.getMap().isEmpty()) {
             if (initializeIfNull) return new HashMap<>();
             return null;
         }
