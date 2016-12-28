@@ -19,16 +19,17 @@ import java.util.HashMap;
 public class ParcelUtils {
 
     private Fragment mFragment;
-    private Bundle args = new Bundle();
+    private Bundle args;
 
     //Generic in case you aren't using a fragment
     public ParcelUtils() {
-
+        args = new Bundle();
     }
 
     //Allows for creation and return of fragment with the arguments
     public ParcelUtils(Fragment fragment) {
         mFragment = fragment;
+        args = new Bundle();
     }
 
     /*
@@ -56,6 +57,11 @@ public class ParcelUtils {
     }
 
     public ParcelUtils putBoolean(String key, Parcelable[] value) {
+        args.putParcelableArray(key, value);
+        return this;
+    }
+
+    public ParcelUtils putParcelableArray(String key, Parcelable[] value) {
         args.putParcelableArray(key, value);
         return this;
     }
