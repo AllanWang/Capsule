@@ -16,9 +16,9 @@ import java.util.HashMap;
  * Builder style for easier calling
  */
 
-public class ParcelUtils {
+public class ParcelUtils<T extends Fragment> {
 
-    private Fragment mFragment;
+    private T mFragment;
     private Bundle args;
 
     //Generic in case you aren't using a fragment
@@ -27,7 +27,7 @@ public class ParcelUtils {
     }
 
     //Allows for creation and return of fragment with the arguments
-    public ParcelUtils(Fragment fragment) {
+    public ParcelUtils(T fragment) {
         mFragment = fragment;
         args = new Bundle();
     }
@@ -144,7 +144,7 @@ public class ParcelUtils {
      *
      * @return fragment with args
      */
-    public Fragment create() {
+    public T create() {
         if (mFragment == null)
             throw new IllegalArgumentException("No fragment added, use other constructor");
         mFragment.setArguments(args);
