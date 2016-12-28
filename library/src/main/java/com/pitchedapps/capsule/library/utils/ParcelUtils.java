@@ -102,10 +102,12 @@ public class ParcelUtils<T extends Fragment> {
     /**
      * Get HashMap from parcel (watch out for casting)
      *
-     * @param bundle bundle to retrieve from
-     * @param key    key for the parcel
-     * @param <K>    valid parcelable key used when writing
-     * @param <V>    valid parcelable value used when writing
+     * @param <P>             the type parameter
+     * @param <K>             valid parcelable key used when writing
+     * @param <V>             valid parcelable value used when writing
+     * @param bundle          bundle to retrieve from
+     * @param key             key for the parcel
+     * @param hashParcelClass the hash parcel class
      * @return HashMap, null if not found
      */
     public static <P extends ParcelableHashMap<K, V>, K, V> HashMap<K, V> getHashMap(Bundle bundle, String key, Class<P> hashParcelClass) {
@@ -115,11 +117,13 @@ public class ParcelUtils<T extends Fragment> {
     /**
      * Get HashMap from parcel (watch out for casting)
      *
-     * @param bundle           bundle to retrieve from
-     * @param key              key for the parcel
-     * @param initializeIfNull if true, will return a new HashMap rather than a null one if not found
+     * @param <P>              the type parameter
      * @param <K>              valid parcelable key used when writing
      * @param <V>              valid parcelable value used when writing
+     * @param bundle           bundle to retrieve from
+     * @param key              key for the parcel
+     * @param hashParcelClass  the hash parcel class
+     * @param initializeIfNull if true, will return a new HashMap rather than a null one if not found
      * @return HashMap, null/new map if not found
      */
     public static <P extends ParcelableHashMap<K, V>, K, V> HashMap<K, V> getHashMap(Bundle bundle, String key, Class<P> hashParcelClass, boolean initializeIfNull) {
