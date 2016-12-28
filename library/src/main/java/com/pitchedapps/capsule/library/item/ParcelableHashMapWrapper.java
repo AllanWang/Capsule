@@ -11,15 +11,16 @@ import java.util.HashMap;
  * Created by Allan Wang on 2016-12-28.
  * <p>
  * Wrapper for sending hashmaps through parcels
- * Relies on getting class through string
+ * Relies on getting key value classes through strings
+ * @see com.pitchedapps.capsule.library.utils.ParcelUtils
  */
 
-public class ParcelableMapWrapper<K extends Parcelable, V extends Parcelable> implements Parcelable {
+public class ParcelableHashMapWrapper<K extends Parcelable, V extends Parcelable> implements Parcelable {
     private HashMap<K, V> mMap;
     private transient Class keyClass, valueClass;
     private String keyClassName, valueClassName;
 
-    public ParcelableMapWrapper(HashMap<K, V> map, Class<K> keyClass, Class<V> valueClass) {
+    public ParcelableHashMapWrapper(HashMap<K, V> map, Class<K> keyClass, Class<V> valueClass) {
         this.mMap = map;
         this.keyClass = keyClass;
         this.valueClass = valueClass;
@@ -34,24 +35,24 @@ public class ParcelableMapWrapper<K extends Parcelable, V extends Parcelable> im
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.keyClassName);
+        dest.writeString(this.valueClassName);
         dest.writeInt(this.mMap.size());
         for (HashMap.Entry<K, V> entry : this.mMap.entrySet()) {
             dest.writeParcelable(entry.getKey(), flags);
             dest.writeParcelable(entry.getValue(), flags);
         }
-        dest.writeString(this.keyClassName);
-        dest.writeString(this.valueClassName);
     }
 
     public HashMap<K, V> getMap() {
         return mMap;
     }
 
-    protected ParcelableMapWrapper(Parcel in) {
-        int mapSize = in.readInt();
-        this.mMap = new HashMap<K, V>(mapSize);
+    protected ParcelableHashMapWrapper(Parcel in) {
         this.keyClassName = in.readString();
         this.valueClassName = in.readString();
+        int mapSize = in.readInt();
+        this.mMap = new HashMap<>(mapSize);
         try {
             keyClass = Class.forName(keyClassName);
             valueClass = Class.forName(valueClassName);
@@ -65,15 +66,15 @@ public class ParcelableMapWrapper<K extends Parcelable, V extends Parcelable> im
         }
     }
 
-    public static final Parcelable.Creator<ParcelableMapWrapper> CREATOR = new Parcelable.Creator<ParcelableMapWrapper>() {
+    public static final Parcelable.Creator<ParcelableHashMapWrapper> CREATOR = new Parcelable.Creator<ParcelableHashMapWrapper>() {
         @Override
-        public ParcelableMapWrapper createFromParcel(Parcel source) {
-            return new ParcelableMapWrapper(source);
+        public ParcelableHashMapWrapper createFromParcel(Parcel source) {
+            return new ParcelableHashMapWrapper(source);
         }
 
         @Override
-        public ParcelableMapWrapper[] newArray(int size) {
-            return new ParcelableMapWrapper[size];
+        public ParcelableHashMapWrapper[] newArray(int size) {
+            return new ParcelableHashMapWrapper[size];
         }
     };
 }

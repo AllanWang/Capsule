@@ -14,6 +14,9 @@
     <item text="Do not switch drawerItems if selection is the same" />
     <item text="Add savedInstanceState to material drawer" />
     <item text="Add option to select drawer item by title id" />
+    <item text="Create ParcelUtils" />
+    <item text="" />
+    <item text="" />
     <item text="" />
 
     <version title="v3.1"/>

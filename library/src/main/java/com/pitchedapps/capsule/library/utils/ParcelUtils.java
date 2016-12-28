@@ -1,20 +1,19 @@
 package com.pitchedapps.capsule.library.utils;
 
 import android.os.Bundle;
-import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 
-import com.pitchedapps.capsule.library.item.ParcelableMapWrapper;
+import com.pitchedapps.capsule.library.item.ParcelableHashMapWrapper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Allan Wang on 2016-12-28.
  * <p>
- * Helper method allowing parcel building as well as maps support
+ * Helper method allowing parcel building as well as HashMap support
+ * Builder style for easier calling
  */
 
 public class ParcelUtils {
@@ -27,13 +26,14 @@ public class ParcelUtils {
 
     }
 
+    //Allows for creation and return of fragment with the arguments
     public ParcelUtils(Fragment fragment) {
         mFragment = fragment;
     }
 
-    public Bundle getBundle() {
-        return args;
-    }
+    /*
+     * Helper builder methods for some common bundle put operations
+     */
 
     public ParcelUtils putBoolean(String key, boolean value) {
         args.putBoolean(key, value);
@@ -71,18 +71,55 @@ public class ParcelUtils {
     }
 
     public <K extends Parcelable, V extends Parcelable> ParcelUtils putHashMap(String key, HashMap<K, V> value, Class<K> keyClass, Class<V> valueClass) {
-        args.putParcelable(key, new ParcelableMapWrapper<K, V>(value, keyClass, valueClass));
+        args.putParcelable(key, new ParcelableHashMapWrapper<K, V>(value, keyClass, valueClass));
         return this;
     }
 
-    public <K extends Parcelable, V extends Parcelable> HashMap<K, V> getHashMap(Bundle bundle, String key) {
-        if (bundle == null) return null;
-        if (!bundle.containsKey(key)) return null;
-        ParcelableMapWrapper<K, V> mapWrapper = bundle.getParcelable(key);
-        if (mapWrapper == null) return null;
+    /**
+     * Get HashMap from parcel (watch out for casting)
+     *
+     * @param bundle bundle to retrieve from
+     * @param key    key for the parcel
+     * @param <K>    valid parcelable key used when writing
+     * @param <V>    valid parcelable value used when writing
+     * @return HashMap, null if not found
+     */
+    public static <K extends Parcelable, V extends Parcelable> HashMap<K, V> getHashMap(Bundle bundle, String key) {
+        return getHashMap(bundle, key, false);
+    }
+
+    /**
+     * Get HashMap from parcel (watch out for casting)
+     *
+     * @param bundle           bundle to retrieve from
+     * @param key              key for the parcel
+     * @param initializeIfNull if true, will return a new HashMap rather than a null one if not found
+     * @param <K>              valid parcelable key used when writing
+     * @param <V>              valid parcelable value used when writing
+     * @return HashMap, null/new map if not found
+     */
+    public static <K extends Parcelable, V extends Parcelable> HashMap<K, V> getHashMap(Bundle bundle, String key, boolean initializeIfNull) {
+        if (bundle == null || !bundle.containsKey(key)) {
+            if (initializeIfNull) return new HashMap<>();
+            return null;
+        }
+        ParcelableHashMapWrapper<K, V> mapWrapper = bundle.getParcelable(key);
+        if (mapWrapper == null) {
+            if (initializeIfNull) return new HashMap<>();
+            return null;
+        }
         return mapWrapper.getMap();
     }
 
+    public Bundle getBundle() {
+        return args;
+    }
+
+    /**
+     * Adds existing bundle into existing fragment
+     *
+     * @return fragment with args
+     */
     public Fragment create() {
         if (mFragment == null)
             throw new IllegalArgumentException("No fragment added, use other constructor");
