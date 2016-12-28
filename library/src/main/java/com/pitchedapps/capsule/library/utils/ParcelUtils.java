@@ -76,6 +76,24 @@ public class ParcelUtils {
         return this;
     }
 
+    /**
+     * putBoolean, where it puts true if all objects are nonnull and false if otherwise
+     *
+     * @param key     key to put boolean
+     * @param objects list of objects to check for null
+     * @return true if all objects are nonnull
+     */
+    public boolean putNullStatus(String key, Object... objects) {
+        for (Object o : objects) {
+            if (o == null) {
+                args.putBoolean(key, false);
+                return false;
+            }
+        }
+        args.putBoolean(key, true);
+        return true;
+    }
+
     public <K extends Parcelable, V extends Parcelable> ParcelUtils putHashMap(String key, HashMap<K, V> value, Class<K> keyClass, Class<V> valueClass) {
         args.putParcelable(key, new ParcelableHashMapWrapper<K, V>(value, keyClass, valueClass));
         return this;
