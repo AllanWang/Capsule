@@ -15,7 +15,7 @@
 //import pitchedapps.neuron.views.ButtonRow;
 //import timber.log.Timber;
 //
-//public class CapsuleCardHolder extends RecyclerView.ViewHolder {
+//public class CapsuleCardHolder extends RecyclerView.ViewHolderBase {
 //
 //    private Context mContext;
 //    private CapsuleCardFrame mCardFrame;

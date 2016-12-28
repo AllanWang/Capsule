@@ -2,7 +2,6 @@ package com.pitchedapps.capsule.library.adapters;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
-import android.support.annotation.CallSuper;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -19,7 +18,6 @@ import com.pitchedapps.capsule.library.item.CapsuleViewHolder;
 import java.util.ArrayList;
 import java.util.List;
 
-import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
 import jp.wasabeef.recyclerview.internal.ViewHelper;
 
 /**
@@ -51,6 +49,7 @@ public abstract class CapsuleAdapter<T, V extends CapsuleViewHolder> extends Rec
     /**
      * Optional animations for new views
      * call from onBindViewHolder
+     *
      * @param holder item to be animated
      */
     protected void bindAnimation(V holder) {
@@ -84,11 +83,12 @@ public abstract class CapsuleAdapter<T, V extends CapsuleViewHolder> extends Rec
         /**
          * Animation for new items
          * Default is fade in
+         *
          * @param view to animate
          * @return
          */
         protected Animator[] getAnimators(View view) {
-            return new Animator[] { ObjectAnimator.ofFloat(view, "alpha", 0f, 1f) };
+            return new Animator[]{ObjectAnimator.ofFloat(view, "alpha", 0f, 1f)};
         }
 
         public Animations setFirstOnly(boolean firstOnly) {
@@ -189,12 +189,12 @@ public abstract class CapsuleAdapter<T, V extends CapsuleViewHolder> extends Rec
     int getLayoutRes(int position);
 
     /**
-     * Create ViewHolder (within onCreateViewHolder)
-     * eg return new ViewHolder(view, layoutId);
+     * Create ViewHolderBase (within onCreateViewHolder)
+     * eg return new ViewHolderBase(view, layoutId);
      *
      * @param view     inflated with layoutId
      * @param layoutId the id of the inflated layout
-     * @return sub ViewHolder
+     * @return sub ViewHolderBase
      */
     protected abstract
     @NonNull
