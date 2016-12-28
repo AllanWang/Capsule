@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.pitchedapps.capsule.library.adapters.CapsuleAdapter;
+import com.pitchedapps.capsule.library.item.CapsuleViewHolder;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * Created by Allan Wang on 2016-12-21.
  */
 
-public class SampleAdapter extends CapsuleAdapter<String, SampleAdapter.CapsuleViewHolder> {
+public class SampleAdapter extends CapsuleAdapter<String, SampleAdapter.SampleViewHolder> {
 
     public SampleAdapter(List<String> data) {
         super(data);
@@ -26,20 +27,20 @@ public class SampleAdapter extends CapsuleAdapter<String, SampleAdapter.CapsuleV
 
     @NonNull
     @Override
-    protected CapsuleViewHolder inflateViewHolder(View view, @LayoutRes int layoutId) {
-        return new CapsuleViewHolder(view, layoutId);
+    protected SampleViewHolder inflateViewHolder(View view, @LayoutRes int layoutId) {
+        return new SampleViewHolder(view, layoutId);
     }
 
     @Override
-    public void onBindViewHolder(CapsuleViewHolder holder, int position) {
+    public void onBindViewHolder(SampleViewHolder holder, int position) {
         holder.textView.setText(getItem(position));
     }
 
-    public static class CapsuleViewHolder extends com.pitchedapps.capsule.library.item.CapsuleViewHolder {
+    public static class SampleViewHolder extends CapsuleViewHolder {
 
         TextView textView;
 
-        public CapsuleViewHolder(View itemView, int layoutId) {
+        public SampleViewHolder(View itemView, int layoutId) {
             super(itemView, layoutId);
             textView = (TextView) itemView.findViewById(R.id.text);
         }
