@@ -17,7 +17,7 @@ import java.util.HashMap;
 public abstract class ParcelableHashMap<K, V> implements Parcelable {
     private HashMap<K, V> mMap;
 
-    private ParcelableHashMap(HashMap<K, V> map) {
+    public ParcelableHashMap(HashMap<K, V> map) {
         mMap = map;
     }
 
