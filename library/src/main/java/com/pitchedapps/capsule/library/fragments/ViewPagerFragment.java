@@ -37,10 +37,11 @@ public abstract class ViewPagerFragment extends CapsuleFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_viewpager, container, false);
         ViewPager mViewPager = (ViewPager) v.findViewById(R.id.viewpager);
-        ViewPagerAdapter mAdapter = setAdapter(getContext(), getChildFragmentManager(), mViewPager, setPages());
+        List<CPage> pages = setPages();
+        ViewPagerAdapter mAdapter = setAdapter(getContext(), getChildFragmentManager(), mViewPager, pages);
         mViewPager.setAdapter(mAdapter);
         ((TabLayout) v.findViewById(R.id.tabs)).setupWithViewPager(mViewPager);
-        viewPagerSetup(mViewPager);
+        viewPagerSetup(mViewPager, pages.size());
         return v;
     }
 
@@ -50,7 +51,7 @@ public abstract class ViewPagerFragment extends CapsuleFragment {
      *
      * @param viewPager new loaded viewpager
      */
-    protected void viewPagerSetup(ViewPager viewPager) {
+    protected void viewPagerSetup(ViewPager viewPager, int pageCount) {
     }
 
     @Override
