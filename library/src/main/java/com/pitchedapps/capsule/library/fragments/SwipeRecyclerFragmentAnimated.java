@@ -31,6 +31,7 @@ public abstract class SwipeRecyclerFragmentAnimated<T, V extends CapsuleViewHold
     /**
      * Specify the itemAnimator
      * Defaults to slide up
+     *
      * @return item animator
      */
     protected RecyclerView.ItemAnimator getRecyclerAnimator() {
@@ -50,6 +51,11 @@ public abstract class SwipeRecyclerFragmentAnimated<T, V extends CapsuleViewHold
         updateList(list);
     }
 
+    /**
+     * By default, we'll update the list as soon as possible
+     * @param view fragment view
+     * @param savedInstanceState fragment saved state
+     */
     @Override
     @CallSuper
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {

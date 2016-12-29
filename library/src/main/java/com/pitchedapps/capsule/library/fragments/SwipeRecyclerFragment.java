@@ -41,6 +41,7 @@ public abstract class SwipeRecyclerFragment<T, V extends CapsuleViewHolder> exte
 
     /**
      * Helper method to inflate view from inner LinearLayout (cLinear)
+     *
      * @param id layout id to inflate
      * @return inflated view
      */
@@ -50,7 +51,8 @@ public abstract class SwipeRecyclerFragment<T, V extends CapsuleViewHolder> exte
 
     /**
      * Additional method to modify the recyclerView once it is created
-     * @param recyclerView
+     *
+     * @param recyclerView inner recyclerview
      */
     protected void onRecyclerViewBound(RecyclerView recyclerView) {
 
@@ -58,8 +60,9 @@ public abstract class SwipeRecyclerFragment<T, V extends CapsuleViewHolder> exte
 
     /**
      * Return adapter used for the recyclerview
+     *
      * @param context from getContext()
-     * @return
+     * @return adapter
      */
     protected abstract CapsuleAdapter<T, V> getAdapter(Context context);
 
