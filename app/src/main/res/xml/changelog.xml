@@ -15,7 +15,7 @@
     <item text="Add savedInstanceState to material drawer" />
     <item text="Add option to select drawer item by title id" />
     <item text="Create ParcelUtils" />
-    <item text="" />
+    <item text="Add ViewPager modifier in ViewPagerFragment" />
     <item text="" />
     <item text="" />
 
