@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 
-import com.pitchedapps.capsule.library.parcelable.hashmaps.ParcelableHashMap;
+import com.pitchedapps.capsule.library.parcelable.maps.ParcelableHashMap;
 
 import java.util.ArrayList;
 import java.util.HashMap;

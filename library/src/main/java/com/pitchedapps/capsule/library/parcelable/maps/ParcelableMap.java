@@ -1,9 +1,10 @@
-package com.pitchedapps.capsule.library.parcelable.hashmaps;
+package com.pitchedapps.capsule.library.parcelable.maps;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Allan Wang on 2016-12-28.
@@ -14,10 +15,10 @@ import java.util.HashMap;
  * @see com.pitchedapps.capsule.library.utils.ParcelUtils
  */
 
-public abstract class ParcelableHashMap<K, V> implements Parcelable {
-    private HashMap<K, V> mMap;
+public abstract class ParcelableMap<K, V, M extends Map<K, V>> implements Parcelable {
+    private M mMap;
 
-    public ParcelableHashMap(HashMap<K, V> map) {
+    public ParcelableMap(M map) {
         mMap = map;
     }
 
@@ -25,6 +26,8 @@ public abstract class ParcelableHashMap<K, V> implements Parcelable {
     public int describeContents() {
         return 0;
     }
+
+    protected abstract M createMap(int mapSize);
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
@@ -39,13 +42,13 @@ public abstract class ParcelableHashMap<K, V> implements Parcelable {
 
     protected abstract void writeValueToParcel(Parcel dest, V value, int flags);
 
-    public HashMap<K, V> getMap() {
+    public M getMap() {
         return mMap;
     }
 
-    protected ParcelableHashMap(Parcel in) {
+    protected ParcelableMap(Parcel in) {
         int mapSize = in.readInt();
-        this.mMap = new HashMap<>(mapSize);
+        this.mMap = createMap(mapSize);
         for (int i = 0; i < mapSize; i++) {
             this.mMap.put(readKeyFromParcel(in), readValueFromParcel(in));
         }
