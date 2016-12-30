@@ -24,12 +24,13 @@ public class RippleFragment extends CapsuleFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.ripple_sample, container, false);
         mRipple = (RippleCanvas) v.findViewById(R.id.ripple_bg);
-        ViewUtils.setOnClickPositionListener(mRipple, new ViewUtils.OnClickPositionListener() {
-            @Override
-            public void onClick(View view, float x, float y) {
-                mRipple.ripple(ColourUtils.randomLightColor(), x, y);
-            }
-        });
+        new SampleRippleHook(mRipple);
+//        ViewUtils.setOnClickPositionListener(mRipple, new ViewUtils.OnClickPositionListener() {
+//            @Override
+//            public void onClick(View view, float x, float y) {
+//                mRipple.ripple(ColourUtils.randomLightColor(), x, y);
+//            }
+//        });
         return v;
     }
 

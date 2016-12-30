@@ -8,21 +8,21 @@
 
     <version title="v3.2"/>
     <item text="Made AnimUtils compatible to Kitkat" />
-    <item text="Create SwipeRecyclerFragment" />
-    <item text="Support RecyclerView animations" />
+    <item text="Created SwipeRecyclerFragment" />
+    <item text="Added RecyclerView animations" />
     <item text="Added CollapsingToolbar support" />
     <item text="Do not switch drawerItems if selection is the same" />
-    <item text="Add savedInstanceState to material drawer" />
-    <item text="Add option to select drawer item by title id" />
-    <item text="Create ParcelUtils" />
-    <item text="Add ViewPager modifier in ViewPagerFragment" />
-    <item text="" />
+    <item text="Added savedInstanceState to material drawer" />
+    <item text="Added option to select drawer item by title id" />
+    <item text="Created ParcelUtils" />
+    <item text="Added ViewPager modifier in ViewPagerFragment" />
+    <item text="Better bulleted Changelog alignment" />
     <item text="" />
 
     <version title="v3.1"/>
-    <item text="Add Capsule reload option with drawer position saved" />
-    <item text="Clean up AnimUtils" />
-    <item text="Update dependencies" />
+    <item text="Added Capsule reload option with drawer position saved" />
+    <item text="Cleaned up AnimUtils" />
+    <item text="Updated dependencies" />
 
     <version title="v3.0"/>
     <item text="First fully stable release" />

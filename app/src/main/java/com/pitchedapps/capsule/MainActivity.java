@@ -41,6 +41,13 @@ public class MainActivity extends CapsuleActivityFrame {
         });
     }
 
+    @Override
+    protected void switchFragment(Fragment fragment) {
+        if (fragment instanceof SampleSwipeRecyclerFragment) expandAppBar();
+        else collapseAppBar();
+        super.switchFragment(fragment);
+    }
+
     /**
      * @return desired header
      * Sets up account header
@@ -77,35 +84,35 @@ public class MainActivity extends CapsuleActivityFrame {
                         return new FragmentSample();
                     }
                 },
-                new DrawerItem(R.string.room, GoogleMaterial.Icon.gmd_weekend, true) {
+                new DrawerItem(R.string.viewpager, GoogleMaterial.Icon.gmd_view_column, true) {
                     @Nullable
                     @Override
                     public Fragment getFragment() {
                         return new ViewPagerFragmentSample();
                     }
                 },
-                new DrawerItem(R.string.account, GoogleMaterial.Icon.gmd_person, true) {
+                new DrawerItem(R.string.refresh_recycler, GoogleMaterial.Icon.gmd_refresh, true) {
                     @Nullable
                     @Override
                     public Fragment getFragment() {
                         return new SampleSwipeRecyclerFragment();
                     }
                 },
-                new DrawerItem(R.string.report, GoogleMaterial.Icon.gmd_error, true) {
+                new DrawerItem(R.string.basic, GoogleMaterial.Icon.gmd_domain, true) {
                     @Nullable
                     @Override
                     public Fragment getFragment() {
                         return new FragmentSampleNoFab();
                     }
                 },
-                new DrawerItem(R.string.settings, GoogleMaterial.Icon.gmd_settings, true) {
+                new DrawerItem(R.string.basic, GoogleMaterial.Icon.gmd_extension, true) {
                     @Nullable
                     @Override
                     public Fragment getFragment() {
                         return new FragmentSampleNoFab();
                     }
                 },
-                new DrawerItem(R.string.ripple, GoogleMaterial.Icon.gmd_adb, true) {
+                new DrawerItem(R.string.ripple, GoogleMaterial.Icon.gmd_blur_circular, true) {
                     @Nullable
                     @Override
                     public Fragment getFragment() {
