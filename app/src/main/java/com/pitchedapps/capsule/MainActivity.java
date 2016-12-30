@@ -98,14 +98,14 @@ public class MainActivity extends CapsuleActivityFrame {
                         return new SampleSwipeRecyclerFragment();
                     }
                 },
-                new DrawerItem(R.string.basic, GoogleMaterial.Icon.gmd_domain, true) {
+                new DrawerItem(R.string.basic_with_fab, GoogleMaterial.Icon.gmd_domain, true) {
                     @Nullable
                     @Override
                     public Fragment getFragment() {
-                        return new FragmentSampleNoFab();
+                        return new FragmentSample();
                     }
                 },
-                new DrawerItem(R.string.basic, GoogleMaterial.Icon.gmd_extension, true) {
+                new DrawerItem(R.string.basic_no_fab, GoogleMaterial.Icon.gmd_extension, true) {
                     @Nullable
                     @Override
                     public Fragment getFragment() {
