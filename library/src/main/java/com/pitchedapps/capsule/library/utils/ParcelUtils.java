@@ -102,16 +102,16 @@ public class ParcelUtils<T extends Fragment> {
     /**
      * Get HashMap from parcel (watch out for casting)
      *
-     * @param <P>             ParcelableMap subclass
-     * @param <K>             Map Key
-     * @param <V>             Map Value
-     * @param <M>             Map itself
-     * @param bundle          bundle to retrieve from
-     * @param key             key for the parcel
-     * @param hashParcelClass the hash parcel class
+     * @param <P>                ParcelableMap subclass
+     * @param <K>                Map Key
+     * @param <V>                Map Value
+     * @param <M>                Map itself
+     * @param bundle             bundle to retrieve from
+     * @param key                key for the parcel
+     * @param parcelableMapClass the parcelable map class
      * @return Map of type M, null if not found
      */
-    public static <P extends ParcelableMap<K, V, M>, K, V, M extends Map<K, V>> M getMap(Bundle bundle, String key, Class<P> hashParcelClass) {
+    public static <P extends ParcelableMap<K, V, M>, K, V, M extends Map<K, V>> M getMap(Bundle bundle, String key, Class<P> parcelableMapClass) {
         if (bundle == null || !bundle.containsKey(key)) return null;
         P mapWrapper = bundle.getParcelable(key);
         if (mapWrapper == null) return null;
