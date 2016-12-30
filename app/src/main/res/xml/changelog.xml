@@ -15,8 +15,11 @@
     <item text="Added savedInstanceState to material drawer" />
     <item text="Added option to select drawer item by title id" />
     <item text="Created ParcelUtils" />
+    <item text="Create parcelable map wrapper" />
     <item text="Added ViewPager modifier in ViewPagerFragment" />
     <item text="Better bulleted Changelog alignment" />
+    <item text="" />
+    <item text="" />
     <item text="" />
 
     <version title="v3.1"/>

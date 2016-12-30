@@ -1,5 +1,7 @@
 package com.pitchedapps.capsule.library.parcelable.maps;
 
+import android.os.Parcel;
+
 import java.util.HashMap;
 
 /**
@@ -15,6 +17,10 @@ public abstract class ParcelableHashMap<K, V> extends ParcelableMap<K, V, HashMa
 
     public ParcelableHashMap(HashMap<K, V> map) {
         super(map);
+    }
+
+    protected ParcelableHashMap(Parcel in) {
+        super(in);
     }
 
     @Override
