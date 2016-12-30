@@ -24,30 +24,27 @@ class ChangelogAdapter extends RecyclerView.Adapter<ChangelogAdapter.ChangelogVH
     @Override
     public ChangelogVH onCreateViewHolder(ViewGroup parent, int viewType) {
         final View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.changelog_content, parent, false);
+                .inflate(getLayout(viewType), parent, false);
         return new ChangelogVH(view);
+    }
+
+    private int getLayout(int position) {
+        if (mItems.get(position).isTitle()) return R.layout.changelog_title;
+        return R.layout.changelog_content;
     }
 
     @Override
     public void onBindViewHolder(ChangelogVH holder, int position) {
-        ChangelogXmlParser.ChangelogItem item = mItems.get(position);
-
-        String contentStr = "";
-        List<String> points = item.getItems();
-        for (int i = 0; i < points.size(); i++) {
-            if (i > 0) {
-                // No need for new line on the first item
-                contentStr += "\n";
-            }
-            contentStr += "\u2022 ";
-            contentStr += points.get(i);
-        }
-        holder.title.setText(item.getTitle());
-        holder.content.setText(contentStr);
+        holder.text.setText(mItems.get(position).getText());
     }
 
     @Override
     public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
         return position;
     }
 
@@ -58,12 +55,11 @@ class ChangelogAdapter extends RecyclerView.Adapter<ChangelogAdapter.ChangelogVH
 
     static class ChangelogVH extends RecyclerView.ViewHolder {
 
-        final TextView title, content;
+        final TextView text;
 
         ChangelogVH(View itemView) {
             super(itemView);
-            title = (TextView) itemView.findViewById(R.id.changelog_title);
-            content = (TextView) itemView.findViewById(R.id.changelog_content);
+            text = (TextView) itemView.findViewById(R.id.changelog_text);
         }
     }
 }

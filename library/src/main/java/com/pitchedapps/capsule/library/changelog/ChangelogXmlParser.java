@@ -23,7 +23,6 @@ import java.util.List;
 class ChangelogXmlParser {
 
     static ArrayList<ChangelogItem> parse(@NonNull Context context, @XmlRes int xmlRes) {
-        ChangelogItem mCurrentChangelogItem = null;
         ArrayList<ChangelogItem> mChangelogItems = new ArrayList<>();
 
         XmlResourceParser parser = null;
@@ -36,16 +35,11 @@ class ChangelogXmlParser {
                         final String tagName = parser.getName();
                         if (tagName.equalsIgnoreCase("version")) {
                             if (!parser.getAttributeValue(null, "title").isEmpty()) {
-                                mCurrentChangelogItem = new ChangelogItem(parser.getAttributeValue(null, "title"));
-                                mChangelogItems.add(mCurrentChangelogItem);
+                                mChangelogItems.add(new ChangelogItem(parser.getAttributeValue(null, "title"), true));
                             }
                         } else if (tagName.equalsIgnoreCase("item")) {
                             if (!parser.getAttributeValue(null, "text").isEmpty()) {
-                                if (mCurrentChangelogItem == null) {
-                                    mCurrentChangelogItem = new ChangelogItem(context.getString(R.string.default_new_version_title));
-                                    mChangelogItems.add(mCurrentChangelogItem);
-                                }
-                                mCurrentChangelogItem.addItem(parser.getAttributeValue(null, "text"));
+                                mChangelogItems.add(new ChangelogItem(parser.getAttributeValue(null, "text"), false));
                             }
                         }
                         break;
@@ -65,6 +59,38 @@ class ChangelogXmlParser {
 
     static class ChangelogItem implements Parcelable {
 
+        private final String text;
+        private final boolean isTitle;
+
+        ChangelogItem(String text, boolean isTitle) {
+            this.text = text;
+            this.isTitle = isTitle;
+        }
+
+        public String getText() {
+            return text;
+        }
+
+        public boolean isTitle() {
+            return isTitle;
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(this.text);
+            dest.writeByte(this.isTitle ? (byte) 1 : (byte) 0);
+        }
+
+        protected ChangelogItem(Parcel in) {
+            this.text = in.readString();
+            this.isTitle = in.readByte() != 0;
+        }
+
         public static final Creator<ChangelogItem> CREATOR = new Creator<ChangelogItem>() {
             @Override
             public ChangelogItem createFromParcel(Parcel source) {
@@ -76,44 +102,5 @@ class ChangelogXmlParser {
                 return new ChangelogItem[size];
             }
         };
-        private final String mTitle;
-        private final ArrayList<String> mPoints;
-
-        ChangelogItem(String name) {
-            mTitle = name;
-            mPoints = new ArrayList<>();
-        }
-
-        ChangelogItem(Parcel in) {
-            this.mTitle = in.readString();
-            this.mPoints = in.createStringArrayList();
-        }
-
-        public String getTitle() {
-            return mTitle;
-        }
-
-        List<String> getItems() {
-            return mPoints;
-        }
-
-        void addItem(String s) {
-            mPoints.add(s);
-        }
-
-        public int size() {
-            return mPoints.size();
-        }
-
-        @Override
-        public int describeContents() {
-            return 0;
-        }
-
-        @Override
-        public void writeToParcel(Parcel dest, int flags) {
-            dest.writeString(this.mTitle);
-            dest.writeStringList(this.mPoints);
-        }
     }
 }
