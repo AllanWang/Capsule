@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 
-import com.pitchedapps.capsule.library.parcelable.maps.ParcelableHashMap;
+import com.pitchedapps.capsule.library.parcelable.maps.ParcelableMap;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Allan Wang on 2016-12-28.
@@ -94,48 +94,27 @@ public class ParcelUtils<T extends Fragment> {
         return true;
     }
 
-    public <K, V> ParcelUtils putHashMap(String key, ParcelableHashMap<K, V> hashMap) {
-        args.putParcelable(key, hashMap);
+    public <K, V, M extends Map<K, V>> ParcelUtils putMap(String key, ParcelableMap<K, V, M> map) {
+        args.putParcelable(key, map);
         return this;
     }
 
     /**
      * Get HashMap from parcel (watch out for casting)
      *
-     * @param <P>             the type parameter
-     * @param <K>             valid parcelable key used when writing
-     * @param <V>             valid parcelable value used when writing
+     * @param <P>             ParcelableMap subclass
+     * @param <K>             Map Key
+     * @param <V>             Map Value
+     * @param <M>             Map itself
      * @param bundle          bundle to retrieve from
      * @param key             key for the parcel
      * @param hashParcelClass the hash parcel class
-     * @return HashMap, null if not found
+     * @return Map of type M, null if not found
      */
-    public static <P extends ParcelableHashMap<K, V>, K, V> HashMap<K, V> getHashMap(Bundle bundle, String key, Class<P> hashParcelClass) {
-        return getHashMap(bundle, key, hashParcelClass, false);
-    }
-
-    /**
-     * Get HashMap from parcel (watch out for casting)
-     *
-     * @param <P>              the type parameter
-     * @param <K>              valid parcelable key used when writing
-     * @param <V>              valid parcelable value used when writing
-     * @param bundle           bundle to retrieve from
-     * @param key              key for the parcel
-     * @param hashParcelClass  the hash parcel class
-     * @param initializeIfNull if true, will return a new HashMap rather than a null one if not found
-     * @return HashMap, null/new map if not found
-     */
-    public static <P extends ParcelableHashMap<K, V>, K, V> HashMap<K, V> getHashMap(Bundle bundle, String key, Class<P> hashParcelClass, boolean initializeIfNull) {
-        if (bundle == null || !bundle.containsKey(key)) {
-            if (initializeIfNull) return new HashMap<>();
-            return null;
-        }
+    public static <P extends ParcelableMap<K, V, M>, K, V, M extends Map<K, V>> M getMap(Bundle bundle, String key, Class<P> hashParcelClass) {
+        if (bundle == null || !bundle.containsKey(key)) return null;
         P mapWrapper = bundle.getParcelable(key);
-        if (mapWrapper == null || mapWrapper.getMap() == null || mapWrapper.getMap().isEmpty()) {
-            if (initializeIfNull) return new HashMap<>();
-            return null;
-        }
+        if (mapWrapper == null) return null;
         return mapWrapper.getMap();
     }
 
