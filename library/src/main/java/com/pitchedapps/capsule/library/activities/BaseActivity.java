@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.pitchedapps.capsule.library.interfaces.CActivityCore;
 import com.pitchedapps.capsule.library.logging.CLogTree;
+import com.pitchedapps.capsule.library.logging.CallbackLogTree;
 import com.pitchedapps.capsule.library.utils.EventUtils;
 
 import java.util.Locale;
@@ -54,6 +55,10 @@ abstract class BaseActivity extends AppCompatActivity implements CActivityCore {
 
     protected String sf(@StringRes int id, Object... o) {
         return String.format(Locale.CANADA, s(id), o);
+    }
+
+    protected void plantDebugLog(boolean isDebug, CallbackLogTree tree) {
+        if (isDebug) Timber.plant(tree);
     }
 
     protected void enableCLog() {

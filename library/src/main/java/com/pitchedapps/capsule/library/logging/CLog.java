@@ -7,7 +7,7 @@ import timber.log.Timber;
  */
 public class CLog {
 
-    public static final int DEBUG = 111, ERROR = 666;
+    public static final int VERBOSE = 222, DEBUG = 333, INFO = 444, WARN = 555, ERROR = 666, ASSERT = 777;
 
     public static void d(String message, Object... o) {
         Timber.log(DEBUG, message, o);

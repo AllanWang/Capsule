@@ -20,11 +20,23 @@ public class CLogTree extends Timber.DebugTree {
     @Override
     protected void log(int priority, String tag, String message, Throwable t) {
         switch (priority) {
+            case CLog.VERBOSE:
+                priority = Log.VERBOSE;
+                break;
             case CLog.DEBUG:
                 priority = Log.DEBUG;
                 break;
+            case CLog.INFO:
+                priority = Log.INFO;
+                break;
+            case CLog.WARN:
+                priority = Log.WARN;
+                break;
             case CLog.ERROR:
                 priority = Log.ERROR;
+                break;
+            case CLog.ASSERT:
+                priority = Log.ASSERT;
                 break;
             default:
                 return;
