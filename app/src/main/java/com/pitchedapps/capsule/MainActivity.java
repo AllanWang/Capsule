@@ -36,7 +36,7 @@ public class MainActivity extends CapsuleActivityFrame {
         onVersionUpdate(BuildConfig.VERSION_CODE, new CCallback() {
             @Override
             public void onResult() {
-                ChangelogDialog.show(MainActivity.this, R.xml.changelog);
+                ChangelogDialog.show(MainActivity.this, R.xml.changelog, null);
             }
         });
     }
@@ -138,7 +138,7 @@ public class MainActivity extends CapsuleActivityFrame {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_changelog) {
-            ChangelogDialog.show(this, R.xml.changelog);
+            ChangelogDialog.show(this, R.xml.changelog, null);
             return true;
         }
 
