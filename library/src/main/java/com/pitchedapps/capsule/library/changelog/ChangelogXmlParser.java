@@ -7,7 +7,6 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.XmlRes;
 
-import com.pitchedapps.capsule.library.R;
 import com.pitchedapps.capsule.library.logging.CLog;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -15,7 +14,6 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Allan Wang
@@ -35,11 +33,18 @@ class ChangelogXmlParser {
                         final String tagName = parser.getName();
                         if (tagName.equalsIgnoreCase("version")) {
                             if (!parser.getAttributeValue(null, "title").isEmpty()) {
-                                mChangelogItems.add(new ChangelogItem(parser.getAttributeValue(null, "title"), true));
+                                mChangelogItems.add(new ChangelogItem(parser.getAttributeValue
+                                        (null, "title"), true));
                             }
                         } else if (tagName.equalsIgnoreCase("item")) {
-                            if (!parser.getAttributeValue(null, "text").isEmpty()) {
-                                mChangelogItems.add(new ChangelogItem(parser.getAttributeValue(null, "text"), false));
+                            try {
+                                if (!parser.getAttributeValue(null, "text").isEmpty()) {
+                                    mChangelogItems.add(new ChangelogItem(parser
+                                            .getAttributeValue(null, "text"), false));
+                                }
+                            } catch (Exception e) {
+                                throw new UnsupportedOperationException("The tag you used is not " +
+                                        "supported. Be sure to use \"text\" tag");
                             }
                         }
                         break;
