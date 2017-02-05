@@ -30,4 +30,4 @@ dependencies {
 
 ```
 
-[JitPack Javadocs v3.2](https://jitpack.io/com/github/AllanWang/Capsule/v3.2/javadoc/){:target="_blank"}
+[JitPack Javadocs v3.2](https://jitpack.io/com/github/AllanWang/Capsule/v3.2/javadoc/)
