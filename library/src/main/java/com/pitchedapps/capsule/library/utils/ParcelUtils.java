@@ -56,11 +56,6 @@ public class ParcelUtils<T extends Fragment> {
         return this;
     }
 
-    public ParcelUtils putBoolean(String key, Parcelable[] value) {
-        args.putParcelableArray(key, value);
-        return this;
-    }
-
     public ParcelUtils putParcelableArray(String key, Parcelable[] value) {
         args.putParcelableArray(key, value);
         return this;
