@@ -67,7 +67,8 @@ public class ChangelogDialog extends DialogFragment {
                     (ITEM_TAG);
             builder.adapter(new ChangelogAdapter(items), null);
         }
-        if (getContext().getString(R.string.changelog_neutral_text).length() > 0) {
+        if ((getContext().getResources().getBoolean(R.bool.show_changelog_neutral_button)) &&
+                (getContext().getString(R.string.changelog_neutral_text).length() > 0)) {
             builder.neutralText(R.string.changelog_neutral_text);
             builder.onNeutral(new MaterialDialog.SingleButtonCallback() {
                 @Override
