@@ -20,14 +20,11 @@ import android.view.ViewGroup;
 import com.pitchedapps.capsule.library.R;
 import com.pitchedapps.capsule.library.custom.CapsuleCoordinatorLayout;
 import com.pitchedapps.capsule.library.event.SnackbarEvent;
-import com.pitchedapps.capsule.library.logging.CLog;
 import com.pitchedapps.capsule.library.utils.AnimUtils;
 import com.pitchedapps.capsule.library.utils.ViewUtils;
 
 /**
- * Created by Allan Wang on 2016-08-21.
- * <p>
- * Handles all views
+ * Created by Allan Wang on 2016-08-21. <p> Handles all views
  */
 abstract class ViewActivity extends PermissionActivity {
 
@@ -45,7 +42,8 @@ abstract class ViewActivity extends PermissionActivity {
     }
 
     /**
-     * Gets the View ID of the view that will be replaced by Fragments with the SupportFragmentManager
+     * Gets the View ID of the view that will be replaced by Fragments with the
+     * SupportFragmentManager
      *
      * @return viewID
      */
@@ -73,8 +71,6 @@ abstract class ViewActivity extends PermissionActivity {
 
     /**
      * Capsule's view creation
-     *
-     * @param savedInstanceState
      */
     @Override
     @CallSuper
@@ -109,27 +105,37 @@ abstract class ViewActivity extends PermissionActivity {
     /**
      * Collapse/Expand AppBar
      *
-     * @param b true for expand, false for collapse
+     * @param expand  true for expand, false for collapse
+     * @param animate true to animate, false to do not
      */
-    private void ceAppBar(boolean b) {
+    private void ceAppBar(boolean expand, boolean animate) {
         if (cAppBarLayout == null)
             throw new RuntimeException(sf(R.string.generic_not_set, "cAppBarLayout"));
         if (cCoordinatorLayout == null)
             throw new RuntimeException(sf(R.string.generic_not_set, "cCoordinatorLayout"));
-        cAppBarLayout.setExpanded(b);
-        cCoordinatorLayout.setScrollAllowed(b);
+        cAppBarLayout.setExpanded(expand, animate);
+        cCoordinatorLayout.setScrollAllowed(expand);
+    }
+
+    public void collapseAppBar(boolean animate) {
+        ceAppBar(false, animate);
     }
 
     public void collapseAppBar() {
-        ceAppBar(false);
+        collapseAppBar(false);
+    }
+
+    public void expandAppBar(boolean animate) {
+        ceAppBar(true, animate);
     }
 
     public void expandAppBar() {
-        ceAppBar(true);
+        expandAppBar(false);
     }
 
     protected View addCollapsingToolbarView(View view) {
-        if (cCollapsingToolbarLayout == null) throw new NullPointerException(sf(R.string.generic_not_set, "CollapsingToolbarLayout"));
+        if (cCollapsingToolbarLayout == null)
+            throw new NullPointerException(sf(R.string.generic_not_set, "CollapsingToolbarLayout"));
         cCollapsingToolbarLayout.setTitleEnabled(true);
         cCollapsingToolbarLayout.addView(view, 0);
         return view;
@@ -171,9 +177,7 @@ abstract class ViewActivity extends PermissionActivity {
     }
 
     /**
-     * Capsulate
-     * <p>
-     * Helps with initializing and managing other types of views
+     * Capsulate <p> Helps with initializing and managing other types of views
      */
 
     protected class Capsulate {
@@ -201,7 +205,8 @@ abstract class ViewActivity extends PermissionActivity {
 
         public Capsulate collapsingToolbarLayout(@IdRes int id) {
             cCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(id);
-            cCollapsingToolbarLayout.setTitleEnabled(false); //Until an inner view is added, show title from toolbar
+            cCollapsingToolbarLayout.setTitleEnabled(false); //Until an inner view is added, show
+            // title from toolbar
             return this;
         }
     }
