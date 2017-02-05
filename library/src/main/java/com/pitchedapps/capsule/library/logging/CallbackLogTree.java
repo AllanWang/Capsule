@@ -7,6 +7,8 @@ import timber.log.Timber;
 
 /**
  * Created by Allan Wang on 2016-12-30.
+ * <p>
+ * Helper logging tree wrapper
  */
 
 public class CallbackLogTree extends Timber.Tree {

@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 
 /**
  * Created by Allan Wang on 2016-10-30.
+ *
+ * Shared preference container
  */
 
 public class CPrefs {

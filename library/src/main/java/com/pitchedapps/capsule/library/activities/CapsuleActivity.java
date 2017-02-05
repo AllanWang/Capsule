@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.AnimRes;
 import android.support.annotation.CallSuper;
 import android.support.v4.app.Fragment;
-import android.view.View;
 
 import com.pitchedapps.capsule.library.interfaces.CFragmentCore;
 
@@ -22,6 +21,11 @@ public abstract class CapsuleActivity extends EventActivity {
         capsuleOnCreate(savedInstanceState);
     }
 
+    /**
+     * Changes fragment in base view to new fragment
+     *
+     * @param fragment new fragment to switch to
+     */
     protected void switchFragment(Fragment fragment) {
         String tag = null;
         if (fragment instanceof CFragmentCore && ((CFragmentCore) fragment).getTitleId() > 0) {
@@ -32,6 +36,14 @@ public abstract class CapsuleActivity extends EventActivity {
         setTitle(tag);
     }
 
+    /**
+     * Switch fragment.
+     *
+     * @param fragment fragment to switch to
+     * @param enter    animation
+     * @param exit     animation
+     * @see #switchFragment(Fragment) #switchFragment(Fragment)
+     */
     protected void switchFragment(Fragment fragment, @AnimRes int enter,
                                   @AnimRes int exit) {
         String tag = null;
@@ -44,6 +56,16 @@ public abstract class CapsuleActivity extends EventActivity {
         setTitle(tag);
     }
 
+    /**
+     * Switch fragment.
+     *
+     * @param fragment fragment to switch to
+     * @param enter    enter animation
+     * @param exit     exit animation
+     * @param popEnter pop enter animation
+     * @param popExit  pop exist animation
+     * @see #switchFragment(Fragment) #switchFragment(Fragment)
+     */
     protected void switchFragment(Fragment fragment, @AnimRes int enter,
                                   @AnimRes int exit, @AnimRes int popEnter, @AnimRes int popExit) {
 

@@ -20,6 +20,12 @@ public class Utils {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     }
 
+    /**
+     * Returns app version name
+     *
+     * @param context app context
+     * @return version name
+     */
     public static String getAppVersion(Context context) {
         try {
             return context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName;
@@ -39,6 +45,13 @@ public class Utils {
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
     }
 
+    /**
+     * Checks if a given package is installed
+     *
+     * @param context     app context
+     * @param packageName packageId
+     * @return true if installed with activity, false otherwise
+     */
     public static boolean isAppInstalled(Context context, String packageName) {
         final PackageManager pm = context.getPackageManager();
         boolean installed;

@@ -43,6 +43,12 @@ public class EmailBuilder {
         return this;
     }
 
+    /**
+     * Checks is package is installed and appends to package list
+     * @param packageName packageId
+     * @param appName name of app to store in list
+     * @return builder
+     */
     public EmailBuilder isPackageInstalled(String packageName, String appName) {
         packageList.add(new Package(packageName, appName));
         return this;

@@ -7,6 +7,7 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -63,7 +64,7 @@ abstract class ViewActivity extends PermissionActivity {
     /**
      * Gets your layout ID for the activity
      *
-     * @return layoutID
+     * @return layoutID content view id
      */
     protected abstract
     @LayoutRes
@@ -133,6 +134,12 @@ abstract class ViewActivity extends PermissionActivity {
         expandAppBar(false);
     }
 
+    /**
+     * Add view into {@link CollapsingToolbarLayout}
+     *
+     * @param view view to add
+     * @return view added
+     */
     protected View addCollapsingToolbarView(View view) {
         if (cCollapsingToolbarLayout == null)
             throw new NullPointerException(sf(R.string.generic_not_set, "CollapsingToolbarLayout"));
@@ -141,6 +148,12 @@ abstract class ViewActivity extends PermissionActivity {
         return view;
     }
 
+    /**
+     * Inflate layout from id and add to {@link CollapsingToolbarLayout}
+     *
+     * @param layoutId id of layout
+     * @return view created
+     */
     protected View addCollapsingToolbarView(@LayoutRes int layoutId) {
         View view = getLayoutInflater().inflate(layoutId, null);
         return addCollapsingToolbarView(view);
@@ -166,7 +179,12 @@ abstract class ViewActivity extends PermissionActivity {
 //        cTabs.removeAllTabs();
     }
 
-    protected void setTitle(String title) {
+    /**
+     * Set toolbar title
+     *
+     * @param title String
+     */
+    protected void setTitle(@Nullable String title) {
         if (title == null) return;
         cToolbar.setTitle(title);
         if (cCollapsingToolbarLayout != null) cCollapsingToolbarLayout.setTitle(title);
@@ -179,7 +197,6 @@ abstract class ViewActivity extends PermissionActivity {
     /**
      * Capsulate <p> Helps with initializing and managing other types of views
      */
-
     protected class Capsulate {
 
         public Capsulate toolbar(@IdRes int id) {
@@ -211,6 +228,10 @@ abstract class ViewActivity extends PermissionActivity {
         }
     }
 
+    /**
+     * Collection of helper classes for customizing the {@link CollapsingToolbarLayout}
+     * Throws error if not set
+     */
     protected class CustomizeToolbar {
 
         public CustomizeToolbar() {
