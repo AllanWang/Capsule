@@ -6,6 +6,10 @@ Note that a lot of the variables and interfaces start with the letter "c" (ie cF
 
 <!--Current Release 3.2-->
 
+Available on JitPack
+
+[![](https://jitpack.io/v/AllanWang/Capsule.svg)](https://jitpack.io/#AllanWang/Capsule)
+
 To apply, add the following to your root build.gradle:
 
 ```gradle
@@ -25,8 +29,6 @@ dependencies {
 }
 
 ```
-[JitPack site](https://jitpack.io/#AllanWang/Capsule) for reference
 
-View the auto-generated javadocs on JitPack through <br>
-[Javadocs v3.2](https://jitpack.io/com/github/AllanWang/Capsule/v3.2/javadoc/)
+View the auto-generated javadocs on <a href="https://jitpack.io/com/github/AllanWang/Capsule/-SNAPSHOT/javadoc/" target="_blank">JitPack</a>
 
