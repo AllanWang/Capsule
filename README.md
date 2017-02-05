@@ -30,5 +30,4 @@ dependencies {
 
 ```
 
-View the auto-generated javadocs on <a href="https://jitpack.io/com/github/AllanWang/Capsule/-SNAPSHOT/javadoc/" target="_blank">JitPack</a>
-
+[JitPack Javadocs v3.2](https://jitpack.io/com/github/AllanWang/Capsule/v3.2/javadoc/){:target="_blank"}
