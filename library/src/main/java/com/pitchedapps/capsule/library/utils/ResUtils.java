@@ -9,7 +9,6 @@ import android.support.v4.content.ContextCompat;
 /**
  * Created by Allan Wang on 2016-11-14.
  */
-
 public class ResUtils {
 
     public static String s(Context context, @StringRes int id) {

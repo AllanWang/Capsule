@@ -70,7 +70,7 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
      * Separate onCreate for frame
      * should be called after capsuleOnCreate and preCapsuleOnCreate
      *
-     * @param savedInstanceState
+     * @param savedInstanceState the saved instance state
      */
     protected void capsuleFrameOnCreate(Bundle savedInstanceState) {
         capsulate()

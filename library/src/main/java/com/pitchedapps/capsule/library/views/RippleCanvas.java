@@ -15,11 +15,11 @@ import java.util.List;
 
 /**
  * Created by Allan Wang on 2016-11-17.
+ * <p>
  * Canvas drawn ripples that keep the previous color
  * Extends to view dimensions
  * Supports multiple ripples from varying locations
  */
-
 public class RippleCanvas extends View {
 
     public static final float MIDDLE = -1.0f;

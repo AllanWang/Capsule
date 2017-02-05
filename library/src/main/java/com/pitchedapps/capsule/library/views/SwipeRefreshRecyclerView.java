@@ -11,7 +11,6 @@ import android.view.MotionEvent;
  * <p>
  * Modified SwipeRefreshLayout to handle touch events for inner recyclerView
  */
-
 public class SwipeRefreshRecyclerView extends SwipeRefreshLayout {
 
     private RecyclerView mInternalRecyclerView = null;
@@ -34,9 +33,6 @@ public class SwipeRefreshRecyclerView extends SwipeRefreshLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        if (mInternalRecyclerView.canScrollVertically(-1)) {
-            return false;
-        }
-        return super.onInterceptTouchEvent(ev);
+        return !mInternalRecyclerView.canScrollVertically(-1) && super.onInterceptTouchEvent(ev);
     }
 }

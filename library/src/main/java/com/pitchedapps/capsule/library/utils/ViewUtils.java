@@ -4,21 +4,18 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.util.DisplayMetrics;
-import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.typeface.IIcon;
 
 /**
  * Created by Allan Wang on 2016-10-30.
+ * <p>
+ * Collection of view related helpers
  */
-
 public class ViewUtils {
 
     public static IconicsDrawable iconDrawable(@NonNull Context context, IIcon icon) {
@@ -32,6 +29,12 @@ public class ViewUtils {
                 .sizeDp(24);
     }
 
+    /**
+     * Like an onClick listener but with coordinates; tap down only
+     *
+     * @param v        view to hook
+     * @param listener callback
+     */
     public static void setOnClickPositionListener(View v, @NonNull final OnClickPositionListener listener) {
         v.setOnTouchListener(new View.OnTouchListener() {
             @Override

@@ -8,8 +8,9 @@ import android.os.Build;
 
 /**
  * Created by Allan Wang on 2016-12-21.
+ * <p>
+ * Collection of general helpers
  */
-
 public class Utils {
 
     public static boolean isKitkatPlus() {
