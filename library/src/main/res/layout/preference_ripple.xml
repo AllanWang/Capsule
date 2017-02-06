@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.pitchedapps.capsule.library.views.RippleCanvas
+    <ca.allanwang.capsule.library.views.RippleCanvas
         android:id="@+id/ripple_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

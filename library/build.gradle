@@ -1,44 +1,34 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
-
-ext {
-    TARGET_SDK = 25
-    BUILD_TOOLS = "25.0.2"
-    ANDROID_SUPPORT_LIBS = "25.1.1"
-    VERSION_CODE = 33
-    VERSION_NAME="3.3"
-}
-
-group = 'com.github.AllanWang'
-version = VERSION_NAME
+group = 'ca.allanwang'
+version = project.versionName
 
 android {
-    compileSdkVersion TARGET_SDK
-    buildToolsVersion BUILD_TOOLS
+    compileSdkVersion project.targetSdk
+    buildToolsVersion project.buildTools
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion TARGET_SDK
-        versionCode VERSION_CODE
-        versionName VERSION_NAME
+        minSdkVersion project.minSdk
+        targetSdkVersion project.targetSdk
+        versionCode project.versionCode
+        versionName project.versionName
+        consumerProguardFiles 'progress-proguard.txt'
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+    lintOptions {
+        abortOnError false
+        checkReleaseBuilds false
     }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:$ANDROID_SUPPORT_LIBS"
-    compile "com.android.support:support-v4:$ANDROID_SUPPORT_LIBS"
-    compile "com.android.support:design:$ANDROID_SUPPORT_LIBS"
-    compile "com.android.support:recyclerview-v7:$ANDROID_SUPPORT_LIBS"
-    compile "com.android.support:cardview-v7:$ANDROID_SUPPORT_LIBS"
-    compile "com.android.support:preference-v14:$ANDROID_SUPPORT_LIBS"
+    compile "com.android.support:appcompat-v7:$project.androidSupportLibs"
+    compile "com.android.support:support-v4:$project.androidSupportLibs"
+    compile "com.android.support:design:$project.androidSupportLibs"
+    compile "com.android.support:recyclerview-v7:$project.androidSupportLibs"
+    compile "com.android.support:cardview-v7:$project.androidSupportLibs"
+    compile "com.android.support:preference-v14:$project.androidSupportLibs"
 
     //Decoupled events
     compile 'org.greenrobot:eventbus:3.0.0'

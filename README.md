@@ -1,12 +1,17 @@
 # Capsule
-A UI framework library <br>
-Mainly for more complex UIs, this library contains plenty of useful tools and shortened methods to make UI building easier.
-Note that a lot of the variables and interfaces start with the letter "c" (ie cFab; to make it easier to remember)
-
+A UI framework library
 
 <!--Current Release 3.3-->
 
-Available on JitPack
+Mainly for more complex UIs, this library contains plenty of useful tools and shortened methods to make UI building easier.
+This library is meant to offer a much simpler and more functional, albeit unconventional way of coding views. Note that a lot of the variables and interfaces start with the letter "c" (ie cFab; to make it easier to remember)
+
+Capsule heavily relies on other powerful libraries to enable its functionality, and strips away a significant portion of code that is common in the standard navigation drawer layouts.
+Check out the [sample app](s) to see just how concise the code can be! Capsule also incorporates full implementations of common components such as changelogs and refreshable recycler views, and is built proguard friendly.
+
+------------
+
+Capsule is available on JitPack
 
 [![](https://jitpack.io/v/ca.allanwang/capsule.svg)](https://jitpack.io/#ca.allanwang/capsule)
 
@@ -30,4 +35,4 @@ dependencies {
 
 ```
 
-[Javadocs](https://allanwang.github.io/Capsule/)
+[JitPack Javadocs v3.3](https://allanwang.github.io/Capsule/)

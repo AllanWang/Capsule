@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.pitchedapps.capsule.library.custom.CapsuleCoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ca.allanwang.capsule.library.custom.CapsuleCoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.pitchedapps.capsule.library.activities.CapsuleActivityFrame">
+    tools:context="ca.allanwang.capsule.library.activities.CapsuleActivityFrame">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -49,4 +49,4 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="16dip" />
 
-</com.pitchedapps.capsule.library.custom.CapsuleCoordinatorLayout>
+</ca.allanwang.capsule.library.custom.CapsuleCoordinatorLayout>
