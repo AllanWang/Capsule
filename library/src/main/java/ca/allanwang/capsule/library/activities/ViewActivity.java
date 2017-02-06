@@ -123,7 +123,7 @@ abstract class ViewActivity extends PermissionActivity {
     }
 
     public void collapseAppBar() {
-        collapseAppBar(false);
+        collapseAppBar(true);
     }
 
     public void expandAppBar(boolean animate) {
@@ -131,7 +131,7 @@ abstract class ViewActivity extends PermissionActivity {
     }
 
     public void expandAppBar() {
-        expandAppBar(false);
+        expandAppBar(true);
     }
 
     /**
