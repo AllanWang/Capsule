@@ -37,7 +37,7 @@ public class ParcelUtils<T extends Fragment> {
      */
 
     /**
-     * Get HashMap from parcel (watch out for casting)
+     * Get Map from parcel (watch out for casting)
      *
      * @param <P>                ParcelableMap subclass
      * @param <K>                Map Key
@@ -65,8 +65,28 @@ public class ParcelUtils<T extends Fragment> {
         return this;
     }
 
+    public ParcelUtils putChar(String key, char value) {
+        args.putChar(key, value);
+        return this;
+    }
+
     public ParcelUtils putInt(String key, int value) {
         args.putInt(key, value);
+        return this;
+    }
+
+    public ParcelUtils putLong(String key, long value) {
+        args.putLong(key, value);
+        return this;
+    }
+
+    public ParcelUtils putFloat(String key, float value) {
+        args.putFloat(key, value);
+        return this;
+    }
+
+    public ParcelUtils putDouble(String key, double value) {
+        args.putDouble(key, value);
         return this;
     }
 
@@ -85,6 +105,24 @@ public class ParcelUtils<T extends Fragment> {
         return this;
     }
 
+    /**
+     * Put bundle in current bundle
+     *
+     * @param key    the key
+     * @param bundle the bundle
+     * @return parcel utils
+     */
+    public ParcelUtils putBundle(String key, Bundle bundle) {
+        args.putBundle(key, bundle);
+        return this;
+    }
+
+    /**
+     * Put all values in bundle directly to current bundle
+     *
+     * @param bundle the bundle
+     * @return parcel utils
+     */
     public ParcelUtils putBundle(Bundle bundle) {
         args.putAll(bundle);
         return this;
@@ -113,6 +151,11 @@ public class ParcelUtils<T extends Fragment> {
         return this;
     }
 
+    /**
+     * Gets bundle.
+     *
+     * @return the bundle
+     */
     public Bundle getBundle() {
         return args;
     }
