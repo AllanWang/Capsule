@@ -8,7 +8,7 @@ Note that a lot of the variables and interfaces start with the letter "c" (ie cF
 
 Available on JitPack
 
-[![](https://jitpack.io/v/AllanWang/Capsule.svg)](https://jitpack.io/#AllanWang/Capsule)
+[![](https://jitpack.io/v/ca.allanwang/capsule.svg)](https://jitpack.io/#ca.allanwang/capsule)
 
 To apply, add the following to your root build.gradle:
 
@@ -30,4 +30,4 @@ dependencies {
 
 ```
 
-[JitPack Javadocs v3.3](https://jitpack.io/com/github/#ca.allanwang/capsule/v3.3/javadoc/)
+[JitPack Javadocs v3.3](https://jitpack.io/#ca.allanwang/capsule/v3.3/javadoc/)
