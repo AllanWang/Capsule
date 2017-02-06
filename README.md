@@ -26,13 +26,13 @@ allprojects {
 }
 ```
 
-And add the following dependencies:
+And add the following dependencies (You can use a specific version, commit, or -SNAPSHOT):
 
 ```gradle
 dependencies {
-        compile 'ca.allanwang:capsule:v4.0' //Or a specific version/commit/-SNAPSHOT
+        compile 'ca.allanwang:capsule:v4.0'
 }
 
 ```
 
-[JitPack Javadocs v4.0](https://allanwang.github.io/Capsule/)
+[Capsule Javadocs v4.0](https://jitpack.io/ca/allanwang/capsule/v4.0/javadoc/)
