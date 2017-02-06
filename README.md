@@ -25,9 +25,9 @@ And add the following dependencies:
 
 ```gradle
 dependencies {
-        compile 'com.github.AllanWang:Capsule:v3.3' //Or a specific version/commit/-SNAPSHOT
+        compile 'ca.allanwang:capsule:v3.3' //Or a specific version/commit/-SNAPSHOT
 }
 
 ```
 
-[JitPack Javadocs v3.3](https://jitpack.io/com/github/AllanWang/Capsule/v3.3/javadoc/)
+[JitPack Javadocs v3.3](https://jitpack.io/com/github/#ca.allanwang/capsule/v3.3/javadoc/)

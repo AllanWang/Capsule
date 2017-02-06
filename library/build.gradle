@@ -1,13 +1,17 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
-group = 'com.pitchedapps.capsule'
 
 ext {
     TARGET_SDK = 25
     BUILD_TOOLS = "25.0.2"
     ANDROID_SUPPORT_LIBS = "25.1.1"
+    VERSION_CODE = 33
+    VERSION_NAME="3.3"
 }
+
+group = 'com.github.AllanWang'
+version = VERSION_NAME
 
 android {
     compileSdkVersion TARGET_SDK
@@ -16,8 +20,8 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion TARGET_SDK
-        versionCode 1
-        versionName "1.0"
+        versionCode VERSION_CODE
+        versionName VERSION_NAME
     }
     buildTypes {
         release {
