@@ -1,9 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
-//group = 'ca.allanwang'
-//version = project.versionName
-
 android {
     compileSdkVersion project.targetSdk
     buildToolsVersion project.buildTools
