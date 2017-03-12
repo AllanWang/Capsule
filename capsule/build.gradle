@@ -34,19 +34,19 @@ dependencies {
     compile 'com.jakewharton.timber:timber:4.5.1'
 
     //Dialog
-    compile 'com.afollestad.material-dialogs:core:0.9.2.3'
+    compile 'com.afollestad.material-dialogs:core:0.9.4.1'
 
     //Recyclerview animations
     compile 'jp.wasabeef:recyclerview-animators:2.2.5'
 
     //Drawer
-    compile('com.mikepenz:materialdrawer:5.8.1@aar') {
+    compile('com.mikepenz:materialdrawer:5.8.2@aar') {
         transitive = true
     }
 
     //Icons
     compile "com.mikepenz:iconics-core:2.8.2@aar"
-    compile 'com.mikepenz:google-material-typeface:2.2.0.3.original@aar'
+    compile 'com.mikepenz:google-material-typeface:3.0.1.0.original@aar'
 }
 
 // build a jar with source files
