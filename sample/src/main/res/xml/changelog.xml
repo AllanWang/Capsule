@@ -6,16 +6,17 @@
     <item text="" />
     -->
 
+    <version title="v4.2"/>
+    <item text="Code cleanup" />
+    <item text="Integrate SwipRecyclerView" />
+    <item text="" />
+    <item text="" />
+    <item text="" />
+
     <version title="v4.1"/>
     <item text="Add more parcelables" />
     <item text="Update build tools" />
     <item text="Update dependencies" />
-    <item text="" />
-    <item text="" />
-    <item text="" />
-    <item text="" />
-    <item text="" />
-    <item text="" />
 
     <version title="v4.0"/>
     <item text="Complete refractoring and renaming" />

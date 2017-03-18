@@ -1,42 +1,36 @@
 package ca.allanwang.capsule.sample.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.CallSuper;
 import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
+import android.view.ViewGroup;
+
+import com.mikepenz.fastadapter.FastAdapter;
+import com.mikepenz.fastadapter.IAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import ca.allanwang.capsule.library.adapters.CapsuleAdapter;
 import ca.allanwang.capsule.library.event.CFabEvent;
-import ca.allanwang.capsule.library.fragments.SwipeRecyclerFragmentAnimated;
+import ca.allanwang.capsule.library.fragments.CapsuleFragment;
 import ca.allanwang.capsule.sample.R;
-import ca.allanwang.capsule.sample.helpers.SampleAdapter;
+import ca.allanwang.swiperecyclerview.library.SwipeRecyclerView;
+import ca.allanwang.swiperecyclerview.library.adapters.AnimationAdapter;
+import ca.allanwang.swiperecyclerview.library.animators.SlidingAnimator;
+import ca.allanwang.swiperecyclerview.library.interfaces.ISwipeRecycler;
+import ca.allanwang.swiperecyclerview.library.items.CheckBoxItem;
 
 /**
  * Created by Allan Wang on 2016-12-21.
  */
 
-public class SampleSwipeRecyclerFragment extends SwipeRecyclerFragmentAnimated<String, SampleAdapter.SampleViewHolder> {
+public class SampleSwipeRecyclerFragment extends CapsuleFragment implements ISwipeRecycler.OnRefreshListener {
+    private static final String[] ALPHABET = new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
 
-    @Override
-    protected CapsuleAdapter<String, SampleAdapter.SampleViewHolder> getAdapter(Context context) {
-        return new SampleAdapter(null);
-    }
-
-    @Override
-    @CallSuper
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        TextView textView = (TextView) inflate(R.layout.textview);
-        textView.setText("This is a header");
-        cLinear.addView(textView, 0);
-    }
+    private AnimationAdapter<CheckBoxItem> mAdapter;
 
     @Nullable
     @Override
@@ -44,25 +38,56 @@ public class SampleSwipeRecyclerFragment extends SwipeRecyclerFragmentAnimated<S
         return null;
     }
 
+    @Nullable
     @Override
-    public int getTitleId() {
-        return 0;
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        View v = inflater.inflate(R.layout.swipe_recycler_view, container, false);
+
+        mAdapter = new AnimationAdapter<>();
+        mAdapter.withOnPreClickListener(new FastAdapter.OnClickListener<CheckBoxItem>() {
+            @Override
+            public boolean onClick(View v, IAdapter<CheckBoxItem> adapter, CheckBoxItem item, int position) {
+                // consume otherwise radio/checkbox will be deselected
+                return true;
+            }
+        });
+        mAdapter.withItemEvent(new CheckBoxItem.CheckBoxClickEvent());
+
+        mAdapter.add(generateList());
+
+        SwipeRecyclerView.hook(v, R.id.swipe_recycler)
+                .setAdapter(mAdapter)
+                .setOnRefreshListener(this)
+                .setItemAnimator(new SlidingAnimator().setFromBase(true));
+        return v;
+    }
+
+    private List<CheckBoxItem> generateList() {
+        int x = 0;
+        List<CheckBoxItem> items = new ArrayList<>();
+        for (String s : ALPHABET) {
+            int count = new Random().nextInt(32);
+            for (int i = 1; i <= count; i++, x++)
+                items.add(new CheckBoxItem().withName(s + " Test " + x).withIdentifier(100 + x));
+        }
+        return items;
     }
 
     @Override
-    protected void updateList(List<String> oldList) {
+    public int getTitleId() {
+        return R.string.home;
+    }
+
+    @Override
+    public void onRefresh(final ISwipeRecycler.OnRefreshStatus statusEmitter) {
+        mAdapter.clear();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                List<String> words = new ArrayList<>();
-                Random rnd = new Random();
-                for (int i = 0; i < 80; i++) {
-                    words.add(String.valueOf(rnd.nextInt(100000)));
-                }
-                cAdapter.updateList(words);
-                hideRefresh();
+                mAdapter.add(generateList());
+                statusEmitter.onSuccess();
             }
-        }, 2000);
+        }, 3000);
     }
-
 }
