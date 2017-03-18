@@ -9,7 +9,7 @@
     <version title="v4.2"/>
     <item text="Code cleanup" />
     <item text="Integrate SwipRecyclerView" />
-    <item text="" />
+    <item text="Create abstract SRV fragment" />
     <item text="" />
     <item text="" />
 

@@ -1,11 +1,8 @@
 package ca.allanwang.capsule.sample.fragments;
 
-import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.mikepenz.fastadapter.FastAdapter;
 import com.mikepenz.fastadapter.IAdapter;
@@ -15,11 +12,10 @@ import java.util.List;
 import java.util.Random;
 
 import ca.allanwang.capsule.library.event.CFabEvent;
-import ca.allanwang.capsule.library.fragments.CapsuleFragment;
+import ca.allanwang.capsule.library.fragments.CapsuleSRVFragment;
 import ca.allanwang.capsule.sample.R;
 import ca.allanwang.swiperecyclerview.library.SwipeRecyclerView;
 import ca.allanwang.swiperecyclerview.library.adapters.AnimationAdapter;
-import ca.allanwang.swiperecyclerview.library.animators.SlidingAnimator;
 import ca.allanwang.swiperecyclerview.library.interfaces.ISwipeRecycler;
 import ca.allanwang.swiperecyclerview.library.items.CheckBoxItem;
 
@@ -27,10 +23,8 @@ import ca.allanwang.swiperecyclerview.library.items.CheckBoxItem;
  * Created by Allan Wang on 2016-12-21.
  */
 
-public class SampleSwipeRecyclerFragment extends CapsuleFragment implements ISwipeRecycler.OnRefreshListener {
+public class SampleSwipeRecyclerFragment extends CapsuleSRVFragment<CheckBoxItem> {
     private static final String[] ALPHABET = new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
-
-    private AnimationAdapter<CheckBoxItem> mAdapter;
 
     @Nullable
     @Override
@@ -38,29 +32,23 @@ public class SampleSwipeRecyclerFragment extends CapsuleFragment implements ISwi
         return null;
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        super.onCreateView(inflater, container, savedInstanceState);
-        View v = inflater.inflate(R.layout.swipe_recycler_view, container, false);
-
-        mAdapter = new AnimationAdapter<>();
-        mAdapter.withOnPreClickListener(new FastAdapter.OnClickListener<CheckBoxItem>() {
+    protected void configAdapter(AnimationAdapter<CheckBoxItem> adapter) {
+        adapter.withOnPreClickListener(new FastAdapter.OnClickListener<CheckBoxItem>() {
             @Override
             public boolean onClick(View v, IAdapter<CheckBoxItem> adapter, CheckBoxItem item, int position) {
                 // consume otherwise radio/checkbox will be deselected
                 return true;
             }
         });
-        mAdapter.withItemEvent(new CheckBoxItem.CheckBoxClickEvent());
+        adapter.withItemEvent(new CheckBoxItem.CheckBoxClickEvent());
 
-        mAdapter.add(generateList());
+        adapter.add(generateList());
+    }
 
-        SwipeRecyclerView.hook(v, R.id.swipe_recycler)
-                .setAdapter(mAdapter)
-                .setOnRefreshListener(this)
-                .setItemAnimator(new SlidingAnimator().setFromBase(true));
-        return v;
+    @Override
+    protected void configSRV(SwipeRecyclerView srv) {
+
     }
 
     private List<CheckBoxItem> generateList() {
