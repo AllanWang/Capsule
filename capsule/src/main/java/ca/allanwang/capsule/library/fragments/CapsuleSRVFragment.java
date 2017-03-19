@@ -36,7 +36,7 @@ public abstract class CapsuleSRVFragment<I extends IItem> extends CapsuleFragmen
         super.onCreateView(inflater, container, savedInstanceState);
         View v = inflater.inflate(R.layout.swipe_recycler_view, container, false);
 
-        mAdapter = new AnimationAdapter<>();
+        mAdapter = createAdapter();
         configAdapter(mAdapter);
 
         configSRV(SwipeRecyclerView.hook(v, R.id.swipe_recycler)
@@ -46,7 +46,17 @@ public abstract class CapsuleSRVFragment<I extends IItem> extends CapsuleFragmen
         return v;
     }
 
+    /**
+     * Wrapper for initializing the adapter
+     *
+     * @return new Animation Adapter
+     */
+    protected AnimationAdapter<I> createAdapter() {
+        return new AnimationAdapter<>();
+    }
+
     protected abstract void configAdapter(AnimationAdapter<I> adapter);
+
     protected abstract void configSRV(SwipeRecyclerView srv);
 
 }

@@ -37,7 +37,7 @@ dependencies {
     compile 'com.afollestad.material-dialogs:core:0.9.4.1'
 
     //SwipeRecyclerView
-    compile 'ca.allanwang:swiperecyclerview:b74cd9cdc3'
+    compile 'ca.allanwang:swiperecyclerview:0182f550cc'
 
     //Drawer
     compile('com.mikepenz:materialdrawer:5.8.2@aar') {
