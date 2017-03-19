@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.TextView;
 
+import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -23,6 +24,7 @@ import java.util.List;
 
 import ca.allanwang.capsule.library.R;
 import ca.allanwang.capsule.library.interfaces.CDrawerItem;
+import ca.allanwang.capsule.library.item.DrawerItem;
 import ca.allanwang.capsule.library.logging.CLog;
 import ca.allanwang.capsule.library.utils.ViewUtils;
 
@@ -259,6 +261,37 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
             getHeaderEmail().setText(text);
             return this;
         }
+    }
+
+    //Helper for drawer generation
+    protected class ShortCDrawerItem {
+        @StringRes
+        int titleId;
+        GoogleMaterial.Icon icon;
+        Fragment fragment;
+
+        protected ShortCDrawerItem(@StringRes int titleId, GoogleMaterial.Icon icon, Fragment fragment) {
+            this.titleId = titleId;
+            this.icon = icon;
+            this.fragment = fragment;
+        }
+
+        protected CDrawerItem getCDrawerItem() {
+            return new DrawerItem(titleId, icon, true) {
+                @Nullable
+                @Override
+                public Fragment getFragment() {
+                    return fragment;
+                }
+            };
+        }
+    }
+
+    protected CDrawerItem[] generateDrawerItems(ShortCDrawerItem... items) {
+        CDrawerItem[] drawerItems = new CDrawerItem[items.length];
+        for (int i = 0; i < items.length; i++)
+            drawerItems[i] = items[i].getCDrawerItem();
+        return drawerItems;
     }
 
 }
