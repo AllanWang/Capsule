@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.annotation.XmlRes;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
@@ -29,6 +30,17 @@ public class ChangelogDialog extends DialogFragment {
 
     private OnChangelogNeutralButtonClick neutralCallback = null;
 
+    public static void show(@NonNull final FragmentActivity activity, @XmlRes final int xmlRes) {
+        show(activity, xmlRes, null);
+    }
+
+    /**
+     * Setup for ChangelogDialog
+     *
+     * @param activity        activity for context
+     * @param xmlRes          xmlRes of Changelog file
+     * @param neutralCallback optional callback & string for neutral button
+     */
     public static void show(@NonNull final FragmentActivity activity, @XmlRes final int xmlRes,
                             @Nullable final OnChangelogNeutralButtonClick neutralCallback) {
         final Handler mHandler = new Handler();
@@ -40,8 +52,7 @@ public class ChangelogDialog extends DialogFragment {
                 mHandler.post(new TimerTask() {
                     @Override
                     public void run() {
-                        ChangelogDialog f = new ChangelogDialog();
-                        f.setNeutralCallback(neutralCallback);
+                        ChangelogDialog f = new ChangelogDialog().setNeutralCallback(neutralCallback);
                         if (!items.isEmpty()) {
                             Bundle args = new Bundle();
                             args.putParcelableArrayList(ITEM_TAG, items);
@@ -68,25 +79,27 @@ public class ChangelogDialog extends DialogFragment {
                     (ITEM_TAG);
             builder.adapter(new ChangelogAdapter(items), null);
         }
-        if ((getContext().getResources().getBoolean(R.bool.show_changelog_neutral_button)) &&
-                (getContext().getString(R.string.changelog_neutral_text).length() > 0)) {
-            builder.neutralText(R.string.changelog_neutral_text);
+        if (neutralCallback != null) {
+            builder.neutralText(neutralCallback.getNeutralText());
             builder.onNeutral(new MaterialDialog.SingleButtonCallback() {
                 @Override
                 public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                    if (neutralCallback != null)
-                        neutralCallback.onNeutralButtonClick();
+                    neutralCallback.onNeutralButtonClick();
                 }
             });
         }
         return builder.build();
     }
 
-    public void setNeutralCallback(OnChangelogNeutralButtonClick neutralCallback) {
+    public ChangelogDialog setNeutralCallback(OnChangelogNeutralButtonClick neutralCallback) {
         this.neutralCallback = neutralCallback;
+        return this;
     }
 
     public interface OnChangelogNeutralButtonClick {
+        @StringRes
+        int getNeutralText();
+
         void onNeutralButtonClick();
     }
 
