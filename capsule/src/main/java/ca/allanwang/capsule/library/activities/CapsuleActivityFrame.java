@@ -223,7 +223,7 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState = cDrawer.saveInstanceState(outState);
+        if (cDrawer != null) outState = cDrawer.saveInstanceState(outState);
         super.onSaveInstanceState(outState);
     }
 
