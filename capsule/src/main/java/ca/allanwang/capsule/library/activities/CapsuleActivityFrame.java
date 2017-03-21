@@ -204,10 +204,11 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
 
     @Override
     public void onBackPressed() {
-        if (cDrawer.isDrawerOpen()) {
-            cDrawer.closeDrawer();
-        } else if ((int) cDrawer.getCurrentSelection() != 0) {
-            cDrawer.setSelection(0);
+        if (cDrawer != null) {
+            if (cDrawer.isDrawerOpen())
+                cDrawer.closeDrawer();
+            else if ((int) cDrawer.getCurrentSelection() != 0)
+                cDrawer.setSelection(0);
         } else {
             super.onBackPressed();
         }
