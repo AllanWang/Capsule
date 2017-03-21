@@ -266,9 +266,9 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
     //Helper for drawer generation
     public class ShortCDrawerItem {
         @StringRes
-        int titleId;
-        GoogleMaterial.Icon icon;
-        Fragment fragment;
+        public int titleId;
+        public GoogleMaterial.Icon icon;
+        public Fragment fragment;
 
         public ShortCDrawerItem(@StringRes int titleId, GoogleMaterial.Icon icon, Fragment fragment) {
             this.titleId = titleId;
