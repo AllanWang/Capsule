@@ -1,6 +1,7 @@
 package ca.allanwang.capsule.library.fragments;
 
 import android.os.Bundle;
+import android.support.annotation.CallSuper;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.mikepenz.fastadapter.IItem;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import ca.allanwang.capsule.library.R;
@@ -55,6 +57,20 @@ public abstract class CapsuleSRVFragment<I extends IItem> extends CapsuleFragmen
         if (event == null || event.titleId != getTitleId()) return;
         if (event.silentRefresh) refreshSilently();
         else refresh();
+    }
+
+    @Override
+    @CallSuper
+    public void onResume() {
+        super.onResume();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    @CallSuper
+    public void onPause() {
+        EventBus.getDefault().unregister(this);
+        super.onPause();
     }
 
     /**
