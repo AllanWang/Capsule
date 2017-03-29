@@ -1,7 +1,7 @@
 # Capsule
 A UI framework library
 
-<!--Current Release 4.1-->
+<!--Current Release 4.2-->
 
 Mainly for more complex UIs, this library contains plenty of useful tools and shortened methods to make UI building easier.
 This library is meant to offer a much simpler and more functional, albeit unconventional way of coding views. Note that a lot of the variables and interfaces start with the letter "c" (ie cFab; to make it easier to remember)
@@ -30,9 +30,11 @@ And add the following dependencies (You can use a specific version, commit, or -
 
 ```gradle
 dependencies {
-        compile 'ca.allanwang:capsule:v4.1'
+        compile 'ca.allanwang:capsule:v4.2'
 }
 
 ```
 
-[Capsule Javadocs v4.1](https://jitpack.io/ca/allanwang/capsule/v4.1/javadoc/)
+[Capsule Javadocs v4.2](https://jitpack.io/ca/allanwang/capsule/v4.2/javadoc/)
+
+[Full Changelog](https://github.com/AllanWang/Capsule/blob/master/sample/src/main/res/xml/changelog.xml)
