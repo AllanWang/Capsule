@@ -1,6 +1,7 @@
 package ca.allanwang.capsule.library.fragments;
 
 import android.os.Bundle;
+import android.support.annotation.CallSuper;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,8 +9,12 @@ import android.view.ViewGroup;
 
 import com.mikepenz.fastadapter.IItem;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import ca.allanwang.capsule.library.R;
 import ca.allanwang.capsule.library.event.CFabEvent;
+import ca.allanwang.capsule.library.event.RefreshEvent;
 import ca.allanwang.swiperecyclerview.library.SwipeRecyclerView;
 import ca.allanwang.swiperecyclerview.library.adapters.AnimationAdapter;
 import ca.allanwang.swiperecyclerview.library.animators.SlidingAnimator;
@@ -23,6 +28,7 @@ import ca.allanwang.swiperecyclerview.library.interfaces.ISwipeRecycler;
 public abstract class CapsuleSRVFragment<I extends IItem> extends CapsuleFragment implements ISwipeRecycler.OnRefreshListener {
 
     protected AnimationAdapter<I> mAdapter;
+    protected SwipeRecyclerView mSRV;
 
     @Nullable
     @Override
@@ -39,11 +45,32 @@ public abstract class CapsuleSRVFragment<I extends IItem> extends CapsuleFragmen
         mAdapter = createAdapter();
         configAdapter(mAdapter);
 
-        configSRV(SwipeRecyclerView.hook(v, R.id.swipe_recycler)
+        configSRV(mSRV = SwipeRecyclerView.hook(v, R.id.swipe_recycler)
                 .setAdapter(mAdapter)
                 .setOnRefreshListener(this)
                 .setItemAnimator(new SlidingAnimator()));
         return v;
+    }
+
+    @Subscribe
+    public void refreshEvent(RefreshEvent event) {
+        if (event == null || event.titleId != getTitleId()) return;
+        if (event.silentRefresh) refreshSilently();
+        else refresh();
+    }
+
+    @Override
+    @CallSuper
+    public void onResume() {
+        super.onResume();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    @CallSuper
+    public void onPause() {
+        EventBus.getDefault().unregister(this);
+        super.onPause();
     }
 
     /**
@@ -58,5 +85,15 @@ public abstract class CapsuleSRVFragment<I extends IItem> extends CapsuleFragmen
     protected abstract void configAdapter(AnimationAdapter<I> adapter);
 
     protected abstract void configSRV(SwipeRecyclerView srv);
+
+    public void refresh() {
+        if (mSRV != null)
+            mSRV.refresh();
+    }
+
+    public void refreshSilently() {
+        if (mSRV != null)
+            mSRV.refreshSilently();
+    }
 
 }
