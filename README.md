@@ -37,4 +37,4 @@ dependencies {
 
 [Capsule Javadocs v4.2](https://jitpack.io/ca/allanwang/capsule/v4.2/javadoc/)
 
-[Full Changelog](https://github.com/AllanWang/Capsule/blob/master/sample/src/main/res/xml/changelog.xml)
+[Full Changelog](https://github.com/AllanWang/Capsule/blob/master/docs/Changelog.md)
