@@ -5,7 +5,7 @@ android {
     buildToolsVersion project.BUILD_TOOLS
 
     defaultConfig {
-        applicationId "${project.APP_GROUP}.${project.APP_ID}.sample"
+        applicationId "${project.APP_GROUP}." + project.APP_ID.toLowerCase() + ".sample"
         minSdkVersion Integer.parseInt(project.MIN_SDK)
         targetSdkVersion Integer.parseInt(project.TARGET_SDK)
         versionCode Integer.parseInt(project.VERSION_CODE)
@@ -15,7 +15,7 @@ android {
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
             output.outputFile = new File(output.outputFile.parent,
-                    "${project.APP_TAG}Sample-v${variant.versionName}.apk")
+                    "${project.APP_ID}Sample-v${variant.versionName}.apk")
         }
     }
 

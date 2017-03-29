@@ -8,11 +8,11 @@
 
     <version title="v4.2"/>
     <item text="Code cleanup" />
-    <item text="Integrate SwipRecyclerView" />
+    <item text="Integrate SwipeRecyclerView" />
     <item text="Create abstract SRV fragment" />
     <item text="Update Changelog Dialog" />
     <item text="Added ShortCDrawerItem creations" />
-    <item text="" />
+    <item text="Upgraded dependencies" />
     <item text="" />
     <item text="" />
 

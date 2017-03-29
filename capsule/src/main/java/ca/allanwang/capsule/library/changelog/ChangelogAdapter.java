@@ -29,8 +29,8 @@ class ChangelogAdapter extends RecyclerView.Adapter<ChangelogAdapter.ChangelogVH
     }
 
     private int getLayout(int position) {
-        if (mItems.get(position).isTitle()) return R.layout.changelog_title;
-        return R.layout.changelog_content;
+        if (mItems.get(position).isTitle()) return R.layout.capsule_changelog_title;
+        return R.layout.capsule_changelog_content;
     }
 
     @Override

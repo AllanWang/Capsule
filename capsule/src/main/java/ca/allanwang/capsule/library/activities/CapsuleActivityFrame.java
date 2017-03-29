@@ -53,7 +53,7 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
 
     @Override
     protected int getContentViewId() {
-        return R.layout.activity_core;
+        return R.layout.capsule_activity_core;
     }
 
     @Override
@@ -86,7 +86,7 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
 
     @Override
     protected void switchFragment(Fragment fragment) {
-        switchFragment(fragment, R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+        switchFragment(fragment, R.anim.capsule_enter, R.anim.capsule_exit, R.anim.capsule_pop_enter, R.anim.capsule_pop_exit);
     }
 
     /**

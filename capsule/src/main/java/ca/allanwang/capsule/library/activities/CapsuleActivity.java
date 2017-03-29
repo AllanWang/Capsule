@@ -60,9 +60,9 @@ public abstract class CapsuleActivity extends EventActivity {
      * Switch fragment.
      *
      * @param fragment fragment to switch to
-     * @param enter    enter animation
-     * @param exit     exit animation
-     * @param popEnter pop enter animation
+     * @param enter    capsule_enter animation
+     * @param exit     capsule_exit animation
+     * @param popEnter pop capsule_enter animation
      * @param popExit  pop exist animation
      * @see #switchFragment(Fragment) #switchFragment(Fragment)
      */

@@ -35,7 +35,7 @@ public abstract class ViewPagerFragment extends CapsuleFragment {
     @Override
     @CallSuper
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_viewpager, container, false);
+        View v = inflater.inflate(R.layout.capsule_fragment_viewpager, container, false);
         ViewPager mViewPager = (ViewPager) v.findViewById(R.id.viewpager);
         List<CPage> pages = setPages();
         ViewPagerAdapter mAdapter = setAdapter(getContext(), getChildFragmentManager(), mViewPager, pages);

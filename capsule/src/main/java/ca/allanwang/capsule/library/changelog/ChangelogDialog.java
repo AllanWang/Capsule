@@ -70,10 +70,10 @@ public class ChangelogDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         MaterialDialog.Builder builder = new MaterialDialog.Builder(getContext());
-        builder.title(R.string.changelog_dialog_title)
-                .positiveText(R.string.great);
+        builder.title(R.string.capsule_changelog_dialog_title)
+                .positiveText(R.string.capsule_great);
         if (getArguments() == null || !getArguments().containsKey(ITEM_TAG)) {
-            builder.content(R.string.empty_changelog);
+            builder.content(R.string.capsule_empty_changelog);
         } else {
             List<ChangelogXmlParser.ChangelogItem> items = getArguments().getParcelableArrayList
                     (ITEM_TAG);

@@ -4,8 +4,8 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:paddingBottom="8.4sp"
-    android:paddingLeft="@dimen/dialog_margin"
-    android:paddingRight="@dimen/dialog_margin">
+    android:paddingLeft="@dimen/capsule_dialog_margin"
+    android:paddingRight="@dimen/capsule_dialog_margin">
 
     <!--padding bottom is 14sp * 0.6-->
 
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:lineSpacingMultiplier="1.6"
         android:paddingRight="5dp"
-        android:text="@string/u2022"
+        android:text="@string/capsule_u2022"
         android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
     <TextView

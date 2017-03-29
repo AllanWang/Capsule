@@ -1,15 +1,12 @@
 <resources>
-    <string name="app_name">Library</string>
-
     <!-- Changelog Dialog Content -->
-    <string name="changelog_dialog_title">Changelog</string>
-    <string name="default_new_version_title">Update</string>
-    <string name="empty_changelog">Empty Changelog</string>
-    <string name="great">Great</string>
+    <string name="capsule_changelog_dialog_title">Changelog</string>
+    <string name="capsule_default_new_version_title">Update</string>
+    <string name="capsule_empty_changelog">Empty Changelog</string>
+    <string name="capsule_great">Great</string>
 
-    <string name="send_title">Send via</string>
-    <string name="u2022">•</string>
+    <string name="capsule_send_title">Send via</string>
+    <string name="capsule_u2022">•</string>
 
-    <string name="changelog_neutral_text"/>
-    <bool name="show_changelog_neutral_button">false</bool>
+    <bool name="capsule_show_changelog_neutral_button">false</bool>
 </resources>

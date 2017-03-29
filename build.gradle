@@ -19,6 +19,8 @@ allprojects {
     }
 }
 
+project.ext.VERSION_CODE = VERSION_NAME.replace(".", "") // play it safe; avoid suffixes
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

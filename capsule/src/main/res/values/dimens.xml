@@ -1,35 +1,35 @@
 <resources>
 
-    <dimen name="cards_padding">16dp</dimen>
-    <dimen name="cards_elevation">2dp</dimen>
-    <dimen name="cards_margin">8dp</dimen>
-    <dimen name="cards_spacing">12dp</dimen>
+    <dimen name="capsule_cards_padding">16dp</dimen>
+    <dimen name="capsule_cards_elevation">2dp</dimen>
+    <dimen name="capsule_cards_margin">8dp</dimen>
+    <dimen name="capsule_cards_spacing">12dp</dimen>
 
-    <dimen name="cards_super_small_margin">4dp</dimen>
+    <dimen name="capsule_cards_super_small_margin">4dp</dimen>
 
-    <dimen name="cards_content_margin_small">16dp</dimen>
-    <dimen name="cards_content_margin_mini">12dp</dimen>
-    <dimen name="cards_content_margin_s">10dp</dimen>
+    <dimen name="capsule_cards_content_margin_small">16dp</dimen>
+    <dimen name="capsule_cards_content_margin_mini">12dp</dimen>
+    <dimen name="capsule_cards_content_margin_s">10dp</dimen>
 
-    <dimen name="card_corner_radius">2dp</dimen>
-    <dimen name="grid_padding_vertical">8dp</dimen>
-    <dimen name="card_little_margin">6dp</dimen>
+    <dimen name="capsule_card_corner_radius">2dp</dimen>
+    <dimen name="capsule_grid_padding_vertical">8dp</dimen>
+    <dimen name="capsule_card_little_margin">6dp</dimen>
 
-    <dimen name="launchers_icons_padding">8dp</dimen>
+    <dimen name="capsule_launchers_icons_padding">8dp</dimen>
 
-    <dimen name="lists_padding">8dp</dimen>
+    <dimen name="capsule_lists_padding">8dp</dimen>
 
-    <dimen name="fab_size_normal">56dp</dimen>
-    <dimen name="fab_size_mini">40dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="capsule_fab_size_normal">56dp</dimen>
+    <dimen name="capsule_fab_size_mini">40dp</dimen>
+    <dimen name="capsule_fab_margin">16dp</dimen>
 
     <!-- Dimensions for some dialogs -->
-    <dimen name="dialog_margin">24dp</dimen>
-    <dimen name="dialog_margin_bottom">16dp</dimen>
-    <dimen name="dialog_icon_size">120dp</dimen>
+    <dimen name="capsule_dialog_margin">24dp</dimen>
+    <dimen name="capsule_dialog_margin_bottom">16dp</dimen>
+    <dimen name="capsule_dialog_icon_size">120dp</dimen>
 
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="capsule_activity_horizontal_margin">16dp</dimen>
+    <dimen name="capsule_activity_vertical_margin">16dp</dimen>
 
 </resources>

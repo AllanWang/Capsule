@@ -83,7 +83,7 @@ public class EmailBuilder {
             }
         }
         intent.putExtra(Intent.EXTRA_TEXT, emailBuilder.toString());
-        context.startActivity(Intent.createChooser(intent, (context.getResources().getString(R.string.send_title))));
+        context.startActivity(Intent.createChooser(intent, (context.getResources().getString(R.string.capsule_send_title))));
     }
 
     private static class Package {

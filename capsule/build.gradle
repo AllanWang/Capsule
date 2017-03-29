@@ -35,10 +35,10 @@ dependencies {
     compile 'com.jakewharton.timber:timber:4.5.1'
 
     //Dialog
-    compile 'com.afollestad.material-dialogs:core:0.9.4.1'
+    compile 'com.afollestad.material-dialogs:core:0.9.4.2'
 
     //SwipeRecyclerView
-    compile 'ca.allanwang:swiperecyclerview:cc7fdaea8d'
+    compile 'ca.allanwang:swiperecyclerview:c15aec5cd0'
 
     //Drawer
     compile('com.mikepenz:materialdrawer:5.8.2@aar') {

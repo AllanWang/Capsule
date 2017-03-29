@@ -31,6 +31,6 @@
 
     <!-- Custom Style for PreferenceFragmentCompat -->
     <style name="AppPreferenceRippleStyle" parent="@style/PreferenceFragment.Material">
-        <item name="android:layout">@layout/preference_ripple</item>
+        <item name="android:layout">@layout/capsule_preference_ripple</item>
     </style>
 </resources>
