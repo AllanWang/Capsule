@@ -40,7 +40,7 @@ public abstract class CapsuleSRVFragment<I extends IItem> extends CapsuleFragmen
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View v = inflater.inflate(R.layout.swipe_recycler_view, container, false);
+        View v = inflater.inflate(R.layout.srv_swipe_recycler_view, container, false);
 
         mAdapter = createAdapter();
         configAdapter(mAdapter);
