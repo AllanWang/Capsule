@@ -19,16 +19,6 @@ allprojects {
     }
 }
 
-project.ext {
-    appTag = "Capsule"
-    minSdk = 16
-    targetSdk = 25
-    buildTools = "25.0.2"
-    androidSupportLibs = "25.2.0"
-    versionCode = 40
-    versionName = "4.0"
-}
-
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

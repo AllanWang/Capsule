@@ -1,21 +1,21 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion project.targetSdk
-    buildToolsVersion project.buildTools
+    compileSdkVersion Integer.parseInt(project.TARGET_SDK)
+    buildToolsVersion project.BUILD_TOOLS
 
     defaultConfig {
-        applicationId "ca.allanwang.capsule.sample"
-        minSdkVersion project.minSdk
-        targetSdkVersion project.targetSdk
-        versionCode project.versionCode
-        versionName project.versionName
+        applicationId "${project.APP_GROUP}.${project.APP_ID}.sample"
+        minSdkVersion Integer.parseInt(project.MIN_SDK)
+        targetSdkVersion Integer.parseInt(project.TARGET_SDK)
+        versionCode Integer.parseInt(project.VERSION_CODE)
+        versionName project.VERSION_NAME
     }
 
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
             output.outputFile = new File(output.outputFile.parent,
-                    "${project.appTag}Sample-v${variant.versionName}.apk")
+                    "${project.APP_TAG}Sample-v${variant.versionName}.apk")
         }
     }
 
