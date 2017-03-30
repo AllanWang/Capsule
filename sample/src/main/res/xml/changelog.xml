@@ -9,7 +9,7 @@
     <version title="v4.3" />
     <item text="Make switchFragment public" />
     <item text="Create addFragment methods for backstacks" />
-    <item text="" />
+    <item text="Set fab events to onStart" />
     <item text="" />
     <item text="" />
 

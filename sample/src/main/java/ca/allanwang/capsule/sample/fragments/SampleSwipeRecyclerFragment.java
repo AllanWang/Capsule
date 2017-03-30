@@ -29,7 +29,7 @@ public class SampleSwipeRecyclerFragment extends CapsuleSRVFragment<CheckBoxItem
     @Nullable
     @Override
     protected CFabEvent updateFab() {
-        return null;
+        return new CFabEvent(false);
     }
 
     @Override
