@@ -32,7 +32,7 @@ public abstract class CapsuleActivity extends EventActivity {
             tag = s(((CFragmentCore) fragment).getTitleId());
         }
         getSupportFragmentManager()
-                .beginTransaction().replace(getFragmentId(), fragment, tag).addToBackStack(tag).commit();
+                .beginTransaction().replace(getFragmentId(), fragment, tag).commit();
         setTitle(tag);
     }
 
@@ -52,7 +52,7 @@ public abstract class CapsuleActivity extends EventActivity {
         }
         getSupportFragmentManager()
                 .beginTransaction().setCustomAnimations(enter, exit)
-                .replace(getFragmentId(), fragment, tag).addToBackStack(tag).commit();
+                .replace(getFragmentId(), fragment, tag).commit();
         setTitle(tag);
     }
 
@@ -75,7 +75,7 @@ public abstract class CapsuleActivity extends EventActivity {
         }
         getSupportFragmentManager()
                 .beginTransaction().setCustomAnimations(enter, exit, popEnter, popExit)
-                .replace(getFragmentId(), fragment, tag).addToBackStack(tag).commit();
+                .replace(getFragmentId(), fragment, tag).commit();
         setTitle(tag);
     }
 
