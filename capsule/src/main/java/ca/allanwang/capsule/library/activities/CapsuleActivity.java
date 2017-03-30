@@ -32,7 +32,7 @@ public abstract class CapsuleActivity extends EventActivity {
             tag = s(((CFragmentCore) fragment).getTitleId());
         }
         getSupportFragmentManager()
-                .beginTransaction().replace(getFragmentId(), fragment, tag).commit();
+                .beginTransaction().replace(getFragmentId(), fragment, tag).addToBackStack(tag).commit();
         setTitle(tag);
     }
 
@@ -45,14 +45,14 @@ public abstract class CapsuleActivity extends EventActivity {
      * @see #switchFragment(Fragment) #switchFragment(Fragment)
      */
     public void switchFragment(Fragment fragment, @AnimRes int enter,
-                                  @AnimRes int exit) {
+                               @AnimRes int exit) {
         String tag = null;
         if (fragment instanceof CFragmentCore && ((CFragmentCore) fragment).getTitleId() > 0) {
             tag = s(((CFragmentCore) fragment).getTitleId());
         }
         getSupportFragmentManager()
                 .beginTransaction().setCustomAnimations(enter, exit)
-                .replace(getFragmentId(), fragment, tag).commit();
+                .replace(getFragmentId(), fragment, tag).addToBackStack(tag).commit();
         setTitle(tag);
     }
 
@@ -67,7 +67,7 @@ public abstract class CapsuleActivity extends EventActivity {
      * @see #switchFragment(Fragment) #switchFragment(Fragment)
      */
     public void switchFragment(Fragment fragment, @AnimRes int enter,
-                                  @AnimRes int exit, @AnimRes int popEnter, @AnimRes int popExit) {
+                               @AnimRes int exit, @AnimRes int popEnter, @AnimRes int popExit) {
 
         String tag = null;
         if (fragment instanceof CFragmentCore && ((CFragmentCore) fragment).getTitleId() > 0) {
@@ -75,7 +75,7 @@ public abstract class CapsuleActivity extends EventActivity {
         }
         getSupportFragmentManager()
                 .beginTransaction().setCustomAnimations(enter, exit, popEnter, popExit)
-                .replace(getFragmentId(), fragment, tag).commit();
+                .replace(getFragmentId(), fragment, tag).addToBackStack(tag).commit();
         setTitle(tag);
     }
 

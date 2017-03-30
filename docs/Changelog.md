@@ -1,5 +1,8 @@
 # Changelog
 
+## v4.3
+* Make switchFragment public
+
 ## v4.2
 * Code cleanup
 * Integrate SwipeRecyclerView
