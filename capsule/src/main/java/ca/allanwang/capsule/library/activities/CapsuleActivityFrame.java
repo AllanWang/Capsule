@@ -212,8 +212,10 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
         if (cDrawer != null) {
             if (cDrawer.isDrawerOpen())
                 cDrawer.closeDrawer();
-            else if ((int) cDrawer.getCurrentSelection() != 0)
+            else if (getSupportFragmentManager().getBackStackEntryCount() == 0 && (int) cDrawer.getCurrentSelection() != 0)
                 cDrawer.setSelection(0);
+            else
+                super.onBackPressed();
         } else {
             super.onBackPressed();
         }
