@@ -46,7 +46,7 @@ public class MainActivity extends CapsuleActivityFrame {
     }
 
     @Override
-    protected void switchFragment(Fragment fragment) {
+    public void switchFragment(Fragment fragment) {
         if (fragment instanceof SampleSwipeRecyclerFragment) expandAppBar();
         else collapseAppBar();
         super.switchFragment(fragment);
