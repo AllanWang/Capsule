@@ -209,17 +209,20 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
 
     @Override
     public void onBackPressed() {
-        if (getSupportFragmentManager().popBackStackImmediate()) return; //fragment was popped
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportFragmentManager().popBackStack();
+            return; //fragment was popped
+        }
         if (cDrawer != null) {
             if (cDrawer.isDrawerOpen())
                 cDrawer.closeDrawer();
-            else if (getSupportFragmentManager().getBackStackEntryCount() == 0 && (int) cDrawer.getCurrentSelection() != 0)
+            else if ((int) cDrawer.getCurrentSelection() != 0)
                 cDrawer.setSelection(0);
             else
                 super.onBackPressed();
-        } else {
-            super.onBackPressed();
+            return;
         }
+        super.onBackPressed();
     }
 
     @Override

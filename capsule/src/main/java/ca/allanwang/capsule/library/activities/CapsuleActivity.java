@@ -32,16 +32,10 @@ public abstract class CapsuleActivity extends EventActivity {
         String tag = null;
         if (fragment instanceof CFragmentCore && ((CFragmentCore) fragment).getTitleId() > 0)
             tag = s(((CFragmentCore) fragment).getTitleId());
-        String backStateName = fragment.getClass().getName();
-        FragmentManager manager = getSupportFragmentManager();
-        if (!manager.popBackStackImmediate(backStateName, 0)) { //fragment not in back stack, create it.
-            FragmentTransaction ft = manager.beginTransaction();
-            ft.replace(getFragmentId(), fragment);
-            ft.addToBackStack(backStateName);
-            if (callback != null) callback.onPreTransaction(ft);
-            ft.commit();
-        }
-
+        FragmentTransaction transaction = getSupportFragmentManager()
+                .beginTransaction().add(getFragmentId(), fragment).addToBackStack(null);
+        if (callback != null) callback.onPreTransaction(transaction);
+        transaction.commit();
         setTitle(tag);
     }
 
