@@ -6,35 +6,36 @@
     <item text="" />
     -->
 
-    <version title="v4.2"/>
+    <version title="v4.3" />
+    <item text="Make switchFragment public" />
+
+    <version title="v4.2" />
     <item text="Code cleanup" />
     <item text="Integrate SwipeRecyclerView" />
     <item text="Create abstract SRV fragment" />
     <item text="Update Changelog Dialog" />
     <item text="Added ShortCDrawerItem creations" />
     <item text="Upgraded dependencies" />
-    <item text="" />
-    <item text="" />
 
-    <version title="v4.1"/>
+    <version title="v4.1" />
     <item text="Add more parcelables" />
     <item text="Update build tools" />
     <item text="Update dependencies" />
 
-    <version title="v4.0"/>
+    <version title="v4.0" />
     <item text="Complete refractoring and renaming" />
     <item text="Proper namespacing" />
     <item text="Consumer proguard for capsule" />
     <item text="Use ValueAnimator for ripples" />
     <item text="Self generated javadocs" />
 
-    <version title="v3.3"/>
+    <version title="v3.3" />
     <item text="Minor animation changes" />
     <item text="Code cleanup" />
     <item text="More javadocs" />
     <item text="Dependency updates" />
 
-    <version title="v3.2"/>
+    <version title="v3.2" />
     <item text="Made AnimUtils compatible to Kitkat" />
     <item text="Created SwipeRecyclerFragment" />
     <item text="Added RecyclerView animations" />
@@ -47,12 +48,12 @@
     <item text="Added ViewPager modifier in ViewPagerFragment" />
     <item text="Better bulleted Changelog alignment" />
 
-    <version title="v3.1"/>
+    <version title="v3.1" />
     <item text="Added Capsule reload option with drawer position saved" />
     <item text="Cleaned up AnimUtils" />
     <item text="Updated dependencies" />
 
-    <version title="v3.0"/>
+    <version title="v3.0" />
     <item text="First fully stable release" />
     <item text="Events for Fab and Snackbar" />
     <item text="RippleCanvas for backgrounds with circular animations" />
@@ -60,31 +61,31 @@
     <item text="More features for CFabEvent" />
     <item text="Some extra Javadocs" />
 
-    <version title="v2.2"/>
+    <version title="v2.2" />
     <item text="Integrated EventBus - Fragments are no longer forced to extend CapsuleFragment" />
     <item text="Split up onCreate to allow for more flexibility" />
     <item text="Simplified fab creation" />
 
-    <version title="v2.1"/>
+    <version title="v2.1" />
     <item text="Finished up viewpager" />
     <item text="Everything is working now" />
     <item text="Preparation for EventBus" />
 
-    <version title="v2.0"/>
+    <version title="v2.0" />
     <item text="Added Activity Frame for easier activity creation" />
     <item text="Added viewpager support" />
     <item text="Modified Fab to be more customisable" />
     <item text="Lots of interfaces and separations" />
 
-    <version title="v1.1"/>
+    <version title="v1.1" />
     <item text="Added coordinator layout customization" />
     <item text="Added snackbars for activities" />
 
-    <version title="v1.0"/>
+    <version title="v1.0" />
     <item text="Separated Activity extensions for simplified reading" />
     <item text="Added some javadocs" />
     <item text="Fixed permission crash for null array" />
 
-    <version title="v0.1:"/>
-    <item text="Initial"/>
+    <version title="v0.1:" />
+    <item text="Initial" />
 </resources>

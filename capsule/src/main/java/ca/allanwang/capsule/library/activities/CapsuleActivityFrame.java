@@ -85,7 +85,7 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
     }
 
     @Override
-    protected void switchFragment(Fragment fragment) {
+    public void switchFragment(Fragment fragment) {
         switchFragment(fragment, R.anim.capsule_enter, R.anim.capsule_exit, R.anim.capsule_pop_enter, R.anim.capsule_pop_exit);
     }
 
