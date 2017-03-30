@@ -36,7 +36,7 @@ public abstract class CapsuleActivity extends EventActivity {
         FragmentManager manager = getSupportFragmentManager();
         if (!manager.popBackStackImmediate(backStateName, 0)) { //fragment not in back stack, create it.
             FragmentTransaction ft = manager.beginTransaction();
-            ft.replace(getFragmentId(), fragment, tag);
+            ft.replace(getFragmentId(), fragment);
             ft.addToBackStack(backStateName);
             if (callback != null) callback.onPreTransaction(ft);
             ft.commit();
