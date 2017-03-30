@@ -209,6 +209,7 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
 
     @Override
     public void onBackPressed() {
+        if (getSupportFragmentManager().popBackStackImmediate()) return; //fragment was popped
         if (cDrawer != null) {
             if (cDrawer.isDrawerOpen())
                 cDrawer.closeDrawer();
