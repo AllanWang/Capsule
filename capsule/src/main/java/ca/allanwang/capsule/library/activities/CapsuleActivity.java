@@ -26,7 +26,7 @@ public abstract class CapsuleActivity extends EventActivity {
      *
      * @param fragment new fragment to switch to
      */
-    protected void switchFragment(Fragment fragment) {
+    public void switchFragment(Fragment fragment) {
         String tag = null;
         if (fragment instanceof CFragmentCore && ((CFragmentCore) fragment).getTitleId() > 0) {
             tag = s(((CFragmentCore) fragment).getTitleId());
@@ -44,7 +44,7 @@ public abstract class CapsuleActivity extends EventActivity {
      * @param exit     animation
      * @see #switchFragment(Fragment) #switchFragment(Fragment)
      */
-    protected void switchFragment(Fragment fragment, @AnimRes int enter,
+    public void switchFragment(Fragment fragment, @AnimRes int enter,
                                   @AnimRes int exit) {
         String tag = null;
         if (fragment instanceof CFragmentCore && ((CFragmentCore) fragment).getTitleId() > 0) {
@@ -66,7 +66,7 @@ public abstract class CapsuleActivity extends EventActivity {
      * @param popExit  pop exist animation
      * @see #switchFragment(Fragment) #switchFragment(Fragment)
      */
-    protected void switchFragment(Fragment fragment, @AnimRes int enter,
+    public void switchFragment(Fragment fragment, @AnimRes int enter,
                                   @AnimRes int exit, @AnimRes int popEnter, @AnimRes int popExit) {
 
         String tag = null;
