@@ -2,7 +2,7 @@
 
 ## v4.3
 * Make switchFragment public
-* Add backStack fragmenting
+* Create addFragment methods for backstacks
 
 ## v4.2
 * Code cleanup

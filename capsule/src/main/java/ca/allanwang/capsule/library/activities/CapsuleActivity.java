@@ -5,6 +5,7 @@ import android.support.annotation.AnimRes;
 import android.support.annotation.CallSuper;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import ca.allanwang.capsule.library.interfaces.CFragmentCore;
@@ -31,10 +32,16 @@ public abstract class CapsuleActivity extends EventActivity {
         String tag = null;
         if (fragment instanceof CFragmentCore && ((CFragmentCore) fragment).getTitleId() > 0)
             tag = s(((CFragmentCore) fragment).getTitleId());
-        FragmentTransaction transaction = getSupportFragmentManager()
-                .beginTransaction().addToBackStack(tag);
-        if (callback != null) callback.onPreTransaction(transaction);
-        transaction.commit();
+        String backStateName = fragment.getClass().getName();
+        FragmentManager manager = getSupportFragmentManager();
+        if (!manager.popBackStackImmediate(backStateName, 0)) { //fragment not in back stack, create it.
+            FragmentTransaction ft = manager.beginTransaction();
+            ft.replace(getFragmentId(), fragment, tag);
+            ft.addToBackStack(backStateName);
+            if (callback != null) callback.onPreTransaction(ft);
+            ft.commit();
+        }
+
         setTitle(tag);
     }
 
