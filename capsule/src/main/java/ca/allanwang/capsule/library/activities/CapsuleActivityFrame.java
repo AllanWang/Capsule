@@ -89,6 +89,11 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
         switchFragment(fragment, R.anim.capsule_enter, R.anim.capsule_exit, R.anim.capsule_pop_enter, R.anim.capsule_pop_exit);
     }
 
+    @Override
+    public void addFragment(Fragment fragment) {
+        addFragment(fragment, R.anim.capsule_enter, R.anim.capsule_exit, R.anim.capsule_pop_enter, R.anim.capsule_pop_exit);
+    }
+
     /**
      * Sets up account header
      * will not be added if null
