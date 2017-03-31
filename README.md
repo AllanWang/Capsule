@@ -11,7 +11,7 @@ Check out the [sample app code](https://github.com/AllanWang/Capsule/tree/master
 
 ------------
 
-<img src="https://github.com/AllanWang/Storage-Hub/blob/master/capsule_showcase.gif" height="75%">
+<img src="https://github.com/AllanWang/Storage-Hub/blob/master/capsule_showcase.gif" width="25%">
 
 ------------
 
