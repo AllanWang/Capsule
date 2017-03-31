@@ -38,3 +38,35 @@ dependencies {
 [Capsule Javadocs v4.2](https://jitpack.io/ca/allanwang/capsule/v4.2/javadoc/)
 
 [Full Changelog](https://github.com/AllanWang/Capsule/blob/master/docs/Changelog.md)
+
+# Features
+
+## Easy Activity &amp; Fragment handling
+
+One of Capsule's primary goals is to simplify the creation of Activities and Fragment frames. Most apps come with the standard design of a drawer, toolbar, etc. Capsule bundles all that into [CapsuleActivityFrame](https://github.com/AllanWang/Capsule/blob/master/capsule/src/main/java/ca/allanwang/capsule/library/activities/CapsuleActivityFrame.java), along with CapsuleFragment, which can easily modify the FAB, expand/hide the appbar, add a viewpager with tabs, show snackbars, and much more.
+
+## Seamless Changelog Dialog
+
+Want a changelog dialog? Simply show one through
+
+```java
+ChangelogDialog.show(activity, xmlRes);
+```
+
+The xml is easy to create, and contains the following format:
+
+```xml
+<version title="version here"/>
+<item text="item here"/>
+<item text="more items"/>
+```
+
+The items will be automatically bulleted, and empty tags will be ignored. There is also an optional neutral callback button in the dialog that can be set up.
+
+## SwipeRecyclerView
+
+Capsule integrates with SwipeRecyclerView, and supports its own [CapsuleSRVFragment](https://github.com/AllanWang/Capsule/blob/master/capsule/src/main/java/ca/allanwang/capsule/library/fragments/CapsuleSRVFragment.java). This fragment will automatically extend our base fragment, provide the layout of a SRV, along with callbacks for easy refreshes and manipulations.
+
+## Utilities
+
+Capsule comes with a LOT of utilities, all available [here](https://github.com/AllanWang/Capsule/tree/master/capsule/src/main/java/ca/allanwang/capsule/library/utils). Utils range from colour transformations to animations to email builders.
