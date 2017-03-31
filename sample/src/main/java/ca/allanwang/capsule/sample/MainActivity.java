@@ -13,7 +13,6 @@ import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 
 import ca.allanwang.capsule.library.activities.CapsuleActivityFrame;
 import ca.allanwang.capsule.library.changelog.ChangelogDialog;
-import ca.allanwang.capsule.library.interfaces.CCallback;
 import ca.allanwang.capsule.library.interfaces.CDrawerItem;
 import ca.allanwang.capsule.library.item.DrawerItem;
 import ca.allanwang.capsule.sample.fragments.FragmentSample;
@@ -76,48 +75,12 @@ public class MainActivity extends CapsuleActivityFrame {
     @Override
     protected CDrawerItem[] getDrawerItems() {
         return new CDrawerItem[]{
-                new DrawerItem(R.string.home, GoogleMaterial.Icon.gmd_dashboard, true) {
-                    @Nullable
-                    @Override
-                    public Fragment getFragment() {
-                        return new FragmentSample();
-                    }
-                },
-                new DrawerItem(R.string.viewpager, GoogleMaterial.Icon.gmd_view_column, true) {
-                    @Nullable
-                    @Override
-                    public Fragment getFragment() {
-                        return new ViewPagerFragmentSample();
-                    }
-                },
-                new DrawerItem(R.string.refresh_recycler, GoogleMaterial.Icon.gmd_refresh, true) {
-                    @Nullable
-                    @Override
-                    public Fragment getFragment() {
-                        return new SampleSwipeRecyclerFragment();
-                    }
-                },
-                new DrawerItem(R.string.basic_with_fab, GoogleMaterial.Icon.gmd_domain, true) {
-                    @Nullable
-                    @Override
-                    public Fragment getFragment() {
-                        return new FragmentSample();
-                    }
-                },
-                new DrawerItem(R.string.basic_no_fab, GoogleMaterial.Icon.gmd_extension, true) {
-                    @Nullable
-                    @Override
-                    public Fragment getFragment() {
-                        return new FragmentSampleNoFab();
-                    }
-                },
-                new DrawerItem(R.string.ripple, GoogleMaterial.Icon.gmd_blur_circular, true) {
-                    @Nullable
-                    @Override
-                    public Fragment getFragment() {
-                        return new RippleFragment();
-                    }
-                }
+                new DrawerItem(R.string.home, GoogleMaterial.Icon.gmd_dashboard, true, FragmentSample::new),
+                new DrawerItem(R.string.viewpager, GoogleMaterial.Icon.gmd_view_column, true, ViewPagerFragmentSample::new),
+                new DrawerItem(R.string.refresh_recycler, GoogleMaterial.Icon.gmd_refresh, true, SampleSwipeRecyclerFragment::new),
+                new DrawerItem(R.string.basic_with_fab, GoogleMaterial.Icon.gmd_domain, true, FragmentSample::new),
+                new DrawerItem(R.string.basic_no_fab, GoogleMaterial.Icon.gmd_extension, true, FragmentSampleNoFab::new),
+                new DrawerItem(R.string.ripple, GoogleMaterial.Icon.gmd_blur_circular, true, RippleFragment::new)
         };
     }
 
