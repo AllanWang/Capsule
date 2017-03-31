@@ -76,3 +76,7 @@ Capsule integrates with SwipeRecyclerView, and supports its own [CapsuleSRVFragm
 ## Utilities
 
 Capsule comes with a LOT of utilities, all available [here](https://github.com/AllanWang/Capsule/tree/master/capsule/src/main/java/ca/allanwang/capsule/library/utils). Utils range from colour transformations to animations to email builders.
+
+## RippleView
+
+Ripples are one of the defining changes for Material Design. However, it is often hard to implement properly. RippleView gives you a background capable of forming (many) ripples, which is also a great way to transition into a new background colour. An example would be a RippleView behind a toolbar, and sending a ripple based on the contents, much like that in Google Calendar.
