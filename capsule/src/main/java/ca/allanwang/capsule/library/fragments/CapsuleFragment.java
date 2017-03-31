@@ -20,8 +20,8 @@ import ca.allanwang.capsule.library.utils.EventUtils;
 public abstract class CapsuleFragment extends BaseFragment {
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onAttach(Context context) {
+        super.onAttach(context);
         postEvent(updateFabShell());
     }
 
