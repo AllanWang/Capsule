@@ -2,10 +2,6 @@ package ca.allanwang.capsule.sample.fragments;
 
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.view.View;
-
-import com.mikepenz.fastadapter.FastAdapter;
-import com.mikepenz.fastadapter.IAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,12 +30,9 @@ public class SampleSwipeRecyclerFragment extends CapsuleSRVFragment<CheckBoxItem
 
     @Override
     protected void configAdapter(AnimationAdapter<CheckBoxItem> adapter) {
-        adapter.withOnPreClickListener(new FastAdapter.OnClickListener<CheckBoxItem>() {
-            @Override
-            public boolean onClick(View v, IAdapter<CheckBoxItem> adapter, CheckBoxItem item, int position) {
-                // consume otherwise radio/checkbox will be deselected
-                return true;
-            }
+        adapter.withOnPreClickListener((v, adapter1, item, position) -> {
+            // consume otherwise radio/checkbox will be deselected
+            return true;
         });
         adapter.withItemEvent(new CheckBoxItem.CheckBoxClickEvent());
 
@@ -70,12 +63,9 @@ public class SampleSwipeRecyclerFragment extends CapsuleSRVFragment<CheckBoxItem
     @Override
     public void onRefresh(final ISwipeRecycler.OnRefreshStatus statusEmitter) {
         mAdapter.clear();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mAdapter.add(generateList());
-                statusEmitter.onSuccess();
-            }
-        }, 3000);
+        new Handler().postDelayed(() -> {
+            mAdapter.add(generateList());
+            statusEmitter.onSuccess();
+        }, 1000);
     }
 }

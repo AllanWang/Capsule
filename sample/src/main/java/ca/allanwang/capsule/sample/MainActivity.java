@@ -67,7 +67,7 @@ public class MainActivity extends CapsuleActivityFrame {
                 .withProfileImagesClickable(false)
                 .withResetDrawerOnProfileListClick(false)
                 .addProfiles(
-                        new ProfileDrawerItem().withIcon(ContextCompat.getDrawable(this, R.drawable.ctf))
+                        new ProfileDrawerItem().withIcon(ContextCompat.getDrawable(this, R.mipmap.ic_launcher))
                 )
                 .withSelectionListEnabled(false)
                 .withSelectionListEnabledForSingleProfile(false);

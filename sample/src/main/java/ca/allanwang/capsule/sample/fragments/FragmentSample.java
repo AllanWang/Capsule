@@ -33,23 +33,13 @@ public class FragmentSample extends CapsuleFragment {
         FrameLayout frame = (FrameLayout) v.findViewById(R.id.fragment_main);
         frame.setBackgroundColor(ColourUtils.randomLightColor());
 //        AnimUtils.rootCircularReview(v);
-        v.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                snackbar(new SnackbarEvent("TEST"));
-            }
-        });
+        v.findViewById(R.id.button).setOnClickListener(view -> snackbar(new SnackbarEvent("TEST")));
         return v;
     }
 
     @Nullable
     @Override
     protected CFabEvent updateFab() {
-        return new CFabEvent(GoogleMaterial.Icon.gmd_3d_rotation, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                snackbar(new SnackbarEvent("Hi"));
-            }
-        });
+        return new CFabEvent(GoogleMaterial.Icon.gmd_3d_rotation, v -> snackbar(new SnackbarEvent("Hi")));
     }
 }

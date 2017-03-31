@@ -9,8 +9,8 @@
     <version title="v4.3" />
     <item text="Make switchFragment public" />
     <item text="Create addFragment methods for backstacks" />
-    <item text="Set fab events to onStart" />
-    <item text="" />
+    <item text="Switch to Java 8" />
+    <item text="Updated sample and readme" />
     <item text="" />
 
 

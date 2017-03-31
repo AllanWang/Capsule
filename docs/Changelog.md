@@ -3,7 +3,8 @@
 ## v4.3
 * Make switchFragment public
 * Create addFragment methods for backstacks
-* Set fab events to onStart
+* Switch to Java 8
+* Updated sample and readme
 
 ## v4.2
 * Code cleanup

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--from ctf-->
-    <color name="colorPrimary">#FFD50000</color>
-    <color name="colorPrimaryDark">#FFaa0000</color>
-    <color name="colorAccent">#FFD50000</color>
+    <color name="colorPrimary">#4BAE4F</color>
+    <color name="colorPrimaryDark">#378D3B</color>
+    <color name="colorAccent">#4BAE4F</color>
     <color name="windowBackground">#FF827A75</color>
     <color name="windowBackgroundDark">#FF827A75</color>
     <color name="darkerGrey">#212121</color>

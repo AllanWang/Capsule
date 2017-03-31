@@ -41,7 +41,7 @@ dependencies {
 
 # Features
 
-## Easy Activity &amp; Fragment handling
+## Easy Activity &amp; Fragment Handling
 
 One of Capsule's primary goals is to simplify the creation of Activities and Fragment frames. Most apps come with the standard design of a drawer, toolbar, etc. Capsule bundles all that into [CapsuleActivityFrame](https://github.com/AllanWang/Capsule/blob/master/capsule/src/main/java/ca/allanwang/capsule/library/activities/CapsuleActivityFrame.java), along with CapsuleFragment, which can easily modify the FAB, expand/hide the appbar, add a viewpager with tabs, show snackbars, and much more.
 

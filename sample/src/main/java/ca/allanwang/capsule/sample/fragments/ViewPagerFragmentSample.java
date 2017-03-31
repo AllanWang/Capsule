@@ -10,6 +10,9 @@ import ca.allanwang.capsule.sample.R;
 
 /**
  * Created by Allan Wang on 2016-10-30.
+ *
+ * Setting up a ViewPagerFragment is this easy
+ * Simply return the list of fragments held in the tabs!
  */
 
 public class ViewPagerFragmentSample extends ViewPagerFragment {
