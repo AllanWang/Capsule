@@ -11,6 +11,10 @@ Check out the [sample app code](https://github.com/AllanWang/Capsule/tree/master
 
 ------------
 
+<img src="https://github.com/AllanWang/Storage-Hub/blob/master/capsule_showcase.gif">
+
+------------
+
 Capsule is available on JitPack
 
 [![](https://jitpack.io/v/ca.allanwang/capsule.svg)](https://jitpack.io/#ca.allanwang/capsule)
