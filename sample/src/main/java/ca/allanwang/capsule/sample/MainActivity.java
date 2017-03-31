@@ -37,12 +37,7 @@ public class MainActivity extends CapsuleActivityFrame {
 //        new CustomizeToolbar().setHeight(70);
         new CustomizeToolbar().hideTitleOnExpand().setHeight(200);
 
-        onVersionUpdate(BuildConfig.VERSION_CODE, new CCallback() {
-            @Override
-            public void onResult() {
-                ChangelogDialog.show(MainActivity.this, R.xml.changelog, null);
-            }
-        });
+        onVersionUpdate(BuildConfig.VERSION_CODE, () -> ChangelogDialog.show(MainActivity.this, R.xml.changelog, null));
     }
 
     @Override

@@ -275,41 +275,4 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
         }
     }
 
-    //Helper for drawer generation
-    public class ShortCDrawerItem {
-        @StringRes
-        public int titleId;
-        public GoogleMaterial.Icon icon;
-        public Fragment fragment;
-
-        public ShortCDrawerItem(@StringRes int titleId, GoogleMaterial.Icon icon, Fragment fragment) {
-            this.titleId = titleId;
-            this.icon = icon;
-            this.fragment = fragment;
-        }
-
-        public CDrawerItem getCDrawerItem() {
-            return new DrawerItem(titleId, icon, true) {
-                @Nullable
-                @Override
-                public Fragment getFragment() {
-                    return fragment;
-                }
-            };
-        }
-    }
-
-    /**
-     * Shorter way of creating CDrawerItem[] when all items are primary
-     *
-     * @param items data for item creation
-     * @return array of CDrawerItems
-     */
-    protected CDrawerItem[] generateDrawerItems(ShortCDrawerItem... items) {
-        CDrawerItem[] drawerItems = new CDrawerItem[items.length];
-        for (int i = 0; i < items.length; i++)
-            drawerItems[i] = items[i].getCDrawerItem();
-        return drawerItems;
-    }
-
 }
