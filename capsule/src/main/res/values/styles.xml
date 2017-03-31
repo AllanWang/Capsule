@@ -1,36 +1,34 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="AppTheme.Base" />
+    <style name="CapsuleAppTheme" parent="CapsuleAppTheme.Base" />
 
-    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="CapsuleAppTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
+    <style name="CapsuleAppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="CapsuleAppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="CapsuleAppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="CapsuleRipplePreferenceTheme" parent="@style/AppTheme">
-        <item name="preferenceTheme">@style/PreferenceRippleTheme</item>
+    <style name="CapsuleRipplePreferenceTheme" parent="@style/CapsuleAppTheme">
+        <item name="preferenceTheme">@style/CapsulePreferenceRippleTheme</item>
     </style>
 
-    <style name="PreferenceRippleTheme" parent="@style/PreferenceThemeOverlay.v14.Material">
-        <item name="preferenceFragmentCompatStyle">
-            @style/AppPreferenceRippleStyle
-        </item>
+    <style name="CapsulePreferenceRippleTheme" parent="@style/PreferenceThemeOverlay.v14.Material">
+        <item name="preferenceFragmentCompatStyle">@style/CapsuleAppPreferenceRippleStyle</item>
     </style>
 
     <!-- Custom Style for PreferenceFragmentCompat -->
-    <style name="AppPreferenceRippleStyle" parent="@style/PreferenceFragment.Material">
+    <style name="CapsuleAppPreferenceRippleStyle" parent="@style/PreferenceFragment.Material">
         <item name="android:layout">@layout/capsule_preference_ripple</item>
     </style>
 </resources>

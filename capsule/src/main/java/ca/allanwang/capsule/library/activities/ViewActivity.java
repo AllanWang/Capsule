@@ -38,7 +38,7 @@ abstract class ViewActivity extends PermissionActivity {
 
     @Override
     public FloatingActionButton getFab() {
-        if (cFab == null) throw new RuntimeException(s(R.string.fab_not_set));
+        if (cFab == null) throw new RuntimeException(s(R.string.capsule_fab_not_set));
         return cFab;
     }
 
@@ -111,9 +111,9 @@ abstract class ViewActivity extends PermissionActivity {
      */
     private void ceAppBar(boolean expand, boolean animate) {
         if (cAppBarLayout == null)
-            throw new RuntimeException(sf(R.string.generic_not_set, "cAppBarLayout"));
+            throw new RuntimeException(sf(R.string.capsule_generic_not_set, "cAppBarLayout"));
         if (cCoordinatorLayout == null)
-            throw new RuntimeException(sf(R.string.generic_not_set, "cCoordinatorLayout"));
+            throw new RuntimeException(sf(R.string.capsule_generic_not_set, "cCoordinatorLayout"));
         cAppBarLayout.setExpanded(expand, animate);
         cCoordinatorLayout.setScrollAllowed(expand);
     }
@@ -142,7 +142,7 @@ abstract class ViewActivity extends PermissionActivity {
      */
     protected View addCollapsingToolbarView(View view) {
         if (cCollapsingToolbarLayout == null)
-            throw new NullPointerException(sf(R.string.generic_not_set, "CollapsingToolbarLayout"));
+            throw new NullPointerException(sf(R.string.capsule_generic_not_set, "CollapsingToolbarLayout"));
         cCollapsingToolbarLayout.setTitleEnabled(true);
         cCollapsingToolbarLayout.addView(view, 0);
         return view;
@@ -161,14 +161,14 @@ abstract class ViewActivity extends PermissionActivity {
 
     public void showTabs(@NonNull ViewPager viewPager) {
         if (cTabs == null)
-            throw new NullPointerException(sf(R.string.generic_not_set, "TabLayout"));
+            throw new NullPointerException(sf(R.string.capsule_generic_not_set, "TabLayout"));
         cTabs.setupWithViewPager(viewPager);
         AnimUtils.slideEnter(cTabs);
 //        cTabs.setVisibility(View.VISIBLE);
     }
 
     public void hideTabs() {
-        if (cTabs == null) throw new RuntimeException(sf(R.string.generic_not_set, "TabLayout"));
+        if (cTabs == null) throw new RuntimeException(sf(R.string.capsule_generic_not_set, "TabLayout"));
         AnimUtils.slideExit(cTabs, new AnimUtils.ViewCallback() {
             @Override
             public void onFinish(View v) {
@@ -236,7 +236,7 @@ abstract class ViewActivity extends PermissionActivity {
 
         public CustomizeToolbar() {
             if (cCollapsingToolbarLayout == null)
-                throw new NullPointerException(sf(R.string.generic_not_set, "CollapsingToolbar"));
+                throw new NullPointerException(sf(R.string.capsule_generic_not_set, "CollapsingToolbar"));
         }
 
         public CustomizeToolbar setHeight(int dp) {

@@ -1,18 +1,18 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="AppTheme.Base" />
+    <style name="CapsuleAppTheme" parent="CapsuleAppTheme.Base" />
     <style name="AppTheme.Base" parent="MaterialDrawerTheme.Light.DarkToolbar.ActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="preferenceTheme">@style/PreferenceRippleTheme</item>
+        <item name="preferenceTheme">@style/CapsulePreferenceRippleTheme</item>
     </style>
 
     <style name="AppTheme.Dark" parent="MaterialDrawerTheme.ActionBar"/>
 
-    <style name="AppTheme.NoActionBar">
+    <style name="CapsuleAppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>

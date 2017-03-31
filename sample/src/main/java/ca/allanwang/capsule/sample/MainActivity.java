@@ -151,8 +151,8 @@ public class MainActivity extends CapsuleActivityFrame {
 
     public int switchTheme() {
         if (new SamplePrefs(this).switchTheme()) {
-            setTheme(R.style.AppTheme);
-            return R.style.AppTheme;
+            setTheme(R.style.CapsuleAppTheme);
+            return R.style.CapsuleAppTheme;
         } else {
             setTheme(R.style.AppTheme_Dark);
             return R.style.AppTheme_Dark;
