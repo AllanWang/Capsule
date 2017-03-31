@@ -11,6 +11,8 @@ Check out the [sample app code](https://github.com/AllanWang/Capsule/tree/master
 
 ------------
 
+## Demo
+
 <img src="https://github.com/AllanWang/Storage-Hub/blob/master/capsule_showcase.gif" width="35%">
 
 ------------
