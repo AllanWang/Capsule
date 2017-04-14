@@ -25,9 +25,8 @@ public abstract class ParcelableMap<K, V, M extends Map<K, V>> implements Parcel
     protected ParcelableMap(Parcel in) {
         int mapSize = in.readInt();
         this.mMap = createMap(mapSize);
-        for (int i = 0; i < mapSize; i++) {
+        for (int i = 0; i < mapSize; i++)
             this.mMap.put(readKeyFromParcel(in), readValueFromParcel(in));
-        }
     }
 
     @Override

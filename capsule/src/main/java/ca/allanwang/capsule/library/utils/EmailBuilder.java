@@ -60,14 +60,13 @@ public class EmailBuilder {
         intent.putExtra(Intent.EXTRA_SUBJECT, context.getResources().getString(emailSubject));
         StringBuilder emailBuilder = new StringBuilder();
         emailBuilder.append(message).append("\n\n");
-        if (deviceDetails) {
+        if (deviceDetails)
             emailBuilder.append("\nOS Version: ").append(System.getProperty("os.version")).append("(").append(Build.VERSION.INCREMENTAL).append(")")
                     .append("\nOS API Level: ").append(Build.VERSION.SDK_INT)
                     .append("\nDevice: ").append(Build.DEVICE)
                     .append("\nManufacturer: ").append(Build.MANUFACTURER)
                     .append("\nModel (and Product): ").append(Build.MODEL).append(" (").append(Build.PRODUCT).append(")")
                     .append("\n");
-        }
 
         try {
             PackageInfo appInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
@@ -77,11 +76,10 @@ public class EmailBuilder {
             CLog.e("EmailBuilder packageInfo not found");
         }
 
-        for (Package p : packageList) {
-            if (Utils.isAppInstalled(context, p.packageName)) {
+        for (Package p : packageList)
+            if (Utils.isAppInstalled(context, p.packageName))
                 emailBuilder.append(String.format("\n%s is installed", p.appName));
-            }
-        }
+
         intent.putExtra(Intent.EXTRA_TEXT, emailBuilder.toString());
         context.startActivity(Intent.createChooser(intent, (context.getResources().getString(R.string.capsule_send_title))));
     }

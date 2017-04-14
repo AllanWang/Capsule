@@ -44,17 +44,15 @@ public class PermissionResult {
     }
 
     public boolean isAllGranted() {
-        for (CPR c : mResults) {
+        for (CPR c : mResults)
             if (!c.mGranted) return false;
-        }
         return true;
     }
 
     private String[] getByGrant(final boolean b) {
         List<String> result = new ArrayList<>();
-        for (CPR c : mResults) {
+        for (CPR c : mResults)
             if (c.mGranted == b) result.add(c.mPermission);
-        }
         return result.toArray(new String[result.size()]);
     }
 

@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.TextView;
 
-import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -24,7 +23,6 @@ import java.util.List;
 
 import ca.allanwang.capsule.library.R;
 import ca.allanwang.capsule.library.interfaces.CDrawerItem;
-import ca.allanwang.capsule.library.item.DrawerItem;
 import ca.allanwang.capsule.library.logging.CLog;
 import ca.allanwang.capsule.library.utils.ViewUtils;
 
@@ -187,22 +185,20 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
             for (int i = 0; i < items.length; i++) {
                 CDrawerItem item = items[i];
                 mDrawerItems.add(item);
-                if (item.getTitleId() == -1) {
+                if (item.getTitleId() == -1)
                     builder.addDrawerItems(new DividerDrawerItem());
-                } else if (item.isPrimary()) {
+                else if (item.isPrimary()) {
                     PrimaryDrawerItem drawerItem = new PrimaryDrawerItem().withName(item.getTitleId()).withIdentifier(i);
-                    if (item.getIcon() != null) {
+                    if (item.getIcon() != null)
                         drawerItem.withIcon(ViewUtils.iconDrawable(this, item.getIcon())).withIconTintingEnabled(true);
-                    }
                     builder.addDrawerItems(drawerItem);
                 } else {
                     SecondaryDrawerItem drawerItem = new SecondaryDrawerItem().withName(item.getTitleId()).withIdentifier(i);
                     builder.addDrawerItems(drawerItem);
                 }
             }
-        } else {
+        } else
             CLog.d("Drawer items is an empty list");
-        }
         setupDrawerFurther(builder);
         cDrawer = builder.build();
     }

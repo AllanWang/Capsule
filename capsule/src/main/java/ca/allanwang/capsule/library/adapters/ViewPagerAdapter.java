@@ -34,9 +34,8 @@ public class ViewPagerAdapter extends FragmentPagerAdapter implements ViewPager.
         super(fm);
         mContext = context;
         mPages = pages;
-        if (pages.size() <= 1) {
+        if (pages.size() <= 1)
             CLog.d("ViewPager list is less than 2. No need for ViewPager");
-        }
         viewPager.setAdapter(this);
         viewPager.addOnPageChangeListener(this);
         onPageSelected(0);

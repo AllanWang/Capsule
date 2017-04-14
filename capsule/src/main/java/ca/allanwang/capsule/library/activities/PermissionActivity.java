@@ -39,13 +39,11 @@ abstract class PermissionActivity extends BaseActivity {
         }
         List<String> missingPermissions = new ArrayList<>();
         List<String> acceptedPermissions = new ArrayList<>();
-        for (String s : permissions) {
-            if (ActivityCompat.checkSelfPermission(this, s) == PackageManager.PERMISSION_GRANTED) {
+        for (String s : permissions)
+            if (ActivityCompat.checkSelfPermission(this, s) == PackageManager.PERMISSION_GRANTED)
                 acceptedPermissions.add(s);
-            } else {
+            else
                 missingPermissions.add((s));
-            }
-        }
         if (missingPermissions.isEmpty()) {
             callback.onResult(new PermissionResult(permissions, PackageManager.PERMISSION_GRANTED));
             return;

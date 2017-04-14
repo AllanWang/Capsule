@@ -17,13 +17,7 @@ public class CallbackLogTree extends Timber.Tree {
     private Callback mCallback;
 
     public CallbackLogTree(@NonNull Callback callback) {
-        mCallback = callback;
-        VERBOSE = CLog.VERBOSE;
-        DEBUG = CLog.DEBUG;
-        INFO = CLog.INFO;
-        WARN = CLog.WARN;
-        ERROR = CLog.ERROR;
-        ASSERT = CLog.ASSERT;
+        this(callback, CLog.VERBOSE, CLog.DEBUG, CLog.INFO, CLog.WARN, CLog.ERROR, CLog.ASSERT);
     }
 
     public CallbackLogTree(@NonNull Callback callback, int v, int d, int i, int w, int e, int a) {
@@ -38,21 +32,20 @@ public class CallbackLogTree extends Timber.Tree {
 
     @Override
     protected void log(int priority, String tag, String message, Throwable t) {
-        if (priority == VERBOSE) {
+        if (priority == VERBOSE)
             priority = Log.VERBOSE;
-        } else if (priority == DEBUG) {
+         else if (priority == DEBUG)
             priority = Log.DEBUG;
-        } else if (priority == INFO) {
+         else if (priority == INFO)
             priority = Log.INFO;
-        } else if (priority == WARN) {
+         else if (priority == WARN)
             priority = Log.WARN;
-        } else if (priority == ERROR) {
+         else if (priority == ERROR)
             priority = Log.ERROR;
-        } else if (priority == ASSERT) {
+         else if (priority == ASSERT)
             priority = Log.ASSERT;
-        } else {
+         else
             return;
-        }
         mCallback.log(priority, tag, message, t);
     }
 

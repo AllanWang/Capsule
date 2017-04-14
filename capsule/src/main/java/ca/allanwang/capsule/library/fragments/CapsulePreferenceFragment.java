@@ -52,9 +52,8 @@ public abstract class CapsulePreferenceFragment extends PreferenceFragmentCompat
     }
 
     protected CapsuleActivity capsuleActivity() {
-        if (!(getActivity() instanceof CapsuleActivity)) {
+        if (!(getActivity() instanceof CapsuleActivity))
             throw new RuntimeException(s(R.string.capsule_activity_context_error));
-        }
         return ((CapsuleActivity) getActivity());
     }
 
