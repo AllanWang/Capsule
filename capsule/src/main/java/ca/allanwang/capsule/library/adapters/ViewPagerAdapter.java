@@ -51,6 +51,10 @@ public class ViewPagerAdapter extends FragmentPagerAdapter implements ViewPager.
         return mPages.get(position).getFragment();
     }
 
+    public Fragment getCurrentFragment() {
+        return getItem(mPosition);
+    }
+
     /**
      * Return the number of views available.
      */

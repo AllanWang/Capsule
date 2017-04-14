@@ -6,6 +6,9 @@
 * Switch to Java 8
 * Updated sample and readme
 * Use CPage for ViewPager
+* Add titleId to ViewPagerFragment
+* Add page limit abstract in ViewPagerFragment
+* Add TabClickEvent posting
 
 ## v4.2
 * Code cleanup
