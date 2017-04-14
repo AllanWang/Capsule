@@ -32,6 +32,6 @@ public class ViewPagerFragmentSample extends ViewPagerFragment {
 
     @Override
     public int getTitleId() {
-        return R.string.viewpasger;
+        return R.string.viewpager;
     }
 }
