@@ -6,8 +6,8 @@ import android.support.v4.app.Fragment;
  * Created by Allan Wang on 2016-10-30.
  */
 
-public interface CPage<T extends Fragment & CPageFragment> extends CFragmentCore {
+public interface CPage extends CFragmentCore {
 
-    T getFragment();
+    Fragment getFragment();
 
 }

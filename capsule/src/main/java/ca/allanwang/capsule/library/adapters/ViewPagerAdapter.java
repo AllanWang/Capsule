@@ -9,7 +9,9 @@ import android.support.v4.view.ViewPager;
 
 import java.util.List;
 
+import ca.allanwang.capsule.library.fragments.CapsulePageFragment;
 import ca.allanwang.capsule.library.interfaces.CPage;
+import ca.allanwang.capsule.library.interfaces.CPageFragment;
 import ca.allanwang.capsule.library.logging.CLog;
 
 /**
@@ -106,7 +108,9 @@ public class ViewPagerAdapter extends FragmentPagerAdapter implements ViewPager.
     @Override
     public void onPageSelected(int position) {
         mPosition = position;
-        mPages.get(position).getFragment().onSelected();
+        Fragment fragment = mPages.get(position).getFragment();
+        if (fragment instanceof CPageFragment)
+            ((CapsulePageFragment) fragment).onSelected();
     }
 
     /**
