@@ -7,8 +7,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
 
+import ca.allanwang.capsule.library.event.TabClickEvent;
 import ca.allanwang.capsule.library.interfaces.CPage;
 import ca.allanwang.capsule.library.interfaces.CPageFragment;
 import ca.allanwang.capsule.library.logging.CLog;
@@ -106,6 +109,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter implements ViewPager.
      */
     @Override
     public void onPageSelected(int position) {
+        EventBus.getDefault().post(new TabClickEvent(mPosition, position));
         mPosition = position;
         Fragment fragment = mPages.get(position).getFragment();
         if (fragment instanceof CPageFragment)
