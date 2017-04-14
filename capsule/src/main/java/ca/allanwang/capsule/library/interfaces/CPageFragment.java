@@ -5,5 +5,5 @@ package ca.allanwang.capsule.library.interfaces;
  */
 
 public interface CPageFragment {
-    void onSelected();
+    void onSelected(int oldPosition, int newPosition);
 }

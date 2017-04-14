@@ -15,7 +15,7 @@ public abstract class CapsulePageFragment extends CapsuleFragment implements CPa
     }
 
     @Override
-    public void onSelected() {
+    public void onSelected(int oldPosition, int newPosition) {
         postEvent(updateFab());
     }
 
