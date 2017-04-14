@@ -15,13 +15,20 @@ import ca.allanwang.capsule.library.logging.CLog;
 /**
  * Created by Allan Wang on 2016-10-30.
  */
-
 public class ViewPagerAdapter extends FragmentPagerAdapter implements ViewPager.OnPageChangeListener {
 
     private Context mContext;
     private List<CPage> mPages;
     private int mPosition;
 
+    /**
+     * Instantiates a new View pager adapter.
+     *
+     * @param context   the context
+     * @param fm        the fm
+     * @param viewPager the view pager
+     * @param pages     the pages
+     */
     public ViewPagerAdapter(Context context, FragmentManager fm, ViewPager viewPager, @NonNull List<CPage> pages) {
         super(fm);
         mContext = context;
@@ -58,10 +65,20 @@ public class ViewPagerAdapter extends FragmentPagerAdapter implements ViewPager.
         return (mContext.getString(mPages.get(position).getTitleId()));
     }
 
+    /**
+     * Gets position.
+     *
+     * @return the position
+     */
     public int getPosition() {
         return mPosition;
     }
 
+    /**
+     * Gets current page.
+     *
+     * @return the current page
+     */
     public CPage getCurrentPage() {
         return mPages.get(mPosition);
     }

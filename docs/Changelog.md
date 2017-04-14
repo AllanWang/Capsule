@@ -5,6 +5,7 @@
 * Create addFragment methods for backstacks
 * Switch to Java 8
 * Updated sample and readme
+* Use CPage for ViewPager
 
 ## v4.2
 * Code cleanup
