@@ -41,26 +41,23 @@ public abstract class ViewPagerFragment extends CapsuleFragment {
         ViewPagerAdapter mAdapter = setAdapter(getContext(), getChildFragmentManager(), mViewPager, pages);
         mViewPager.setAdapter(mAdapter);
         ((TabLayout) v.findViewById(R.id.tabs)).setupWithViewPager(mViewPager);
+        mViewPager.setOffscreenPageLimit(getOffscreenPageLimit(pages.size()));
         viewPagerSetup(mViewPager, pages.size());
         return v;
     }
 
+    protected abstract int getOffscreenPageLimit(int pageCount);
+
     /**
      * Optional helper method to modify the viewpager after it is created
-     * eg setOffscreenPageLimit
      *
      * @param viewPager new loaded viewpager
      */
     protected void viewPagerSetup(ViewPager viewPager, int pageCount) {
     }
 
-    @Override
-    public int getTitleId() {
-        return 0;
-    }
-
     /**
-     * Method for adapter retrieval; can be overriden
+     * Method for adapter retrieval; can be overridden
      *
      * @param context         fragment context
      * @param fragmentManager childFragmentManager

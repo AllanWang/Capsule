@@ -21,11 +21,11 @@ import ca.allanwang.capsule.sample.R;
  */
 
 public class FragmentPageSample extends CapsulePageFragment {
+
     @Override
     public int getTitleId() {
         return R.string.sample_fragment;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

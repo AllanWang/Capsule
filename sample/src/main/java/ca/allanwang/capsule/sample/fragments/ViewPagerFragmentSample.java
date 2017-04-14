@@ -24,4 +24,14 @@ public class ViewPagerFragmentSample extends ViewPagerFragment {
                 new PageItem(new FragmentPageSampleNoFab(), R.string.settings)
         });
     }
+
+    @Override
+    protected int getOffscreenPageLimit(int pageCount) {
+        return 5;
+    }
+
+    @Override
+    public int getTitleId() {
+        return R.string.viewpasger;
+    }
 }
