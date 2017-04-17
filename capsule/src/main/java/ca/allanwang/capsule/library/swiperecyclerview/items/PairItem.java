@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.mikepenz.fastadapter.items.AbstractItem;
-import com.mikepenz.fastadapter.utils.ViewHolderFactory;
 
 import java.util.List;
 
@@ -19,7 +18,6 @@ import ca.allanwang.capsule.library.R;
 
 public class PairItem extends AbstractItem<PairItem, PairItem.ViewHolder> {
 
-    private static final ViewHolderFactory<? extends ViewHolder> FACTORY = new PairItem.ItemFactory();
     private String left, right;
 
     public PairItem(String left, String right) {
@@ -58,8 +56,9 @@ public class PairItem extends AbstractItem<PairItem, PairItem.ViewHolder> {
         holder.itemView.setBackgroundColor(0x00000000);
     }
 
-    public ViewHolderFactory<? extends PairItem.ViewHolder> getFactory() {
-        return FACTORY;
+    @Override
+    public ViewHolder getViewHolder(View v) {
+        return new ViewHolder(v);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -70,15 +69,6 @@ public class PairItem extends AbstractItem<PairItem, PairItem.ViewHolder> {
             super(view);
             left = (TextView) view.findViewById(R.id.text_left);
             right = (TextView) view.findViewById(R.id.text_right);
-        }
-    }
-
-    protected static class ItemFactory implements ViewHolderFactory<PairItem.ViewHolder> {
-        protected ItemFactory() {
-        }
-
-        public PairItem.ViewHolder create(View v) {
-            return new PairItem.ViewHolder(v);
         }
     }
 }

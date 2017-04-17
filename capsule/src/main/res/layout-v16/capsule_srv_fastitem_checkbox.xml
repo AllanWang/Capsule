@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/srv_primary">
+    android:layout_height="@dimen/capsule_srv_primary">
 
     <CheckBox
         android:id="@+id/checkbox"
@@ -20,10 +20,10 @@
         android:layout_toStartOf="@+id/checkbox"
         android:gravity="center_vertical|start"
         android:orientation="vertical"
-        android:paddingEnd="@dimen/srv_vertical_padding"
-        android:paddingLeft="@dimen/srv_vertical_padding"
-        android:paddingRight="@dimen/srv_vertical_padding"
-        android:paddingStart="@dimen/srv_vertical_padding">
+        android:paddingEnd="@dimen/capsule_srv_vertical_padding"
+        android:paddingLeft="@dimen/capsule_srv_vertical_padding"
+        android:paddingRight="@dimen/capsule_srv_vertical_padding"
+        android:paddingStart="@dimen/capsule_srv_vertical_padding">
 
         <TextView
             android:id="@+id/title"
@@ -32,7 +32,7 @@
             android:fontFamily="sans-serif-medium"
             android:gravity="center_vertical|start"
             android:lines="1"
-            android:textSize="@dimen/srv_primary_text" />
+            android:textSize="@dimen/capsule_srv_primary_text" />
 
         <TextView
             android:id="@+id/description"
@@ -41,6 +41,6 @@
             android:fontFamily="sans-serif"
             android:gravity="center_vertical|start"
             android:lines="1"
-            android:textSize="@dimen/srv_primary_text" />
+            android:textSize="@dimen/capsule_srv_primary_text" />
     </LinearLayout>
 </RelativeLayout>
