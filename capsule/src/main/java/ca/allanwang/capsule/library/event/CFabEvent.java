@@ -103,7 +103,6 @@ public class CFabEvent {
             fab.setImageDrawable(drawable);
         } else if (drawableRes != -1) {
             fab.setImageResource(drawableRes);
-
         }
         int bg = ContextUtils.getColor(fab.getContext(), colorRes, colorInt);
         if (bg != -1) fab.setBackgroundColor(bg);

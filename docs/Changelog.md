@@ -1,5 +1,8 @@
 # Changelog
 
+## v4.4
+* Add method to set Drawable for FAB icon, instead of DrawableRes
+
 ## v4.3
 * Make switchFragment public
 * Create addFragment methods for backstacks
