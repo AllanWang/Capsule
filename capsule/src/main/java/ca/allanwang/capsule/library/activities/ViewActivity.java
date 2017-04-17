@@ -266,7 +266,7 @@ abstract class ViewActivity extends PermissionActivity {
             return this;
         }
 
-        public CustomizeToolbar setCollapseListener(CCollapseListener listener) {
+        public CustomizeToolbar setCollapseListener(@NonNull CCollapseListener listener) {
             cAppBarLayout.addOnOffsetChangedListener(listener);
             return this;
         }
