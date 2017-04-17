@@ -97,13 +97,13 @@ public class CFabEvent {
         fab.show();
         if (mListener != null) fab.setOnClickListener(mListener);
         //change icon if applicable
-        if (mIcon != null) {
+        if (mIcon != null)
             fab.setImageDrawable(ViewUtils.iconDrawable(fab.getContext(), mIcon));
-        } else if (drawable != null) {
+        else if (drawable != null)
             fab.setImageDrawable(drawable);
-        } else if (drawableRes != -1) {
+        else if (drawableRes != -1)
             fab.setImageResource(drawableRes);
-        }
+
         int bg = ContextUtils.getColor(fab.getContext(), colorRes, colorInt);
         if (bg != -1) fab.setBackgroundColor(bg);
     }
