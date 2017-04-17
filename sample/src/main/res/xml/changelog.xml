@@ -15,6 +15,8 @@
     <item text="Add titleId to ViewPagerFragment" />
     <item text="Add page limit abstract in ViewPagerFragment" />
     <item text="Add TabClickEvent posting" />
+    <item text="Add Appbar collapse listener" />
+    <item text="Fully port SRV into Capsule" />
     <item text="" />
     <item text="" />
 
