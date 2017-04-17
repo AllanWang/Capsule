@@ -9,6 +9,8 @@
 * Add titleId to ViewPagerFragment
 * Add page limit abstract in ViewPagerFragment
 * Add TabClickEvent posting
+* Add Appbar collapse listener
+* Fully port SRV into Capsule
 
 ## v4.2
 * Code cleanup

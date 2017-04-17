@@ -2,6 +2,7 @@ package ca.allanwang.capsule.sample;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.view.Menu;
@@ -30,7 +31,6 @@ public class MainActivity extends CapsuleActivityFrame {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 //        cCoordinatorLayout.setScrollAllowed(false);
         addCollapsingToolbarView(R.layout.toolbar_view);
 //        new CustomizeToolbar().setHeight(70);

@@ -10,10 +10,10 @@ import java.util.Random;
 import ca.allanwang.capsule.library.event.CFabEvent;
 import ca.allanwang.capsule.library.fragments.CapsuleSRVFragment;
 import ca.allanwang.capsule.sample.R;
-import ca.allanwang.swiperecyclerview.library.SwipeRecyclerView;
-import ca.allanwang.swiperecyclerview.library.adapters.AnimationAdapter;
-import ca.allanwang.swiperecyclerview.library.interfaces.ISwipeRecycler;
-import ca.allanwang.swiperecyclerview.library.items.CheckBoxItem;
+import ca.allanwang.capsule.library.swiperecyclerview.SwipeRecyclerView;
+import ca.allanwang.capsule.library.swiperecyclerview.adapters.AnimationAdapter;
+import ca.allanwang.capsule.library.swiperecyclerview.interfaces.ISwipeRecycler;
+import ca.allanwang.capsule.library.swiperecyclerview.items.CheckBoxItem;
 
 /**
  * Created by Allan Wang on 2016-12-21.

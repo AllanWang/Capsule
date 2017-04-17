@@ -15,10 +15,10 @@ import org.greenrobot.eventbus.Subscribe;
 import ca.allanwang.capsule.library.R;
 import ca.allanwang.capsule.library.event.CFabEvent;
 import ca.allanwang.capsule.library.event.RefreshEvent;
-import ca.allanwang.swiperecyclerview.library.SwipeRecyclerView;
-import ca.allanwang.swiperecyclerview.library.adapters.AnimationAdapter;
-import ca.allanwang.swiperecyclerview.library.animators.SlidingAnimator;
-import ca.allanwang.swiperecyclerview.library.interfaces.ISwipeRecycler;
+import ca.allanwang.capsule.library.swiperecyclerview.SwipeRecyclerView;
+import ca.allanwang.capsule.library.swiperecyclerview.adapters.AnimationAdapter;
+import ca.allanwang.capsule.library.swiperecyclerview.animators.SlidingAnimator;
+import ca.allanwang.capsule.library.swiperecyclerview.interfaces.ISwipeRecycler;
 
 /**
  * Created by Allan Wang on 2017-03-18.
@@ -40,7 +40,7 @@ public abstract class CapsuleSRVFragment<I extends IItem> extends CapsuleFragmen
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View v = inflater.inflate(R.layout.srv_swipe_recycler_view, container, false);
+        View v = inflater.inflate(R.layout.capsule_srv_swipe_recycler_view, container, false);
 
         mAdapter = createAdapter();
         configAdapter(mAdapter);
