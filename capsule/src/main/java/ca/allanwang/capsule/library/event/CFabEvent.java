@@ -1,5 +1,6 @@
 package ca.allanwang.capsule.library.event;
 
+import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
@@ -19,7 +20,8 @@ import ca.allanwang.capsule.library.utils.ViewUtils;
 
 public class CFabEvent {
 
-    private int drawable = -1;
+    private int drawableRes = -1;
+    private Drawable drawable;
     private IIcon mIcon;
     private int colorInt = -1, colorRes = -1;
     private boolean show = true;
@@ -49,8 +51,13 @@ public class CFabEvent {
         mListener = listener;
     }
 
-    public CFabEvent(@DrawableRes int drawable, View.OnClickListener listener) {
+    public CFabEvent(Drawable drawable, View.OnClickListener listener) {
         this.drawable = drawable;
+        mListener = listener;
+    }
+
+    public CFabEvent(@DrawableRes int drawableRes, View.OnClickListener listener) {
+        this.drawableRes = drawableRes;
         mListener = listener;
     }
 
@@ -92,8 +99,10 @@ public class CFabEvent {
         //change icon if applicable
         if (mIcon != null) {
             fab.setImageDrawable(ViewUtils.iconDrawable(fab.getContext(), mIcon));
-        } else if (drawable != -1) {
-            fab.setImageResource(drawable);
+        } else if (drawable != null) {
+            fab.setImageDrawable(drawable);
+        } else if (drawableRes != -1) {
+            fab.setImageResource(drawableRes);
         }
         int bg = ContextUtils.getColor(fab.getContext(), colorRes, colorInt);
         if (bg != -1) fab.setBackgroundColor(bg);
