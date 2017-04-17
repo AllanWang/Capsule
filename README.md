@@ -76,7 +76,7 @@ Capsule also further integrates SRV with its own [CapsuleSRVFragment](https://gi
 
 ## Event Driven Structure
 
-Many components in Capsule are event based, meaning you don't need to know or hold a context for what you are changing to change it. For exampl, the FAB is entirely managed by CapsuleActivity, but can be modified anywhere by sending a [CFabEvent](https://github.com/AllanWang/Capsule/blob/master/capsule/src/main/java/ca/allanwang/capsule/library/event/CFabEvent.java).
+Many components in Capsule are event based, meaning you don't need to know or hold a context for what you are changing to change it. For example, the FAB is entirely managed by CapsuleActivity, but can be modified anywhere by sending a [CFabEvent](https://github.com/AllanWang/Capsule/blob/master/capsule/src/main/java/ca/allanwang/capsule/library/event/CFabEvent.java).
 In CapsuleFragments, disabling the FAB is as easy as `postEvent(new CFabEvent(false))`. You can also show the FAB, change its icon and click listener, and much more.
 
 CapsuleSRVFragment also uses [RefreshEvent](https://github.com/AllanWang/Capsule/blob/master/capsule/src/main/java/ca/allanwang/capsule/library/event/RefreshEvent.java) to trigger SRV refreshes. They can be called anywhere with `EventBus.getDefault.post(new RefreshEvent(...))`
