@@ -40,15 +40,15 @@ dependencies {
     compile 'com.jakewharton.timber:timber:4.5.1'
 
     //Dialog
-    compile 'com.afollestad.material-dialogs:core:0.9.4.2'
+    compile 'com.afollestad.material-dialogs:core:0.9.4.3'
 
     //Drawer
-    compile('com.mikepenz:materialdrawer:5.8.2@aar') {
+    compile('com.mikepenz:materialdrawer:5.9.0@aar') {
         transitive = true
     }
 
     //Icons
-    compile "com.mikepenz:iconics-core:2.8.2@aar"
+    compile "com.mikepenz:iconics-core:2.8.3@aar"
     compile 'com.mikepenz:google-material-typeface:3.0.1.0.original@aar'
 
     //FastAdapter

@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import ca.allanwang.capsule.library.R;
 import ca.allanwang.capsule.library.custom.CapsuleCoordinatorLayout;
 import ca.allanwang.capsule.library.event.SnackbarEvent;
+import ca.allanwang.capsule.library.interfaces.CCollapseListener;
 import ca.allanwang.capsule.library.utils.AnimUtils;
 import ca.allanwang.capsule.library.utils.ViewUtils;
 
@@ -142,7 +143,8 @@ abstract class ViewActivity extends PermissionActivity {
      */
     protected View addCollapsingToolbarView(View view) {
         if (cCollapsingToolbarLayout == null)
-            throw new NullPointerException(sf(R.string.capsule_generic_not_set, "CollapsingToolbarLayout"));
+            throw new NullPointerException(sf(R.string.capsule_generic_not_set,
+                    "CollapsingToolbarLayout"));
         cCollapsingToolbarLayout.setTitleEnabled(true);
         cCollapsingToolbarLayout.addView(view, 0);
         return view;
@@ -168,7 +170,8 @@ abstract class ViewActivity extends PermissionActivity {
     }
 
     public void hideTabs() {
-        if (cTabs == null) throw new RuntimeException(sf(R.string.capsule_generic_not_set, "TabLayout"));
+        if (cTabs == null)
+            throw new RuntimeException(sf(R.string.capsule_generic_not_set, "TabLayout"));
         AnimUtils.slideExit(cTabs, new AnimUtils.ViewCallback() {
             @Override
             public void onFinish(View v) {
@@ -236,7 +239,8 @@ abstract class ViewActivity extends PermissionActivity {
 
         public CustomizeToolbar() {
             if (cCollapsingToolbarLayout == null)
-                throw new NullPointerException(sf(R.string.capsule_generic_not_set, "CollapsingToolbar"));
+                throw new NullPointerException(sf(R.string.capsule_generic_not_set,
+                        "CollapsingToolbar"));
         }
 
         public CustomizeToolbar setHeight(int dp) {
@@ -262,5 +266,11 @@ abstract class ViewActivity extends PermissionActivity {
             return this;
         }
 
+        public CustomizeToolbar setCollapseListener(@NonNull CCollapseListener listener) {
+            cAppBarLayout.addOnOffsetChangedListener(listener);
+            return this;
+        }
+
     }
+
 }
