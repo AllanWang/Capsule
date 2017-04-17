@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="capsule_srv_transparent_black">#1E000000</color>
+    <color name="capsule_srv_transparent_white">#1EFFFFFF</color>
+</resources>

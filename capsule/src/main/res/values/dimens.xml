@@ -32,4 +32,7 @@
     <dimen name="capsule_activity_horizontal_margin">16dp</dimen>
     <dimen name="capsule_activity_vertical_margin">16dp</dimen>
 
+    <dimen name="srv_vertical_padding">16dp</dimen>
+    <dimen name="srv_primary_text">14sp</dimen>
+    <dimen name="srv_primary">48dp</dimen>
 </resources>
