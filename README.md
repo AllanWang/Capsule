@@ -1,7 +1,7 @@
 # Capsule
 A UI framework library
 
-<!--Current Release 4.2-->
+<!--Current Release 4.3-->
 
 Mainly for more complex UIs, this library contains plenty of useful tools and shortened methods to make UI building easier.
 This library is meant to offer a much simpler and more functional, albeit unconventional way of coding views. Note that a lot of the variables and interfaces start with the letter "c" (ie cFab; to make it easier to remember)
@@ -36,12 +36,12 @@ And add the following dependencies (You can use a specific version, commit, or -
 
 ```gradle
 dependencies {
-        compile 'ca.allanwang:capsule:v4.2'
+        compile 'ca.allanwang:capsule:v4.3'
 }
 
 ```
 
-[Capsule Javadocs v4.2](https://jitpack.io/ca/allanwang/capsule/v4.2/javadoc/)
+[Capsule Javadocs v4.3](https://jitpack.io/ca/allanwang/capsule/v4.3/javadoc/)
 
 [Full Changelog](https://github.com/AllanWang/Capsule/blob/master/docs/Changelog.md)
 
@@ -71,7 +71,15 @@ The items will be automatically bulleted, and empty tags will be ignored. There 
 
 ## SwipeRecyclerView
 
-Capsule integrates with SwipeRecyclerView, and supports its own [CapsuleSRVFragment](https://github.com/AllanWang/Capsule/blob/master/capsule/src/main/java/ca/allanwang/capsule/library/fragments/CapsuleSRVFragment.java). This fragment will automatically extend our base fragment, provide the layout of a SRV, along with callbacks for easy refreshes and manipulations.
+SwipeRecyclerView is a custom view combining the RecyclerView, SwipeRefreshLayout, FastAdapter, as well as adapter animations. It simplifies one of the most commonly used view combination into one class, and contains many helper methods.
+Capsule also further integrates SRV with its own [CapsuleSRVFragment](https://github.com/AllanWang/Capsule/blob/master/capsule/src/main/java/ca/allanwang/capsule/library/fragments/CapsuleSRVFragment.java). This fragment will automatically extend our base fragment, provide the layout of a SRV, along with callbacks for easy refreshes and manipulations.
+
+## Event Driven Structure
+
+Many components in Capsule are event based, meaning you don't need to know or hold a context for what you are changing to change it. For exampl, the FAB is entirely managed by CapsuleActivity, but can be modified anywhere by sending a [CFabEvent](https://github.com/AllanWang/Capsule/blob/master/capsule/src/main/java/ca/allanwang/capsule/library/event/CFabEvent.java).
+In CapsuleFragments, disabling the FAB is as easy as `postEvent(new CFabEvent(false))`. You can also show the FAB, change its icon and click listener, and much more.
+
+CapsuleSRVFragment also uses [RefreshEvent](https://github.com/AllanWang/Capsule/blob/master/capsule/src/main/java/ca/allanwang/capsule/library/event/RefreshEvent.java) to trigger SRV refreshes. They can be called anywhere with `EventBus.getDefault.post(new RefreshEvent(...))`
 
 ## Utilities
 
