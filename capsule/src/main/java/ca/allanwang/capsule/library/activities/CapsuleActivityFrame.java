@@ -201,6 +201,7 @@ public abstract class CapsuleActivityFrame extends CapsuleActivity {
             CLog.d("Drawer items is an empty list");
         setupDrawerFurther(builder);
         cDrawer = builder.build();
+        cDrawer.getAdapter().withPositionBasedStateManagement(false); //Fix for programmatically selecting drawer items; #1666
     }
 
     @Override
