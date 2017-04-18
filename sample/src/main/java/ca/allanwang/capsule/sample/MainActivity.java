@@ -2,7 +2,6 @@ package ca.allanwang.capsule.sample;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.view.Menu;
@@ -35,8 +34,8 @@ public class MainActivity extends CapsuleActivityFrame {
         addCollapsingToolbarView(R.layout.toolbar_view);
 //        new CustomizeToolbar().setHeight(70);
         new CustomizeToolbar().hideTitleOnExpand().setHeight(200);
-
-        onVersionUpdate(BuildConfig.VERSION_CODE, () -> ChangelogDialog.show(MainActivity.this, R.xml.changelog, null));
+        collapseAppBar(false);
+        onVersionUpdate(BuildConfig.VERSION_CODE, () -> ChangelogDialog.show(MainActivity.this, R.xml.changelog));
     }
 
     @Override

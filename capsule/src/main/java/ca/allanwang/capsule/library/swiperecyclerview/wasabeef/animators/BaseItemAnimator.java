@@ -152,15 +152,12 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
             changes.addAll(mPendingChanges);
             mChangesList.add(changes);
             mPendingChanges.clear();
-            Runnable changer = new Runnable() {
-                @Override
-                public void run() {
-                    for (ChangeInfo change : changes) {
-                        animateChangeImpl(change);
-                    }
-                    changes.clear();
-                    mChangesList.remove(changes);
+            Runnable changer = () -> {
+                for (ChangeInfo change : changes) {
+                    animateChangeImpl(change);
                 }
+                changes.clear();
+                mChangesList.remove(changes);
             };
             if (removalsPending) {
                 ViewHolder holder = changes.get(0).oldHolder;
@@ -175,14 +172,12 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
             additions.addAll(mPendingAdditions);
             mAdditionsList.add(additions);
             mPendingAdditions.clear();
-            Runnable adder = new Runnable() {
-                public void run() {
-                    for (ViewHolder holder : additions) {
-                        doAnimateAdd(holder);
-                    }
-                    additions.clear();
-                    mAdditionsList.remove(additions);
+            Runnable adder = () -> {
+                for (ViewHolder holder : additions) {
+                    doAnimateAdd(holder);
                 }
+                additions.clear();
+                mAdditionsList.remove(additions);
             };
             if (removalsPending || movesPending || changesPending) {
                 long removeDuration = removalsPending ? getRemoveDuration() : 0;
@@ -352,7 +347,7 @@ public abstract class BaseItemAnimator extends SimpleItemAnimator {
             endAnimation(newHolder);
             ViewCompat.setTranslationX(newHolder.itemView, -deltaX);
             ViewCompat.setTranslationY(newHolder.itemView, -deltaY);
-            ViewCompat.setAlpha(newHolder.itemView, 0);
+//            ViewCompat.setAlpha(newHolder.itemView, 0); //TODO figure out why this is here
         }
         mPendingChanges.add(new ChangeInfo(oldHolder, newHolder, fromX, fromY, toX, toY));
         return true;

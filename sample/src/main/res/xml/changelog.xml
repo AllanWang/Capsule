@@ -8,6 +8,12 @@
 
     <version title="v4.4" />
     <item text="Add method to set Drawable for FAB icon" />
+    <item text="Removed fade when checking a CheckBoxItem" />
+    <item text="Added helper methods to CheckBoxItem" />
+    <item text="" />
+    <item text="" />
+    <item text="" />
+    <item text="" />
 
     <version title="v4.3" />
     <item text="Make switchFragment public" />

@@ -45,11 +45,11 @@ public class SlidingAnimator extends BaseItemAnimator implements IItemAnimatorEx
      * @param fromBase true to allow
      * @return this
      */
-    public ca.allanwang.capsule.library.swiperecyclerview.animators.SlidingAnimator setFromBase(boolean fromBase) {
+    public SlidingAnimator setFromBase(boolean fromBase) {
         return setFromBase(fromBase, true);
     }
 
-    private ca.allanwang.capsule.library.swiperecyclerview.animators.SlidingAnimator setFromBase(Boolean fromBase, boolean allowFromBase) {
+    private SlidingAnimator setFromBase(Boolean fromBase, boolean allowFromBase) {
         if ((fromBase == null || this.fromBase == fromBase) && this.allowFromBase == allowFromBase)
             return this;
         this.allowFromBase = allowFromBase;

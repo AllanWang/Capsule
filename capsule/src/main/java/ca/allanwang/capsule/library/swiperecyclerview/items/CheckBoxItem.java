@@ -25,6 +25,7 @@ public class CheckBoxItem extends AbstractItem<CheckBoxItem, CheckBoxItem.ViewHo
     public String header;
     public StringHolder name;
     public StringHolder description;
+    public boolean showCheckBox = true;
 
     public CheckBoxItem withHeader(String header) {
         this.header = header;
@@ -51,6 +52,15 @@ public class CheckBoxItem extends AbstractItem<CheckBoxItem, CheckBoxItem.ViewHo
         return this;
     }
 
+    public CheckBoxItem showCheckBox(boolean show) {
+        this.showCheckBox = show;
+        return this;
+    }
+
+    public CheckBoxItem hideCheckBox() {
+        return showCheckBox(false);
+    }
+
     @Override
     public int getType() {
         return R.id.capsule_srv_fastadapter_checkbox_item_id;
@@ -64,7 +74,10 @@ public class CheckBoxItem extends AbstractItem<CheckBoxItem, CheckBoxItem.ViewHo
     @Override
     public void bindView(ViewHolder viewHolder, List<Object> payloads) {
         super.bindView(viewHolder, payloads);
-        viewHolder.checkBox.setChecked(isSelected());
+        if (showCheckBox)
+            viewHolder.checkBox.setChecked(isSelected());
+        else
+            viewHolder.checkBox.setVisibility(View.GONE);
         StringHolder.applyTo(name, viewHolder.name);
         StringHolder.applyToOrHide(description, viewHolder.description);
     }
@@ -102,14 +115,14 @@ public class CheckBoxItem extends AbstractItem<CheckBoxItem, CheckBoxItem.ViewHo
     public static class CheckBoxClickEvent extends ClickEventHook<CheckBoxItem> {
         @Override
         public View onBind(@NonNull RecyclerView.ViewHolder viewHolder) {
-            if (viewHolder instanceof CheckBoxItem.ViewHolder) {
+            if (viewHolder instanceof CheckBoxItem.ViewHolder)
                 return ((CheckBoxItem.ViewHolder) viewHolder).checkBox;
-            }
             return null;
         }
 
         @Override
         public void onClick(View v, int position, FastAdapter<CheckBoxItem> fastAdapter, CheckBoxItem item) {
+            if (!item.showCheckBox) return;
             fastAdapter.toggleSelection(position);
         }
     }
