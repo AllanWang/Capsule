@@ -2,6 +2,8 @@
 
 ## v4.4
 * Add method to set Drawable for FAB icon
+* Removed fade when checking a CheckBoxItem
+* Added helper methods to CheckBoxItem
 
 ## v4.3
 * Make switchFragment public
