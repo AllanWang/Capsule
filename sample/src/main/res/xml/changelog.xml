@@ -11,7 +11,7 @@
     <item text="Removed fade when checking a CheckBoxItem" />
     <item text="Added helper methods to CheckBoxItem" />
     <item text="Fixed BaseItemAnimator isRecyclable decremented below 0 issue" />
-    <item text="" />
+    <item text="Added numColumn hook to CapsuleSRVFragment" />
     <item text="" />
     <item text="" />
 

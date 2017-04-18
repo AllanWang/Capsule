@@ -47,13 +47,19 @@ public abstract class CapsuleSRVFragment<I extends IItem> extends CapsuleFragmen
         configAdapter(mAdapter);
 
         configSRV(mSRV = SwipeRecyclerView.hook(v, R.id.swipe_recycler)
-                .setAdapter(mAdapter)
+                .setAdapter(mAdapter, getNumColumns())
                 .setOnRefreshListener(this)
                 .setItemAnimator(new SlidingAnimator()));
         return v;
     }
 
-    protected @LayoutRes int getLayout() {
+    protected int getNumColumns() {
+        return 1;
+    }
+
+    protected
+    @LayoutRes
+    int getLayout() {
         return R.layout.capsule_srv_swipe_recycler_view;
     }
 
