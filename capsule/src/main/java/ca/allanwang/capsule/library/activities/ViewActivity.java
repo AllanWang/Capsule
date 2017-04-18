@@ -138,10 +138,11 @@ abstract class ViewActivity extends PermissionActivity {
     /**
      * Add view into {@link CollapsingToolbarLayout}
      *
+     * @param <T>  the type parameter
      * @param view view to add
      * @return view added
      */
-    protected View addCollapsingToolbarView(View view) {
+    protected <T extends View> T addCollapsingToolbarView(T view) {
         if (cCollapsingToolbarLayout == null)
             throw new NullPointerException(sf(R.string.capsule_generic_not_set,
                     "CollapsingToolbarLayout"));
@@ -172,12 +173,7 @@ abstract class ViewActivity extends PermissionActivity {
     public void hideTabs() {
         if (cTabs == null)
             throw new RuntimeException(sf(R.string.capsule_generic_not_set, "TabLayout"));
-        AnimUtils.slideExit(cTabs, new AnimUtils.ViewCallback() {
-            @Override
-            public void onFinish(View v) {
-                cTabs.removeAllTabs();
-            }
-        });
+        AnimUtils.slideExit(cTabs, v -> cTabs.removeAllTabs());
 //        cTabs.setVisibility(View.GONE);
 //        cTabs.removeAllTabs();
     }

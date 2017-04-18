@@ -1,7 +1,7 @@
 # Changelog
 
 ## v4.4
-* Add method to set Drawable for FAB icon, instead of DrawableRes
+* Add method to set Drawable for FAB icon
 
 ## v4.3
 * Make switchFragment public

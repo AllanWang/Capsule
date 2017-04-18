@@ -2,6 +2,7 @@ package ca.allanwang.capsule.library.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,7 +41,7 @@ public abstract class CapsuleSRVFragment<I extends IItem> extends CapsuleFragmen
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View v = inflater.inflate(R.layout.capsule_srv_swipe_recycler_view, container, false);
+        View v = inflater.inflate(getLayout(), container, false);
 
         mAdapter = createAdapter();
         configAdapter(mAdapter);
@@ -50,6 +51,10 @@ public abstract class CapsuleSRVFragment<I extends IItem> extends CapsuleFragmen
                 .setOnRefreshListener(this)
                 .setItemAnimator(new SlidingAnimator()));
         return v;
+    }
+
+    protected @LayoutRes int getLayout() {
+        return R.layout.capsule_srv_swipe_recycler_view;
     }
 
     @Subscribe

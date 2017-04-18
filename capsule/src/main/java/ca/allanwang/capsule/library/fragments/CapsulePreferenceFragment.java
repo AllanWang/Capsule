@@ -9,6 +9,7 @@ import android.view.View;
 
 import ca.allanwang.capsule.library.R;
 import ca.allanwang.capsule.library.activities.CapsuleActivity;
+import ca.allanwang.capsule.library.interfaces.CFragmentCore;
 import ca.allanwang.capsule.library.utils.EventUtils;
 import ca.allanwang.capsule.library.views.RippleCanvas;
 
@@ -16,7 +17,7 @@ import ca.allanwang.capsule.library.views.RippleCanvas;
  * Created by Allan Wang on 2016-11-17.
  */
 
-public abstract class CapsulePreferenceFragment extends PreferenceFragmentCompat {
+public abstract class CapsulePreferenceFragment extends PreferenceFragmentCompat implements CFragmentCore {
 
     private RippleCanvas mRippleCanvas;
 
