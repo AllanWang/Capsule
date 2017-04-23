@@ -12,7 +12,7 @@
     <item text="Added helper methods to CheckBoxItem" />
     <item text="Fixed BaseItemAnimator isRecyclable decremented below 0 issue" />
     <item text="Added numColumn hook to CapsuleSRVFragment" />
-    <item text="" />
+    <item text="Add dialog as parameter for NeutralButtonClick" />
     <item text="" />
 
     <version title="v4.3" />

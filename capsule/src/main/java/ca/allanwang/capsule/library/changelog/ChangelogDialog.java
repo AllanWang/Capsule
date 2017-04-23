@@ -25,8 +25,8 @@ import ca.allanwang.capsule.library.R;
  */
 public class ChangelogDialog extends DialogFragment {
 
-    private static final String ITEM_TAG = "changelog_items", DIALOG_TAG =
-            "capsule_changelog_dialog";
+    private static final String ITEM_TAG = "changelog_items";
+    private static final String DIALOG_TAG = "capsule_changelog_dialog";
 
     private OnChangelogNeutralButtonClick neutralCallback = null;
 
@@ -52,8 +52,8 @@ public class ChangelogDialog extends DialogFragment {
                 mHandler.post(new TimerTask() {
                     @Override
                     public void run() {
-                        ChangelogDialog f = new ChangelogDialog().setNeutralCallback
-                                (neutralCallback);
+                        ChangelogDialog f = new ChangelogDialog()
+                                .setNeutralCallback(neutralCallback);
                         if (!items.isEmpty()) {
                             Bundle args = new Bundle();
                             args.putParcelableArrayList(ITEM_TAG, items);
@@ -76,8 +76,8 @@ public class ChangelogDialog extends DialogFragment {
         if (getArguments() == null || !getArguments().containsKey(ITEM_TAG)) {
             builder.content(R.string.capsule_empty_changelog);
         } else {
-            List<ChangelogXmlParser.ChangelogItem> items = getArguments().getParcelableArrayList
-                    (ITEM_TAG);
+            List<ChangelogXmlParser.ChangelogItem> items =
+                    getArguments().getParcelableArrayList(ITEM_TAG);
             builder.adapter(new ChangelogAdapter(items), null);
         }
         if (neutralCallback != null) {
