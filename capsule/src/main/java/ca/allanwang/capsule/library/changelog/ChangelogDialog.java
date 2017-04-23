@@ -52,7 +52,8 @@ public class ChangelogDialog extends DialogFragment {
                 mHandler.post(new TimerTask() {
                     @Override
                     public void run() {
-                        ChangelogDialog f = new ChangelogDialog().setNeutralCallback(neutralCallback);
+                        ChangelogDialog f = new ChangelogDialog().setNeutralCallback
+                                (neutralCallback);
                         if (!items.isEmpty()) {
                             Bundle args = new Bundle();
                             args.putParcelableArrayList(ITEM_TAG, items);
@@ -84,7 +85,7 @@ public class ChangelogDialog extends DialogFragment {
             builder.onNeutral(new MaterialDialog.SingleButtonCallback() {
                 @Override
                 public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                    neutralCallback.onNeutralButtonClick();
+                    neutralCallback.onNeutralButtonClick(dialog);
                 }
             });
         }
@@ -100,7 +101,7 @@ public class ChangelogDialog extends DialogFragment {
         @StringRes
         int getNeutralText();
 
-        void onNeutralButtonClick();
+        void onNeutralButtonClick(@NonNull MaterialDialog dialog);
     }
 
 }
