@@ -45,7 +45,7 @@ public class MainActivity extends CapsuleActivityFrame {
     }
 
     @Subscribe
-    public void test(CClickEvent event) {
+    public void onCClick(CClickEvent event) {
         if (event.view == cToolbar)
             snackbar(new SnackbarEvent("Toolbar clicked", Snackbar.LENGTH_SHORT));
     }
