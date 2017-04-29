@@ -14,7 +14,7 @@
     <item text="Added numColumn hook to CapsuleSRVFragment" />
     <item text="Add dialog as parameter for NeutralButtonClick" />
     <item text="Added click events for toolbar " />
-    <item text="" />
+    <item text="Added scrolling method reroutes from SRV to RV" />
     <item text="" />
 
     <version title="v4.3" />
