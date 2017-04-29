@@ -13,6 +13,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Interpolator;
 import android.widget.FrameLayout;
 
 import ca.allanwang.capsule.library.R;
@@ -178,6 +179,30 @@ public class SwipeRecyclerView extends FrameLayout implements SwipeRefreshBase.I
             CLog.e("Recycler Layout Manager does not have custom IScrolling toggle");
         else
             ((IScrolling) mRecycler.getLayoutManager()).setScrollEnabled(flag);
+        return this;
+    }
+
+    public SwipeRecyclerView scrollToPosition(int x, int y) {
+        mRecycler.scrollTo(x, y);
+        return this;
+    }
+
+    public SwipeRecyclerView smoothScrollToPosition(int position) {
+        mRecycler.smoothScrollToPosition(position);
+        return this;
+    }
+
+    public SwipeRecyclerView smoothScrollBy(int dx, int dy) {
+        return smoothScrollBy(dx, dy, null);
+    }
+
+    public SwipeRecyclerView smoothScrollBy(int dx, int dy, Interpolator interpolator) {
+        mRecycler.smoothScrollBy(dx, dy, interpolator);
+        return this;
+    }
+
+    public SwipeRecyclerView stopScroll() {
+        mRecycler.stopScroll();
         return this;
     }
 
