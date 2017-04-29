@@ -18,8 +18,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.greenrobot.eventbus.EventBus;
+
 import ca.allanwang.capsule.library.R;
 import ca.allanwang.capsule.library.custom.CapsuleCoordinatorLayout;
+import ca.allanwang.capsule.library.event.CClickEvent;
 import ca.allanwang.capsule.library.event.SnackbarEvent;
 import ca.allanwang.capsule.library.interfaces.CCollapseListener;
 import ca.allanwang.capsule.library.utils.AnimUtils;
@@ -36,6 +39,7 @@ abstract class ViewActivity extends PermissionActivity {
     protected CapsuleCoordinatorLayout cCoordinatorLayout;
     protected TabLayout cTabs;
     protected CollapsingToolbarLayout cCollapsingToolbarLayout;
+    protected boolean cToolbarClick = false;
 
     @Override
     public FloatingActionButton getFab() {
@@ -201,6 +205,9 @@ abstract class ViewActivity extends PermissionActivity {
         public Capsulate toolbar(@IdRes int id) {
             cToolbar = (Toolbar) findViewById(id);
             setSupportActionBar(cToolbar);
+            cToolbar.setOnClickListener(v -> {
+                if (cToolbarClick) EventBus.getDefault().post(new CClickEvent(v));
+            });
             return this;
         }
 
@@ -264,6 +271,11 @@ abstract class ViewActivity extends PermissionActivity {
 
         public CustomizeToolbar setCollapseListener(@NonNull CCollapseListener listener) {
             cAppBarLayout.addOnOffsetChangedListener(listener);
+            return this;
+        }
+
+        public CustomizeToolbar withClickEvents(boolean enable) {
+            cToolbarClick = enable;
             return this;
         }
 

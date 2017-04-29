@@ -13,6 +13,8 @@
     <item text="Fixed BaseItemAnimator isRecyclable decremented below 0 issue" />
     <item text="Added numColumn hook to CapsuleSRVFragment" />
     <item text="Add dialog as parameter for NeutralButtonClick" />
+    <item text="Added click events for toolbar " />
+    <item text="" />
     <item text="" />
 
     <version title="v4.3" />
