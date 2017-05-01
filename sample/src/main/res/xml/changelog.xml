@@ -104,6 +104,6 @@
     <item text="Added some javadocs" />
     <item text="Fixed permission crash for null array" />
 
-    <version title="v0.1:" />
+    <version title="v0.1" />
     <item text="Initial" />
 </resources>

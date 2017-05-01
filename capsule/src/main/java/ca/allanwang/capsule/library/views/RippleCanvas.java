@@ -74,12 +74,9 @@ public class RippleCanvas extends View {
         mRipples.add(ripple);
         ValueAnimator animator = ValueAnimator.ofFloat(0, maxRadius);
         animator.setDuration(duration);
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                ripple.setRadius((float) animation.getAnimatedValue());
-                invalidate();
-            }
+        animator.addUpdateListener(animation -> {
+            ripple.setRadius((float) animation.getAnimatedValue());
+            invalidate();
         });
         animator.start();
     }

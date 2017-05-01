@@ -4,6 +4,8 @@
 * Add method to set Drawable for FAB icon
 * Removed fade when checking a CheckBoxItem
 * Added helper methods to CheckBoxItem
+* Fixed BaseItemAnimator isRecyclable decremented below 0 issue
+* Added numColumn hook to CapsuleSRVFragment
 
 ## v4.3
 * Make switchFragment public
@@ -94,5 +96,5 @@
 * Added some javadocs
 * Fixed permission crash for null array
 
-## v0.1:
+## v0.1
 * Initial
