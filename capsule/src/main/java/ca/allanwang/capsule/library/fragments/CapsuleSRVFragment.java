@@ -107,4 +107,8 @@ public abstract class CapsuleSRVFragment<I extends IItem> extends CapsuleFragmen
             mSRV.refreshSilently();
     }
 
+    public SwipeRecyclerView getSRV() {
+        return mSRV;
+    }
+
 }
