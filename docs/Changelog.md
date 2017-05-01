@@ -11,6 +11,7 @@
 * Added scrolling method reroutes from SRV to RV
 * Add getSRV to CapsuleSRVFragment
 * Add various new item helper methods in CapsuleSRVFragment
+* Added duration option for smooth scroll
 
 ## v4.3
 * Make switchFragment public

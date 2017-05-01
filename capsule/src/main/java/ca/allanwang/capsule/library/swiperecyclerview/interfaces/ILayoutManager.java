@@ -7,9 +7,9 @@ package ca.allanwang.capsule.library.swiperecyclerview.interfaces;
 public interface ILayoutManager {
     void setScrollEnabled(boolean flag);
 
-    void setSmoothScrollDuration(ScrollTime scrollTime);
+    void setSmoothScrollDuration(ScrollSpeed scrollSpeed);
 
-    interface ScrollTime {
-        int calculateTimeForScrolling(int dx, int originalDuration);
+    interface ScrollSpeed {
+        float calculateSpeedPerPixel(float originalSpeed);
     }
 }

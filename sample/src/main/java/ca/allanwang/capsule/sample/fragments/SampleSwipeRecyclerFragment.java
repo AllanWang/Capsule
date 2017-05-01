@@ -9,6 +9,7 @@ import java.util.Random;
 
 import ca.allanwang.capsule.library.event.CFabEvent;
 import ca.allanwang.capsule.library.fragments.CapsuleSRVFragment;
+import ca.allanwang.capsule.library.swiperecyclerview.interfaces.ILayoutManager;
 import ca.allanwang.capsule.sample.R;
 import ca.allanwang.capsule.library.swiperecyclerview.SwipeRecyclerView;
 import ca.allanwang.capsule.library.swiperecyclerview.adapters.AnimationAdapter;
