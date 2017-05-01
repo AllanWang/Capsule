@@ -195,13 +195,15 @@ public class SwipeRecyclerView extends FrameLayout implements SwipeRefreshBase.I
     /**
      * If ILayoutManager is used, tries to set the duration in the Layout Manager for the next scroll
      *
-     * @param position to scroll to
-     * @param duration for the entire scroll
+     * @param position   to scroll to
+     * @param scrollTime callback to get scroll time
      * @return this
      */
-    public SwipeRecyclerView smoothScrollToPosition(int position, int duration) {
+    public SwipeRecyclerView smoothScrollToPosition(int position, ILayoutManager.ScrollTime scrollTime) {
         if (getLayoutManager() instanceof ILayoutManager)
-            ((ILayoutManager) getLayoutManager()).setSmoothScrollDuration(duration);
+            ((ILayoutManager) getLayoutManager()).setSmoothScrollDuration(scrollTime);
+        else
+            CLog.d("LayoutManager is not an instance of ILayoutManager; cannot set smooth scroll duration");
         return smoothScrollToPosition(position);
     }
 

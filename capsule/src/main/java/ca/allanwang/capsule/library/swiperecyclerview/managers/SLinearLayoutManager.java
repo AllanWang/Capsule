@@ -15,7 +15,7 @@ import ca.allanwang.capsule.library.swiperecyclerview.interfaces.ILayoutManager;
 
 public class SLinearLayoutManager extends LinearLayoutManager implements ILayoutManager {
     private boolean isScrollEnabled = true;
-    private int duration = -1; //One time switch
+    private ScrollTime scrollTime; //One time switch
 
     public SLinearLayoutManager(Context context) {
         super(context);
@@ -35,8 +35,8 @@ public class SLinearLayoutManager extends LinearLayoutManager implements ILayout
     }
 
     @Override
-    public void setSmoothScrollDuration(int duration) {
-        this.duration = duration;
+    public void setSmoothScrollDuration(ScrollTime scrollTime) {
+        this.scrollTime = scrollTime;
     }
 
     @Override
@@ -45,13 +45,16 @@ public class SLinearLayoutManager extends LinearLayoutManager implements ILayout
                 new LinearSmoothScroller(recyclerView.getContext()) {
                     @Override
                     protected int calculateTimeForScrolling(int dx) {
-                        if (duration == -1) return super.calculateTimeForScrolling(dx);
-                        return duration;
+                        if (scrollTime != null) {
+                            int duration = scrollTime.calculateTimeForScrolling(dx, super.calculateTimeForScrolling(dx));
+                            scrollTime = null; //Reset
+                            return duration;
+                        }
+                        return super.calculateTimeForScrolling(dx);
                     }
                 };
         linearSmoothScroller.setTargetPosition(position);
         startSmoothScroll(linearSmoothScroller);
-        duration = -1; //Reset
     }
 
     @Override
