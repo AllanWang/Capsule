@@ -20,7 +20,7 @@ import ca.allanwang.capsule.library.R;
 import ca.allanwang.capsule.library.logging.CLog;
 import ca.allanwang.capsule.library.swiperecyclerview.adapters.AnimationAdapter;
 import ca.allanwang.capsule.library.swiperecyclerview.animators.SlidingAnimator;
-import ca.allanwang.capsule.library.swiperecyclerview.interfaces.IScrolling;
+import ca.allanwang.capsule.library.swiperecyclerview.interfaces.ILayoutManager;
 import ca.allanwang.capsule.library.swiperecyclerview.interfaces.ISwipeRecycler;
 import ca.allanwang.capsule.library.swiperecyclerview.managers.SGridLayoutManager;
 import ca.allanwang.capsule.library.swiperecyclerview.managers.SLinearLayoutManager;
@@ -175,10 +175,10 @@ public class SwipeRecyclerView extends FrameLayout implements SwipeRefreshBase.I
     }
 
     public SwipeRecyclerView setScrollingEnabled(boolean flag) {
-        if (!(mRecycler.getLayoutManager() instanceof IScrolling))
-            CLog.e("Recycler Layout Manager does not have custom IScrolling toggle");
+        if (!(mRecycler.getLayoutManager() instanceof ILayoutManager))
+            CLog.e("Recycler Layout Manager does not have custom ILayoutManager toggle");
         else
-            ((IScrolling) mRecycler.getLayoutManager()).setScrollEnabled(flag);
+            ((ILayoutManager) mRecycler.getLayoutManager()).setScrollEnabled(flag);
         return this;
     }
 
@@ -190,6 +190,19 @@ public class SwipeRecyclerView extends FrameLayout implements SwipeRefreshBase.I
     public SwipeRecyclerView smoothScrollToPosition(int position) {
         mRecycler.smoothScrollToPosition(position);
         return this;
+    }
+
+    /**
+     * If ILayoutManager is used, tries to set the duration in the Layout Manager for the next scroll
+     *
+     * @param position to scroll to
+     * @param duration for the entire scroll
+     * @return this
+     */
+    public SwipeRecyclerView smoothScrollToPosition(int position, int duration) {
+        if (getLayoutManager() instanceof ILayoutManager)
+            ((ILayoutManager) getLayoutManager()).setSmoothScrollDuration(duration);
+        return smoothScrollToPosition(position);
     }
 
     public SwipeRecyclerView smoothScrollBy(int dx, int dy) {

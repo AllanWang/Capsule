@@ -17,7 +17,7 @@
     <item text="Added scrolling method reroutes from SRV to RV" />
     <item text="Add getSRV to CapsuleSRVFragment" />
     <item text="Add various new item helper methods in CapsuleSRVFragment" />
-    <item text="" />
+    <item text="Added duration option for smooth scroll" />
     <item text="" />
     <item text="" />
     <item text="" />

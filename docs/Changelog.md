@@ -9,6 +9,8 @@
 * Add dialog as parameter for NeutralButtonClick
 * Added click events for toolbar 
 * Added scrolling method reroutes from SRV to RV
+* Add getSRV to CapsuleSRVFragment
+* Add various new item helper methods in CapsuleSRVFragment
 
 ## v4.3
 * Make switchFragment public
