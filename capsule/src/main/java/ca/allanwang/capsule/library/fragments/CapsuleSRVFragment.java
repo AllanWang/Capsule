@@ -112,12 +112,4 @@ public abstract class CapsuleSRVFragment<I extends IItem> extends CapsuleFragmen
         return mSRV;
     }
 
-    public LinearLayoutManager getLayoutManager() {
-        return (LinearLayoutManager) mSRV.getRecyclerView().getLayoutManager();
-    }
-
-    public boolean isFirstItemCompletelyVisible() {
-        return getLayoutManager().findFirstCompletelyVisibleItemPosition() == 0;
-    }
-
 }

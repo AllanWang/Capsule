@@ -301,4 +301,12 @@ public class SwipeRecyclerView extends FrameLayout implements SwipeRefreshBase.I
     public SwipeRefreshLayout getSwipeRefreshLayout() {
         return mSwipe;
     }
+
+    public LinearLayoutManager getLayoutManager() {
+        return (LinearLayoutManager) mRecycler.getLayoutManager();
+    }
+
+    public boolean isFirstItemCompletelyVisible() {
+        return getLayoutManager().findFirstCompletelyVisibleItemPosition() == 0;
+    }
 }
