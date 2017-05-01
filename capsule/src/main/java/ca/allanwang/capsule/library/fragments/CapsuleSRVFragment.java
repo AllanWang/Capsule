@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -105,6 +106,10 @@ public abstract class CapsuleSRVFragment<I extends IItem> extends CapsuleFragmen
     public void refreshSilently() {
         if (mSRV != null)
             mSRV.refreshSilently();
+    }
+
+    public SwipeRecyclerView getSRV() {
+        return mSRV;
     }
 
 }

@@ -6,6 +6,12 @@
 * Added helper methods to CheckBoxItem
 * Fixed BaseItemAnimator isRecyclable decremented below 0 issue
 * Added numColumn hook to CapsuleSRVFragment
+* Add dialog as parameter for NeutralButtonClick
+* Added click events for toolbar 
+* Added scrolling method reroutes from SRV to RV
+* Add getSRV to CapsuleSRVFragment
+* Add various new item helper methods in CapsuleSRVFragment
+* Added duration option for smooth scroll
 
 ## v4.3
 * Make switchFragment public

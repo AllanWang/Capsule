@@ -2,6 +2,7 @@ package ca.allanwang.capsule.sample;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.view.Menu;
@@ -11,10 +12,15 @@ import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 
+import org.greenrobot.eventbus.Subscribe;
+
 import ca.allanwang.capsule.library.activities.CapsuleActivityFrame;
 import ca.allanwang.capsule.library.changelog.ChangelogDialog;
+import ca.allanwang.capsule.library.event.CClickEvent;
+import ca.allanwang.capsule.library.event.SnackbarEvent;
 import ca.allanwang.capsule.library.interfaces.CDrawerItem;
 import ca.allanwang.capsule.library.item.DrawerItem;
+import ca.allanwang.capsule.library.logging.CLog;
 import ca.allanwang.capsule.sample.fragments.FragmentSample;
 import ca.allanwang.capsule.sample.fragments.FragmentSampleNoFab;
 import ca.allanwang.capsule.sample.fragments.RippleFragment;
@@ -33,9 +39,15 @@ public class MainActivity extends CapsuleActivityFrame {
 //        cCoordinatorLayout.setScrollAllowed(false);
         addCollapsingToolbarView(R.layout.toolbar_view);
 //        new CustomizeToolbar().setHeight(70);
-        new CustomizeToolbar().hideTitleOnExpand().setHeight(200);
+        new CustomizeToolbar().hideTitleOnExpand().setHeight(200).withClickEvents(true);
         collapseAppBar(false);
         onVersionUpdate(BuildConfig.VERSION_CODE, () -> ChangelogDialog.show(MainActivity.this, R.xml.changelog));
+    }
+
+    @Subscribe
+    public void onCClick(CClickEvent event) {
+        if (event.view == cToolbar)
+            snackbar(new SnackbarEvent("Toolbar clicked", Snackbar.LENGTH_SHORT));
     }
 
     @Override

@@ -29,25 +29,25 @@ public abstract class CapsuleFragment extends BaseFragment {
      * The following methods require a CapsuleActivity context
      */
 
-    protected void postEvent(Object event) {
+    public void postEvent(Object event) {
         EventUtils.post(event);
     }
 
-    protected CapsuleActivity capsuleActivity() {
+    public CapsuleActivity capsuleActivity() {
         if (!(getActivity() instanceof CapsuleActivity))
             throw new RuntimeException(s(R.string.capsule_activity_context_error));
         return ((CapsuleActivity) getActivity());
     }
 
-    protected void setFabIcon(IIcon iicon) {
+    public void setFabIcon(IIcon iicon) {
         postEvent(new CFabEvent(iicon, null));
     }
 
-    protected void showFab() {
+    public void showFab() {
         postEvent(new CFabEvent(true));
     }
 
-    protected void hideFab() {
+    public void hideFab() {
         postEvent(new CFabEvent(false));
     }
 
@@ -65,7 +65,7 @@ public abstract class CapsuleFragment extends BaseFragment {
     }
 
     //EventBus method
-    protected void snackbar(SnackbarEvent event) {
+    public void snackbar(SnackbarEvent event) {
         postEvent(event);
     }
 
