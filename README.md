@@ -1,6 +1,8 @@
 # Capsule
 A UI framework library
 
+> Capsule has been modularized and recreated in [KAU](https://github.com/AllanWang/KAU). It is written in Kotlin, and offers a delegation pattern so very few components are bound to superclasses. This means that you can take advantage of all of KAU's great features, even if you are dependent on other libraries.
+
 <!--Current Release 4.3-->
 
 Mainly for more complex UIs, this library contains plenty of useful tools and shortened methods to make UI building easier.
