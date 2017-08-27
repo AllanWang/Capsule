@@ -28,7 +28,6 @@ import ca.allanwang.capsule.library.event.SnackbarEvent;
 import ca.allanwang.capsule.library.interfaces.CCollapseListener;
 import ca.allanwang.capsule.library.utils.AnimUtils;
 import ca.allanwang.capsule.library.utils.ViewUtils;
-import timber.log.Timber;
 
 /**
  * Created by Allan Wang on 2016-08-21. <p> Handles all views
@@ -125,7 +124,6 @@ abstract class ViewActivity extends PermissionActivity {
             throw new RuntimeException(sf(R.string.capsule_generic_not_set, "cCoordinatorLayout"));
         if (cAppBarLayout instanceof CapsuleAppBarLayout) {
             boolean wasExpanded = ((CapsuleAppBarLayout) cAppBarLayout).isExpanded();
-            Timber.d("Was expanded? " + wasExpanded + " - Should expand? " + expand);
             if (wasExpanded != expand) {
                 cAppBarLayout.setExpanded(expand, animate);
                 ((CapsuleAppBarLayout) cAppBarLayout).setScrollAllowed(expand);
