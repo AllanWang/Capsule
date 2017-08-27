@@ -1,7 +1,6 @@
 package ca.allanwang.capsule.library.custom;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.util.AttributeSet;
@@ -29,17 +28,7 @@ public class CapsuleAppBarLayout extends AppBarLayout {
         try {
             CoordinatorLayout.LayoutParams params =
                     (CoordinatorLayout.LayoutParams) getLayoutParams();
-            AppBarLayout.Behavior behavior = (Behavior) params.getBehavior();
-            if (behavior != null) {
-                behavior.setDragCallback(new Behavior.DragCallback() {
-                    @Override
-                    public boolean canDrag(@NonNull AppBarLayout appBarLayout) {
-                        return scrollAllowed;
-                    }
-                });
-                
-            }
-            params.setBehavior(behavior);
+            params.setBehavior(new CapsuleAppBarBehavior(scrollAllowed));
         } catch (Exception e) {
             e.printStackTrace();
         }
