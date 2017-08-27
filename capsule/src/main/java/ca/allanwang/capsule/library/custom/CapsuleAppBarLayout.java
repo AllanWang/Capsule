@@ -5,6 +5,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.util.AttributeSet;
 
+@CoordinatorLayout.DefaultBehavior(CapsuleAppBarBehavior.class)
 public class CapsuleAppBarLayout extends AppBarLayout {
     
     private boolean isScrollAllowed = true;
