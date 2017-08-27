@@ -122,14 +122,9 @@ abstract class ViewActivity extends PermissionActivity {
             throw new RuntimeException(sf(R.string.capsule_generic_not_set, "cAppBarLayout"));
         if (cCoordinatorLayout == null)
             throw new RuntimeException(sf(R.string.capsule_generic_not_set, "cCoordinatorLayout"));
-        if (cAppBarLayout instanceof CapsuleAppBarLayout) {
-            if (((CapsuleAppBarLayout) cAppBarLayout).isExpanded() != expand) {
-                cAppBarLayout.setExpanded(expand, animate);
-            }
+        if (cAppBarLayout instanceof CapsuleAppBarLayout)
             ((CapsuleAppBarLayout) cAppBarLayout).setScrollAllowed(expand);
-        } else {
-            cAppBarLayout.setExpanded(expand, animate);
-        }
+        cAppBarLayout.setExpanded(expand, animate);
         cCoordinatorLayout.setScrollAllowed(expand);
     }
     
