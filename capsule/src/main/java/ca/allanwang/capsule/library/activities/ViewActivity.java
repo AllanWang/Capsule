@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import org.greenrobot.eventbus.EventBus;
 
 import ca.allanwang.capsule.library.R;
+import ca.allanwang.capsule.library.custom.CapsuleAppBarLayout;
 import ca.allanwang.capsule.library.custom.CapsuleCoordinatorLayout;
 import ca.allanwang.capsule.library.event.CClickEvent;
 import ca.allanwang.capsule.library.event.SnackbarEvent;
@@ -120,6 +121,8 @@ abstract class ViewActivity extends PermissionActivity {
         if (cCoordinatorLayout == null)
             throw new RuntimeException(sf(R.string.capsule_generic_not_set, "cCoordinatorLayout"));
         cAppBarLayout.setExpanded(expand, animate);
+        if (cAppBarLayout instanceof CapsuleAppBarLayout)
+            ((CapsuleAppBarLayout) cAppBarLayout).setScrollAllowed(expand);
         cCoordinatorLayout.setScrollAllowed(expand);
     }
 
