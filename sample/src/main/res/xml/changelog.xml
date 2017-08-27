@@ -13,12 +13,12 @@
     <item text="Fixed BaseItemAnimator isRecyclable decremented below 0 issue" />
     <item text="Added numColumn hook to CapsuleSRVFragment" />
     <item text="Add dialog as parameter for NeutralButtonClick" />
-    <item text="Added click events for toolbar " />
+    <item text="Added click events for toolbar" />
     <item text="Added scrolling method reroutes from SRV to RV" />
     <item text="Add getSRV to CapsuleSRVFragment" />
     <item text="Add various new item helper methods in CapsuleSRVFragment" />
     <item text="Added duration option for smooth scroll" />
-    <item text="" />
+    <item text="Added CapsuleAppBarLayout and CapsuleAppBarBehavior in favor of fixing CollapsingToolbar issues with support libraries 26.+" />
     <item text="" />
     <item text="" />
 
