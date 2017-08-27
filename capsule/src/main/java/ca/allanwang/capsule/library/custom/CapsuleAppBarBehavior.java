@@ -24,18 +24,16 @@ public class CapsuleAppBarBehavior extends AppBarLayout.Behavior {
         setDragCallback(null);
     }
     
-    private boolean scrollAllowed = false;
-    
-    private DragCallback dragCallback = new DragCallback() {
-        @Override
-        public boolean canDrag(@NonNull AppBarLayout appBarLayout) {
-            return scrollAllowed;
-        }
-    };
+    private boolean scrollAllowed = true;
     
     @Override
     public void setDragCallback(@Nullable DragCallback ignored) {
-        super.setDragCallback(dragCallback);
+        super.setDragCallback(new DragCallback() {
+            @Override
+            public boolean canDrag(@NonNull AppBarLayout appBarLayout) {
+                return scrollAllowed;
+            }
+        });
     }
     
     @Override
