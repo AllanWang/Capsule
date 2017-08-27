@@ -8,6 +8,7 @@ import android.util.AttributeSet;
 @CoordinatorLayout.DefaultBehavior(CapsuleAppBarBehavior.class)
 public class CapsuleAppBarLayout extends AppBarLayout {
     
+    private boolean isExpanded = true;
     private boolean isScrollAllowed = true;
     
     public CapsuleAppBarLayout(Context context) {
@@ -18,14 +19,24 @@ public class CapsuleAppBarLayout extends AppBarLayout {
         super(context, attrs);
     }
     
+    public boolean isExpanded() {
+        return isExpanded;
+    }
+    
+    @Override
+    public void setExpanded(boolean expanded, boolean animate) {
+        isExpanded = expanded;
+        super.setExpanded(expanded, animate);
+    }
+    
     public boolean isScrollAllowed() {
         return isScrollAllowed;
     }
     
     public void setScrollAllowed(boolean scrollAllowed) {
         isScrollAllowed = scrollAllowed;
-        setActivated(scrollAllowed);
-        setEnabled(scrollAllowed);
+        // setActivated(scrollAllowed);
+        // setEnabled(scrollAllowed);
         try {
             CoordinatorLayout.LayoutParams params =
                     (CoordinatorLayout.LayoutParams) getLayoutParams();
