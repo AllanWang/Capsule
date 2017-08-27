@@ -7,11 +7,12 @@
 * Fixed BaseItemAnimator isRecyclable decremented below 0 issue
 * Added numColumn hook to CapsuleSRVFragment
 * Add dialog as parameter for NeutralButtonClick
-* Added click events for toolbar 
+* Added click events for toolbar
 * Added scrolling method reroutes from SRV to RV
 * Add getSRV to CapsuleSRVFragment
 * Add various new item helper methods in CapsuleSRVFragment
 * Added duration option for smooth scroll
+* Added CapsuleAppBarLayout and CapsuleAppBarBehavior in favor of fixing CollapsingToolbar issues with support libraries 26.+
 
 ## v4.3
 * Make switchFragment public
