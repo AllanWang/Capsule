@@ -25,8 +25,8 @@ public class CapsuleAppBarLayout extends AppBarLayout {
     
     @Override
     public void setExpanded(boolean expanded, boolean animate) {
-        isExpanded = expanded;
         super.setExpanded(expanded, animate);
+        isExpanded = expanded;
     }
     
     public boolean isScrollAllowed() {
@@ -35,8 +35,6 @@ public class CapsuleAppBarLayout extends AppBarLayout {
     
     public void setScrollAllowed(boolean scrollAllowed) {
         isScrollAllowed = scrollAllowed;
-        // setActivated(scrollAllowed);
-        // setEnabled(scrollAllowed);
         try {
             CoordinatorLayout.LayoutParams params =
                     (CoordinatorLayout.LayoutParams) getLayoutParams();
