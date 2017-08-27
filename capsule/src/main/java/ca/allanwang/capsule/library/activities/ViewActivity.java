@@ -126,9 +126,10 @@ abstract class ViewActivity extends PermissionActivity {
         if (cAppBarLayout instanceof CapsuleAppBarLayout) {
             boolean wasExpanded = ((CapsuleAppBarLayout) cAppBarLayout).isExpanded();
             Timber.d("Was expanded? " + wasExpanded + " - Should expand? " + expand);
-            if (wasExpanded != expand)
+            if (wasExpanded != expand) {
                 cAppBarLayout.setExpanded(expand, animate);
-            ((CapsuleAppBarLayout) cAppBarLayout).setScrollAllowed(expand);
+                ((CapsuleAppBarLayout) cAppBarLayout).setScrollAllowed(expand);
+            }
         } else {
             cAppBarLayout.setExpanded(expand, animate);
         }
