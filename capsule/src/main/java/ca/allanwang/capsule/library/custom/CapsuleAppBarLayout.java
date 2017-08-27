@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 @CoordinatorLayout.DefaultBehavior(CapsuleAppBarBehavior.class)
 public class CapsuleAppBarLayout extends AppBarLayout {
     
-    private boolean isExpanded = true;
+    private boolean isExpanded;
     private boolean isScrollAllowed = true;
     
     public CapsuleAppBarLayout(Context context) {
